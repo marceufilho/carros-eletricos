@@ -1,0 +1,644 @@
+<title>Rivalidade Elétrica BR</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: barra de controles fixa no topo, grade de painéis que o usuário liga e desliga, rodapé de fontes. */
+:root{
+  --bg:#eef1f4; --surface:#ffffff; --surface-2:#f6f8fa; --line:#d6dce3;
+  --fg:#16202b; --muted:#5a6878; --accent:#1747c8; --accent-soft:#e3eaff;
+  --ok:#1d7f4e; --warn:#b26a00; --bad:#b4152b;
+  --ok-bg:#e1f3e9; --warn-bg:#fdf0da; --bad-bg:#fbe3e6;
+  --f-display:"Archivo",system-ui,sans-serif; --f-body:"IBM Plex Sans",system-ui,sans-serif; --f-mono:"IBM Plex Mono",ui-monospace,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f141a; --surface:#171e26; --surface-2:#1d2630; --line:#2c3743;
+  --fg:#e6ebf0; --muted:#97a4b2; --accent:#7c9bff; --accent-soft:#1f2a4a;
+  --ok:#5cc98e; --warn:#f0a83a; --bad:#ff6b7d; --ok-bg:#16301f; --warn-bg:#33270f; --bad-bg:#3a1820; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f141a; --surface:#171e26; --surface-2:#1d2630; --line:#2c3743;
+  --fg:#e6ebf0; --muted:#97a4b2; --accent:#7c9bff; --accent-soft:#1f2a4a;
+  --ok:#5cc98e; --warn:#f0a83a; --bad:#ff6b7d; --ok-bg:#16301f; --warn-bg:#33270f; --bad-bg:#3a1820; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:14px;line-height:1.5}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px;display:grid;gap:18px}
+header.top{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:end;justify-content:space-between}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(22px,3.2vw,32px);margin:0;letter-spacing:-.01em;text-wrap:balance}
+.sub{color:var(--muted);margin:4px 0 0;max-width:68ch}
+.eyebrow{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.controls{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.ctl{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ctl label{font-size:12px;color:var(--muted)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{border:0;background:transparent;color:var(--fg);font:500 13px var(--f-mono);padding:6px 10px;cursor:pointer}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:#fff}
+button.btn{border:1px solid var(--line);background:var(--surface-2);color:var(--fg);font:500 13px var(--f-body);padding:6px 12px;border-radius:8px;cursor:pointer}
+button.btn:hover{border-color:var(--accent)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+select,input[type=range]{accent-color:var(--accent)}
+select{font:inherit;padding:5px 8px;border-radius:8px;border:1px solid var(--line);background:var(--surface-2);color:var(--fg)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;display:grid;gap:2px;min-width:0}
+.kpi .v{font-family:var(--f-display);font-weight:700;font-size:26px;font-variant-numeric:tabular-nums;line-height:1.15}
+.kpi .d{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.pill{display:inline-block;font:500 11px var(--f-mono);padding:2px 8px;border-radius:99px;letter-spacing:.03em}
+.pill.baixa,.pill.verificado{background:var(--ok-bg);color:var(--ok)}
+.pill.moderada,.pill.calculado{background:var(--warn-bg);color:var(--warn)}
+.pill.alta,.pill.estimado{background:var(--bad-bg);color:var(--bad)}
+.pill.parcial{background:var(--accent-soft);color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.panel{grid-column:span 6;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;min-width:0;display:grid;gap:10px;align-content:start}
+.panel.wide{grid-column:span 12}
+.panel h2{font-family:var(--f-display);font-size:17px;font-weight:700;margin:0}
+.panel .hint{color:var(--muted);font-size:13px;margin:0}
+.chart{position:relative;height:300px}
+@media (max-width:860px){.panel{grid-column:span 12}}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font:500 11px var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+td.n{text-align:right;font-family:var(--f-mono)}
+.bar{height:6px;border-radius:3px;background:var(--accent);min-width:2px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--surface-2);color:var(--fg);border-radius:99px;padding:3px 10px 3px 8px;font:500 12px var(--f-body);cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.chip .sw{width:10px;height:10px;border-radius:50%}
+.chip[aria-pressed="false"]{opacity:.45}
+.sim{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.sim .box{background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:12px;display:grid;gap:8px}
+.big{font-family:var(--f-display);font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+.timeline{display:grid;gap:0;margin:0;padding:0;list-style:none}
+.timeline li{display:grid;grid-template-columns:80px 1fr;gap:12px;padding:7px 0;border-bottom:1px dashed var(--line)}
+.timeline time{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.customize{display:flex;flex-wrap:wrap;gap:6px 14px}
+.customize label{display:inline-flex;gap:6px;align-items:center;font-size:13px;cursor:pointer}
+footer{color:var(--muted);font-size:12.5px;display:grid;gap:6px;max-width:90ch}
+.toast{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:13px;z-index:20}
+textarea{width:100%;min-height:120px;font:12px var(--f-mono);background:var(--surface-2);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:8px}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tabs a{padding:8px 14px;color:var(--muted);text-decoration:none;font:600 14px var(--f-body);border-bottom:3px solid transparent;margin-bottom:-1px}
+.tabs a[aria-current="page"]{color:var(--fg);border-bottom-color:var(--accent)}
+.view{display:grid;gap:18px}
+.thesis{background:var(--accent-soft);border-radius:var(--r);padding:16px 18px}
+.thesis p{margin:6px 0 0;font-size:15.5px;max-width:95ch}
+.porter{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:18px;align-items:start}
+@media (max-width:860px){.porter{grid-template-columns:1fr}}
+.forces{display:grid;gap:10px}
+.force{border:1px solid var(--line);border-radius:8px;padding:10px 12px;display:grid;gap:4px;background:var(--surface-2)}
+.force header{display:flex;justify-content:space-between;gap:8px;align-items:baseline;flex-wrap:wrap}
+.force p{margin:0;font-size:13px;color:var(--muted)}
+.force .sl{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;font:12px var(--f-mono)}
+.gen{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:520px){.gen{grid-template-columns:1fr}}
+.gen .q{border:1px solid var(--line);border-radius:8px;padding:10px;background:var(--surface-2)}
+.gen p{margin:6px 0 0;font-size:13px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.steps>div{border-left:3px solid var(--accent);padding:4px 12px}
+.steps p{margin:4px 0 0;font-size:13px}
+table.entry td{white-space:normal;vertical-align:top;min-width:110px}
+.panel table td{white-space:normal;vertical-align:top}
+svg.mz,svg.tam{width:100%;height:auto;max-width:760px}
+svg .t{font:600 12px var(--f-body);fill:var(--fg)}
+svg .s{font:11px var(--f-body);fill:var(--muted)}
+.chand{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px}
+.chand>div{display:grid;gap:3px;border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--surface-2)}
+.chand .arrow{color:var(--accent);font-weight:700}
+.swot{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:640px){.swot{grid-template-columns:1fr}}
+.swot>div{border-radius:8px;padding:12px 14px;border:1px solid var(--line)}
+.swot ul{margin:6px 0 0;padding-left:18px}
+.swot .S{background:var(--ok-bg)}.swot .W{background:var(--warn-bg)}.swot .O{background:var(--accent-soft)}.swot .T{background:var(--bad-bg)}
+.tam-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.tam-grid .box{border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--surface-2)}
+.tam-grid p{margin:6px 0 0;font-size:13px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="eyebrow">AP1 · Rivalidade setorial · Ibmec</div>
+      <h1>Rivalidade no mercado de carros elétricos no Brasil</h1>
+      <p class="sub">Emplacamentos de carros 100% elétricos (BEV) por marca, de 2020 a 2026. Da Volvo e Porsche dos primeiros anos ao domínio da BYD e à chegada da Geely.</p>
+    </div>
+    <div class="ctl">
+      <button class="btn" id="btnResumo" type="button">Copiar resumo</button>
+      <button class="btn" id="btnCsv" type="button">Copiar dados (CSV)</button>
+    </div>
+  </header>
+
+  <nav class="tabs" aria-label="Seções">
+    <a href="#dados" id="tabDados">Dados e concentração</a>
+    <a href="#estrategia" id="tabEstr">Análise estratégica</a>
+  </nav>
+
+  <div id="vDados" class="view">
+
+  <div class="controls" role="region" aria-label="Filtros">
+    <div class="ctl"><label for="anoSel">Ano</label><div class="seg" id="anoSeg"></div></div>
+    <div class="ctl"><label>Mostrar</label>
+      <div class="seg" id="metSeg"><button type="button" data-m="share" aria-pressed="true">% do mercado</button><button type="button" data-m="unid" aria-pressed="false">unidades</button></div>
+    </div>
+    <div class="ctl"><label>Painéis</label><div class="customize" id="customize"></div></div>
+  </div>
+
+  <section class="kpis" id="kpis" aria-label="Indicadores do ano"></section>
+
+  <div class="grid">
+    <section class="panel wide" data-panel="evolucao">
+      <h2>Participação por marca ao longo do tempo</h2>
+      <p class="hint">Clique nas marcas para ligar ou desligar. 2026 vai até outubro.</p>
+      <div class="chips" id="chips"></div>
+      <div class="chart"><canvas id="cEvol"></canvas></div>
+    </section>
+
+    <section class="panel" data-panel="concentracao">
+      <h2>Concentração: HHI e CR4</h2>
+      <p class="hint">HHI abaixo de 1.500 é baixa concentração, de 1.500 a 2.500 é moderada, acima de 2.500 é alta (critério do CADE).</p>
+      <div class="chart"><canvas id="cHhi"></canvas></div>
+    </section>
+
+    <section class="panel" data-panel="ranking">
+      <h2 id="rankTitle">Ranking de marcas</h2>
+      <div class="tbl"><table id="rankTbl"></table></div>
+    </section>
+
+    <section class="panel wide" data-panel="simulador">
+      <h2>Simulador de cenários</h2>
+      <p class="hint">Teste o que acontece com a concentração se uma marca tirar participação da líder ou se duas marcas se juntarem. Usa o ano selecionado como ponto de partida.</p>
+      <div class="sim">
+        <div class="box">
+          <label for="simDe">Marca que perde participação</label><select id="simDe"></select>
+          <label for="simPara">Marca que ganha</label><select id="simPara"></select>
+          <label for="simPp">Pontos percentuais transferidos: <b id="simPpV">10</b></label>
+          <input type="range" id="simPp" min="0" max="40" step="1" value="10">
+        </div>
+        <div class="box">
+          <label for="fusA">Fusão: marca A</label><select id="fusA"></select>
+          <label for="fusB">Fusão: marca B</label><select id="fusB"></select>
+          <label><input type="checkbox" id="fusOn"> Aplicar fusão</label>
+        </div>
+        <div class="box" aria-live="polite">
+          <span class="eyebrow">Resultado</span>
+          <div>HHI atual <span class="big" id="simAtual">0</span></div>
+          <div>HHI no cenário <span class="big" id="simNovo">0</span></div>
+          <div id="simDelta"></div>
+          <p class="hint" id="simLeitura"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" data-panel="setores">
+      <h2>Comparação com outros setores</h2>
+      <p class="hint">HHI de referência aproximado de outros mercados brasileiros.</p>
+      <div class="chart"><canvas id="cSet"></canvas></div>
+    </section>
+
+    <section class="panel" data-panel="precos">
+      <h2>Preços e imposto de importação</h2>
+      <p class="hint">Preço de tabela de modelos-chave (R$ mil) e alíquota do imposto sobre elétricos importados.</p>
+      <div class="chart"><canvas id="cPreco"></canvas></div>
+    </section>
+
+    <section class="panel" data-panel="estatistica">
+      <h2>Estatística do mercado</h2>
+      <div class="tbl"><table id="statTbl"></table></div>
+      <p class="hint" id="statNote"></p>
+    </section>
+
+    <section class="panel" data-panel="eventos">
+      <h2>Linha do tempo</h2>
+      <ul class="timeline" id="tl"></ul>
+    </section>
+
+    <section class="panel wide" data-panel="conclusoes">
+      <h2>Conclusões</h2>
+      <div id="concl"></div>
+    </section>
+  </div>
+
+  </div><!-- /vDados -->
+
+  <div id="vEstr" class="view" hidden>
+    <section class="thesis">
+      <span class="eyebrow">Tese do grupo</span>
+      <p>As montadoras chinesas venceram a disputa dos elétricos no Brasil com <b>liderança em custo</b>: verticalização das baterias, preço abaixo de R$ 120 mil e fábricas compradas de montadoras ocidentais que saíram do país. As marcas premium europeias (Volvo, BMW, Mercedes, Porsche) ficaram com a <b>diferenciação</b> num nicho que caiu de mais da metade do mercado em 2022 para cerca de 5% em 2026. Agora a briga é entre chinesas, e quem não produzir no Brasil paga 35% de imposto.</p>
+    </section>
+
+    <div class="grid">
+      <!-- PORTER 5 FORÇAS -->
+      <section class="panel wide">
+        <h2>As 5 Forças de Porter</h2>
+        <p class="hint">Intensidade de 1 (fraca) a 5 (forte) em 2022, antes da BYD, e em 2026. Arraste os controles para testar a avaliação do grupo; o gráfico se atualiza.</p>
+        <div class="porter">
+          <div class="chart" style="height:340px"><canvas id="cPorter"></canvas></div>
+          <div class="forces" id="forces"></div>
+        </div>
+        <p class="hint" id="porterLeitura"></p>
+      </section>
+
+      <!-- ESTRATÉGIAS GENÉRICAS -->
+      <section class="panel wide">
+        <h2>Estratégias genéricas de Porter: quem está onde</h2>
+        <p class="hint">Preço do modelo de entrada (escala logarítmica) contra participação no mercado em 2026. O tamanho da bolha é o volume vendido.</p>
+        <div class="porter">
+          <div class="chart" style="height:340px"><canvas id="cGen"></canvas></div>
+          <div class="gen">
+            <div class="q"><span class="pill baixa">Liderança em custo</span><p><b>BYD.</b> Faz a própria bateria (Blade), motor e chip. Escala global de mais de 4 milhões de carros por ano permite o Dolphin Mini a R$ 110 mil.</p></div>
+            <div class="q"><span class="pill parcial">Custo com tecnologia</span><p><b>Geely.</b> Preço parecido com o da BYD, usando a fábrica e a rede da Renault. Risco de ficar "no meio do caminho" se não tiver custo menor nem marca mais forte.</p></div>
+            <div class="q"><span class="pill moderada">Diferenciação</span><p><b>Volvo, BMW, Mercedes, Porsche.</b> Marca, segurança e acabamento. Preços de R$ 230 mil a R$ 700 mil, vendem pouco e com margem alta.</p></div>
+            <div class="q"><span class="pill alta">Enfoque</span><p><b>Renault Kwid E-Tech, JAC.</b> Nicho de carro urbano barato e de frotas e aplicativos. Volume baixo.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ENTRADA DAS CHINESAS -->
+      <section class="panel wide">
+        <h2>Como as chinesas se instalaram no Brasil</h2>
+        <p class="hint">O caminho segue o modelo de internacionalização gradual de Uppsala: primeiro exportam, depois fazem parceria e por fim investem em fábrica. O imposto de importação acelerou a última etapa.</p>
+        <div class="steps">
+          <div><span class="eyebrow">1 · Importação</span><p>Testar o mercado com carros trazidos da China e rede de concessionárias de parceiros. Baixo risco e baixo compromisso.</p></div>
+          <div><span class="eyebrow">2 · Parceria ou joint venture</span><p>Usar fábrica, rede e conhecimento local de um sócio: CAOA com a Chery, Renault com a Geely, Stellantis com a Leapmotor.</p></div>
+          <div><span class="eyebrow">3 · Investimento direto</span><p>Fábrica própria. As chinesas compraram plantas fechadas por montadoras ocidentais: a da Ford na Bahia e a da Mercedes em São Paulo.</p></div>
+        </div>
+        <div class="tbl"><table class="entry">
+          <thead><tr><th>Marca</th><th>Chegada</th><th>Modo de entrada</th><th>Ativo no Brasil</th><th>Investimento</th></tr></thead>
+          <tbody>
+            <tr><td><b>JAC</b></td><td>2011</td><td>Importador independente (Grupo SHC)</td><td>Rede própria; fábrica prometida nunca saiu</td><td>–</td></tr>
+            <tr><td><b>Chery</b></td><td>2014</td><td>Fábrica própria, depois JV com a CAOA (2017)</td><td>Jacareí (SP), Anápolis (GO) com a CAOA</td><td>–</td></tr>
+            <tr><td><b>BYD</b></td><td>2015 (ônibus e painéis solares); carros em 2021</td><td>Investimento direto, brownfield</td><td>Ex-fábrica da Ford em Camaçari (BA), inaugurada em out/2025; 100 mil carros montados até jul/2026</td><td>R$ 5,5 bi</td></tr>
+            <tr><td><b>GWM</b></td><td>2021</td><td>Investimento direto, brownfield</td><td>Ex-fábrica da Mercedes em Iracemápolis (SP), inaugurada em ago/2025; 50 mil carros/ano de capacidade</td><td>R$ 10 bi até 2032</td></tr>
+            <tr><td><b>Geely</b></td><td>2025</td><td>Joint venture: Renault Geely do Brasil (nov/2025)</td><td>Fábrica da Renault em São José dos Pinhais (PR); EX2 montado a partir do fim de 2026</td><td>R$ 5,8 bi (2025–27)</td></tr>
+            <tr><td><b>Leapmotor</b></td><td>2025</td><td>Parceria com a Stellantis</td><td>Rede e estrutura da Stellantis</td><td>–</td></tr>
+            <tr><td><b>GAC, Zeekr, Omoda</b></td><td>2025</td><td>Importação</td><td>Rede de concessionárias em formação</td><td>–</td></tr>
+          </tbody></table></div>
+        <p class="hint"><b>Padrões:</b> (1) comprar fábricas prontas encurta o prazo e gera boa vontade política, porque recupera empregos perdidos; (2) a montagem SKD e CKD com cota de imposto zero foi a ponte entre importar e produzir; (3) antes de cada alta do imposto, as marcas encheram os estoques com carros importados.</p>
+      </section>
+
+      <!-- MINTZBERG -->
+      <section class="panel">
+        <h2>Mintzberg: estratégia deliberada e emergente</h2>
+        <p class="hint">Para Mintzberg, a estratégia realizada mistura o que foi planejado com o que surgiu no caminho.</p>
+        <svg class="mz" viewBox="0 0 420 170" role="img" aria-label="Estratégia pretendida vira deliberada; parte não realizada; estratégias emergentes se somam à realizada">
+          <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--muted)"/></marker></defs>
+          <rect x="6" y="55" width="96" height="44" rx="6" fill="var(--surface-2)" stroke="var(--line)"/><text x="54" y="74" text-anchor="middle" class="t">Pretendida</text><text x="54" y="89" text-anchor="middle" class="s">plano de 2023</text>
+          <rect x="160" y="55" width="96" height="44" rx="6" fill="var(--surface-2)" stroke="var(--line)"/><text x="208" y="74" text-anchor="middle" class="t">Deliberada</text><text x="208" y="89" text-anchor="middle" class="s">o que foi mantido</text>
+          <rect x="314" y="55" width="100" height="44" rx="6" fill="var(--accent-soft)" stroke="var(--accent)"/><text x="364" y="74" text-anchor="middle" class="t">Realizada</text><text x="364" y="89" text-anchor="middle" class="s">o que aconteceu</text>
+          <line x1="102" y1="77" x2="158" y2="77" stroke="var(--muted)" marker-end="url(#ar)"/>
+          <line x1="256" y1="77" x2="312" y2="77" stroke="var(--muted)" marker-end="url(#ar)"/>
+          <line x1="54" y1="99" x2="54" y2="140" stroke="var(--bad)" stroke-dasharray="4 3" marker-end="url(#ar)"/><text x="62" y="154" class="s" fill="var(--bad)">não realizada</text>
+          <line x1="300" y1="20" x2="350" y2="53" stroke="var(--ok)" marker-end="url(#ar)"/><text x="190" y="18" class="s" fill="var(--ok)">emergentes: imposto, Geely, demanda</text>
+        </svg>
+        <div class="tbl"><table><tbody>
+          <tr><td><b>BYD: deliberada</b></td><td>Comprar a fábrica da Ford e produzir na Bahia (anunciado em 2023).</td></tr>
+          <tr><td><b>BYD: emergente</b></td><td>Encher o estoque antes de cada alta do imposto; cortar o preço do Dolphin Mini em 2026 quando a Geely chegou; puxar os híbridos plug-in.</td></tr>
+          <tr><td><b>BYD: não realizada</b></td><td>Produção completa em 2024. Atrasou com o caso trabalhista na obra e só começou em 2025, em regime SKD.</td></tr>
+          <tr><td><b>GWM: emergente</b></td><td>Trocou o plano da fábrica para produzir mais picape e SUV a diesel, porque a demanda foi maior que a dos elétricos.</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <!-- 5 Ps -->
+      <section class="panel">
+        <h2>Os 5 Ps de Mintzberg aplicados à BYD</h2>
+        <div class="tbl"><table><tbody>
+          <tr><td><b>Plano</b></td><td>Ser a maior montadora de eletrificados do Brasil, com produção local.</td></tr>
+          <tr><td><b>Pretexto (manobra)</b></td><td>Anunciar a fábrica cedo para negociar cotas de imposto zero e incentivos, e lançar o Dolphin Mini abaixo do esperado para assustar concorrentes.</td></tr>
+          <tr><td><b>Padrão</b></td><td>Cortes de preço repetidos (2023, 2024, 2026) e lançamento de muitos modelos por ano.</td></tr>
+          <tr><td><b>Posição</b></td><td>Elétrico acessível: carro de R$ 110 mil a R$ 150 mil, onde antes só havia carro a combustão.</td></tr>
+          <tr><td><b>Perspectiva</b></td><td>Empresa de tecnologia e energia, com baterias, ônibus e painéis solares, e não só uma montadora.</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <!-- CHANDLER -->
+      <section class="panel wide">
+        <h2>Chandler: a estrutura segue a estratégia</h2>
+        <p class="hint">Chandler (1962) mostrou que, quando a estratégia muda, a estrutura da empresa precisa mudar junto. Cada estratégia de entrada exigiu uma estrutura diferente.</p>
+        <div class="chand">
+          <div><span class="eyebrow">Estratégia</span><b>Importar e testar</b><span class="arrow">→</span><span class="eyebrow">Estrutura</span><span>Escritório comercial enxuto e concessionárias de grupos parceiros. Ex.: Zeekr, GAC, Volvo.</span></div>
+          <div><span class="eyebrow">Estratégia</span><b>Liderar em custo com volume</b><span class="arrow">→</span><span class="eyebrow">Estrutura</span><span>Integração vertical: fábrica, peças, banco e financiamento próprios, rede de mais de 100 concessionárias e P&amp;D local. Ex.: BYD.</span></div>
+          <div><span class="eyebrow">Estratégia</span><b>Entrar rápido sem fábrica própria</b><span class="arrow">→</span><span class="eyebrow">Estrutura</span><span>Nova empresa em sociedade: Renault Geely do Brasil, que divide fábrica, compras e rede.</span></div>
+          <div><span class="eyebrow">Estratégia</span><b>Diferenciação premium</b><span class="arrow">→</span><span class="eyebrow">Estrutura</span><span>Subsidiária de vendas que importa da Europa ou da China, com rede pequena e serviço exclusivo. Ex.: Volvo, Mercedes, BMW.</span></div>
+        </div>
+      </section>
+
+      <!-- SWOT -->
+      <section class="panel wide">
+        <h2>Análise SWOT</h2>
+        <div class="seg" id="swotSeg" role="tablist"></div>
+        <div class="swot" id="swot"></div>
+      </section>
+
+      <!-- TAM -->
+      <section class="panel wide">
+        <h2>Adoção pelo consumidor: Modelo TAM</h2>
+        <p class="hint">O Technology Acceptance Model (Davis, 1989) explica a adoção de uma tecnologia por duas percepções: <b>utilidade percebida</b> e <b>facilidade de uso percebida</b>. Elas formam a atitude, que leva à intenção e depois ao uso.</p>
+        <svg class="tam" viewBox="0 0 760 230" role="img" aria-label="Diagrama TAM: variáveis externas levam a utilidade e facilidade percebidas, que levam à atitude, intenção e uso">
+          <defs><marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--muted)"/></marker></defs>
+          <g class="node"><rect x="4" y="80" width="130" height="70" rx="8" fill="var(--surface-2)" stroke="var(--line)"/><text x="69" y="104" text-anchor="middle" class="t">Variáveis externas</text><text x="69" y="122" text-anchor="middle" class="s">preço, imposto,</text><text x="69" y="137" text-anchor="middle" class="s">recarga, gasolina</text></g>
+          <g><rect x="180" y="18" width="150" height="64" rx="8" fill="var(--ok-bg)" stroke="var(--ok)"/><text x="255" y="44" text-anchor="middle" class="t">Utilidade percebida</text><text x="255" y="62" text-anchor="middle" class="s">economia por km, desempenho</text></g>
+          <g><rect x="180" y="148" width="150" height="64" rx="8" fill="var(--warn-bg)" stroke="var(--warn)"/><text x="255" y="174" text-anchor="middle" class="t">Facilidade de uso</text><text x="255" y="192" text-anchor="middle" class="s">recarga, autonomia</text></g>
+          <g><rect x="376" y="84" width="104" height="62" rx="8" fill="var(--surface-2)" stroke="var(--line)"/><text x="428" y="112" text-anchor="middle" class="t">Atitude</text><text x="428" y="129" text-anchor="middle" class="s">87% considera</text></g>
+          <g><rect x="512" y="84" width="104" height="62" rx="8" fill="var(--surface-2)" stroke="var(--line)"/><text x="564" y="112" text-anchor="middle" class="t">Intenção</text><text x="564" y="129" text-anchor="middle" class="s">7% na próxima</text></g>
+          <g><rect x="648" y="84" width="104" height="62" rx="8" fill="var(--accent-soft)" stroke="var(--accent)"/><text x="700" y="112" text-anchor="middle" class="t">Uso real</text><text x="700" y="129" text-anchor="middle" class="s">~8% das vendas</text></g>
+          <line x1="134" y1="105" x2="178" y2="56" stroke="var(--muted)" marker-end="url(#ar2)"/>
+          <line x1="134" y1="125" x2="178" y2="176" stroke="var(--muted)" marker-end="url(#ar2)"/>
+          <line x1="255" y1="148" x2="255" y2="84" stroke="var(--muted)" marker-end="url(#ar2)"/>
+          <line x1="330" y1="56" x2="374" y2="104" stroke="var(--muted)" marker-end="url(#ar2)"/>
+          <line x1="330" y1="176" x2="374" y2="128" stroke="var(--muted)" marker-end="url(#ar2)"/>
+          <line x1="480" y1="115" x2="510" y2="115" stroke="var(--muted)" marker-end="url(#ar2)"/>
+          <line x1="616" y1="115" x2="646" y2="115" stroke="var(--muted)" marker-end="url(#ar2)"/>
+          <path d="M330,40 C450,0 520,40 560,82" fill="none" stroke="var(--muted)" stroke-dasharray="4 3" marker-end="url(#ar2)"/>
+        </svg>
+        <div class="tam-grid">
+          <div class="box"><span class="eyebrow">Utilidade percebida</span><p>Gasolina cara faz 87% dos motoristas considerarem um elétrico (Locomotiva, out/2026). Custo por km de 3 a 5 vezes menor que o carro a gasolina.</p><p><b>O que as marcas fazem:</b> anunciar economia por km, garantia de bateria de 8 anos, isenção de IPVA em vários estados e rodízio liberado em São Paulo.</p></div>
+          <div class="box"><span class="eyebrow">Facilidade de uso percebida</span><p>Recarga é a principal preocupação (Deloitte 2026). O Brasil tinha 25.429 pontos públicos em maio/2026. Autonomia é o 2º fator de decisão (Webmotors).</p><p><b>O que as marcas fazem:</b> wallbox de brinde na compra, rede própria de carregadores, aplicativos e híbridos plug-in como "porta de entrada".</p></div>
+          <div class="box"><span class="eyebrow">Variáveis externas</span><p>Preço: 84% comprariam se fosse mais barato, e 47% acham razoável pagar até R$ 100 mil. Imposto de importação de 35%.</p><p><b>O que as marcas fazem:</b> produção local para fugir do imposto, financiamento próprio e Dolphin Mini perto de R$ 100 mil.</p></div>
+          <div class="box"><span class="eyebrow">Lacuna intenção → uso</span><p>A atitude é positiva (87% considera), mas só 7% pretende comprar no próximo carro (Banco BV), e os elétricos puros foram cerca de 8% das vendas de carros em 2026 (estimativa sobre o mercado total da Fenabrave). A barreira está na facilidade de uso e no preço, não na utilidade.</p></div>
+        </div>
+        <p class="hint">O grupo pode aplicar o questionário TAM na turma (arquivo <code>dados/questionario_tam.md</code>) e rodar <code>analise_tam.py</code> para medir cada construto com dados próprios.</p>
+      </section>
+
+      <section class="panel wide">
+        <h2>Conclusão estratégica</h2>
+        <div class="tbl"><table><thead><tr><th>Para quem</th><th>Desafio</th><th>Oportunidade</th></tr></thead><tbody>
+          <tr><td><b>BYD</b></td><td>Defender 63% de participação com a Geely cortando preço; reputação depois do caso trabalhista em Camaçari.</td><td>Exportar de Camaçari para a América Latina; nacionalizar peças para baixar ainda mais o custo.</td></tr>
+          <tr><td><b>Geely e novas chinesas</b></td><td>Diferenciar-se da BYD sem cair numa guerra de preço que ninguém ganha.</td><td>Usar a rede da Renault e a produção local para chegar a 20% ou mais.</td></tr>
+          <tr><td><b>Volvo, Mercedes, BMW, Porsche</b></td><td>Nicho encolhendo; carros importados pagam 35%; chinesas premium (Zeekr) atacam o mesmo cliente.</td><td>Marca, segurança e valor de revenda; vender serviços e assinatura.</td></tr>
+          <tr><td><b>Montadoras tradicionais (VW, GM, Fiat)</b></td><td>Ficaram para trás nos elétricos puros.</td><td>Apostar em híbridos flex com etanol, onde o Brasil tem vantagem própria.</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+  </div><!-- /vEstr -->
+
+  <footer>
+    <div><b>Fontes da análise estratégica:</b> BYD Brasil, Canal VE, Canaltech (Camaçari); Autodata, Vrum (Renault Geely do Brasil); GWM Media Center, Bloomberg Línea, Forbes (Iracemápolis); Instituto Locomotiva, Deloitte, EY, Banco BV, Webmotors, ABVE/Tupi (consumidor e recarga). Referências teóricas: Porter (1979, 1980), Mintzberg (1987), Chandler (1962), Davis (1989), Johanson e Vahlne (1977).</div>
+    <div><b>Fontes:</b> ABVE (balanços anuais 2022–2025), Fenabrave (jan–out/2026), BYD, imprensa especializada (Motor Show, Canal VE, Olhar Digital). Setores: Fenabrave, Banco Central, Anatel, ANAC (valores aproximados).</div>
+    <div><span class="pill verificado">verificado</span> número publicado em fonte · <span class="pill estimado">estimado</span> estimativa do grupo, a confirmar na Fenabrave · <span class="pill calculado">calculado</span> total menos as marcas listadas. O HHI ignora o grupo "Outros", que reúne várias marcas pequenas.</div>
+  </footer>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script src="dados.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+<script>
+(function(){
+const D = window.DADOS;
+const ANOS = [...new Set(D.marcas.map(r=>r.ano))].sort();
+const CORES = {"BYD":"#d01c36","Geely":"#2a63d4","Volvo":"#6b7f93","GWM":"#e08a00","BMW":"#3aa0e0","Mercedes-Benz":"#4a4a52","Renault":"#e6b800","Chevrolet":"#a0703a","Porsche":"#8a4bb0","JAC":"#2e9b62","Nissan":"#9a9a9a","GAC":"#d45087","Zeekr":"#00a6a6","Audi":"#b0b8c0","Peugeot":"#3b5b8c","Caoa Chery":"#7a9a3a","Mini":"#c06040","Outros":"#c5ccd3"};
+const PAINEIS = [["evolucao","Evolução"],["concentracao","Concentração"],["ranking","Ranking"],["simulador","Simulador"],["setores","Setores"],["precos","Preços"],["estatistica","Estatística"],["eventos","Linha do tempo"],["conclusoes","Conclusões"]];
+const fmt = n => Math.round(n).toLocaleString("pt-BR");
+const pct = (n,d=1) => n.toLocaleString("pt-BR",{minimumFractionDigits:d,maximumFractionDigits:d})+"%";
+const store = {get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+
+let st = {ano: 2025, met:"share", marcas: store.get("marcas",["BYD","Geely","Volvo","GWM","BMW","Mercedes-Benz","Renault","Porsche"]), paineis: store.get("paineis", PAINEIS.map(p=>p[0]))};
+const h = location.hash.match(/^#ano-(\d{4})$/); if(h && ANOS.includes(+h[1])) st.ano = +h[1];
+
+function doAno(a){ const rows = D.marcas.filter(r=>r.ano===a); const tot = rows.reduce((s,r)=>s+r.unidades,0);
+  return rows.map(r=>({...r, share:r.unidades/tot*100})).sort((x,y)=> (x.marca==="Outros")-(y.marca==="Outros") || y.unidades-x.unidades); }
+function ind(rows){ const s = rows.filter(r=>r.marca!=="Outros").map(r=>r.share).sort((a,b)=>b-a);
+  const hhi = s.reduce((t,x)=>t+x*x,0); const tot = rows.reduce((t,r)=>t+r.unidades,0);
+  return {tot, hhi, cr1:s[0], cr4:s.slice(0,4).reduce((a,b)=>a+b,0), lider: rows.find(r=>r.marca!=="Outros").marca,
+    n: rows.filter(r=>r.marca!=="Outros" && r.unidades>=50).length, neq: 10000/hhi}; }
+const faixa = hhi => hhi<1500?"baixa":hhi<=2500?"moderada":"alta";
+const IND = Object.fromEntries(ANOS.map(a=>[a, ind(doAno(a))]));
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+// ---------- controles
+const anoSeg = document.getElementById("anoSeg");
+ANOS.forEach(a=>{const b=document.createElement("button");b.type="button";b.textContent=a===2026?"2026*":a;b.dataset.a=a;b.onclick=()=>{st.ano=a;history.replaceState(null,"","#ano-"+a);render()};anoSeg.appendChild(b)});
+document.querySelectorAll("#metSeg button").forEach(b=>b.onclick=()=>{st.met=b.dataset.m;render()});
+const cust = document.getElementById("customize");
+PAINEIS.forEach(([id,nome])=>{const l=document.createElement("label");l.innerHTML=`<input type="checkbox" id="p-${id}"> ${nome}`;cust.appendChild(l);
+  const cb=l.querySelector("input");cb.checked=st.paineis.includes(id);cb.onchange=()=>{st.paineis=cb.checked?[...st.paineis,id]:st.paineis.filter(x=>x!==id);store.set("paineis",st.paineis);aplicaPaineis()}});
+function aplicaPaineis(){document.querySelectorAll("[data-panel]").forEach(p=>p.hidden=!st.paineis.includes(p.dataset.panel))}
+const todasMarcas = [...new Set(D.marcas.map(r=>r.marca))].filter(m=>m!=="Outros").sort((a,b)=>{
+  const ua=D.marcas.filter(r=>r.marca===a).reduce((s,r)=>s+r.unidades,0), ub=D.marcas.filter(r=>r.marca===b).reduce((s,r)=>s+r.unidades,0); return ub-ua});
+const chips = document.getElementById("chips");
+todasMarcas.forEach(m=>{const c=document.createElement("button");c.type="button";c.className="chip";c.innerHTML=`<span class="sw" style="background:${CORES[m]||'#888'}"></span>${m}`;
+  c.onclick=()=>{st.marcas=st.marcas.includes(m)?st.marcas.filter(x=>x!==m):[...st.marcas,m];store.set("marcas",st.marcas);render()};c.dataset.m=m;chips.appendChild(c)});
+
+// ---------- charts
+let charts = {};
+function baseOpts(){ const fg=css("--muted"), grid=css("--line");
+  return {responsive:true,maintainAspectRatio:false,animation:false,
+    plugins:{legend:{labels:{color:fg,boxWidth:10,font:{family:"IBM Plex Sans"}}},tooltip:{mode:"index",intersect:false}},
+    scales:{x:{ticks:{color:fg},grid:{color:grid}},y:{ticks:{color:fg},grid:{color:grid},beginAtZero:true}}}; }
+function chart(id,cfg){ if(charts[id]) charts[id].destroy(); charts[id]=new Chart(document.getElementById(id),cfg); }
+
+function render(){
+  anoSeg.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed", +b.dataset.a===st.ano));
+  document.querySelectorAll("#metSeg button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.m===st.met));
+  chips.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed", st.marcas.includes(c.dataset.m)));
+  const rows = doAno(st.ano), I = IND[st.ano], P = IND[st.ano-1];
+  const dl = (v,p,f,suf="") => p===undefined? "" : `${v>=p?"▲":"▼"} ${f(Math.abs(v-p))}${suf} vs ${st.ano-1}`;
+
+  // KPIs
+  document.getElementById("kpis").innerHTML = [
+    ["Carros elétricos emplacados", fmt(I.tot), P? dl(I.tot,P.tot,x=>pct(x/P.tot*100,0).replace("%","% ")).replace(/vs/,"crescimento vs"):"", st.ano===2026?"jan–out":""],
+    ["Índice HHI", fmt(I.hhi), P?dl(I.hhi,P.hhi,fmt):"", `<span class="pill ${faixa(I.hhi)}">concentração ${faixa(I.hhi)}</span>`],
+    ["Líder: "+I.lider, pct(I.cr1), "participação da maior marca (CR1)", ""],
+    ["4 maiores (CR4)", pct(I.cr4), P?dl(I.cr4,P.cr4,x=>x.toLocaleString("pt-BR",{maximumFractionDigits:1})," p.p."):"", ""],
+    ["Marcas ativas", I.n, "com 50+ carros no ano", ""],
+    ["Empresas equivalentes", I.neq.toLocaleString("pt-BR",{maximumFractionDigits:1}), "10.000 ÷ HHI", ""],
+  ].map(([l,v,d,x])=>`<div class="kpi"><span class="eyebrow">${l}</span><span class="v">${v}</span><span class="d">${d}</span>${x?`<span>${x}</span>`:""}</div>`).join("");
+
+  // Evolução
+  const sel = todasMarcas.filter(m=>st.marcas.includes(m));
+  chart("cEvol",{type:"bar",data:{labels:ANOS.map(a=>a===2026?"2026*":a),datasets:sel.map(m=>({label:m,backgroundColor:CORES[m]||"#888",
+    data:ANOS.map(a=>{const r=doAno(a).find(x=>x.marca===m);return r?(st.met==="share"?+r.share.toFixed(2):r.unidades):0})}))},
+    options:(o=>{o.scales.x.stacked=true;o.scales.y.stacked=true;if(st.met==="share")o.scales.y.max=100;o.plugins.legend.display=false;
+      o.plugins.tooltip.callbacks={label:c=>`${c.dataset.label}: ${st.met==="share"?pct(c.raw):fmt(c.raw)}`};return o})(baseOpts())});
+
+  // HHI
+  const zonas={id:"zonas",beforeDraw(c){const{ctx,chartArea:a,scales:{y}}=c;[[0,1500,"--ok-bg"],[1500,2500,"--warn-bg"],[2500,10000,"--bad-bg"]].forEach(([lo,hi,v])=>{
+    const t=y.getPixelForValue(Math.min(hi,y.max)),b=y.getPixelForValue(lo);ctx.fillStyle=css(v);ctx.fillRect(a.left,t,a.right-a.left,b-t)})}};
+  chart("cHhi",{type:"line",plugins:[zonas],data:{labels:ANOS.map(a=>a===2026?"2026*":a),datasets:[
+    {label:"HHI",data:ANOS.map(a=>Math.round(IND[a].hhi)),borderColor:css("--fg"),backgroundColor:css("--fg"),yAxisID:"y",pointRadius:ANOS.map(a=>a===st.ano?6:3)},
+    {label:"CR4 (%)",data:ANOS.map(a=>+IND[a].cr4.toFixed(1)),borderColor:css("--accent"),backgroundColor:css("--accent"),borderDash:[5,4],yAxisID:"y1"}]},
+    options:(o=>{o.scales.y.max=6500;o.scales.y1={position:"right",min:0,max:100,ticks:{color:css("--muted")},grid:{display:false}};return o})(baseOpts())});
+
+  // Ranking
+  document.getElementById("rankTitle").textContent = `Ranking de marcas em ${st.ano}${st.ano===2026?" (jan–out)":""}`;
+  const maxS = rows[0].share;
+  document.getElementById("rankTbl").innerHTML = `<thead><tr><th>#</th><th>Marca</th><th style="text-align:right">Unidades</th><th style="text-align:right">%</th><th style="width:90px"></th><th>Dado</th></tr></thead><tbody>`+
+    rows.map((r,i)=>`<tr><td class="n">${r.marca==="Outros"?"":i+1}</td><td>${r.marca}</td><td class="n">${fmt(r.unidades)}</td><td class="n">${pct(r.share)}</td>
+    <td><div class="bar" style="width:${r.share/maxS*100}%;background:${CORES[r.marca]||'#888'}"></div></td><td><span class="pill ${r.status}">${r.status}</span></td></tr>`).join("")+"</tbody>";
+
+  // Simulador
+  const ms = rows.filter(r=>r.marca!=="Outros").map(r=>r.marca);
+  ["simDe","simPara","fusA","fusB"].forEach((id,k)=>{const s=document.getElementById(id), cur=s.value; s.innerHTML=ms.map(m=>`<option>${m}</option>`).join("");
+    s.value = ms.includes(cur)?cur:ms[[0,1,0,1][k]] });
+  simular();
+
+  // Setores
+  const comp=[...D.setores.map(s=>({n:s.setor,v:s.hhi,el:false})),{n:`Carros elétricos ${st.ano}`,v:Math.round(I.hhi),el:true}].sort((a,b)=>b.v-a.v);
+  chart("cSet",{type:"bar",data:{labels:comp.map(c=>c.n),datasets:[{label:"HHI",data:comp.map(c=>c.v),backgroundColor:comp.map(c=>c.el?CORES.BYD:css("--muted"))}]},
+    options:(o=>{o.indexAxis="y";o.plugins.legend.display=false;o.scales.x.beginAtZero=true;return o})(baseOpts())});
+
+  // Preços
+  const mods=[...new Set(D.precos.map(p=>p.modelo.replace(/ GL$/,"")))];
+  const meses=[...new Set([...D.precos.map(p=>p.data),...D.imposto.map(i=>i.data)])].sort();
+  const impAt=m=>{let v=0;D.imposto.forEach(i=>{if(i.data<=m)v=i.aliquota_bev_pct});return v};
+  chart("cPreco",{type:"line",data:{labels:meses,datasets:[
+    ...mods.map(md=>{const marca=D.precos.find(p=>p.modelo.startsWith(md)).marca;return{label:md,borderColor:CORES[marca],backgroundColor:CORES[marca],spanGaps:true,yAxisID:"y",
+      data:meses.map(m=>{const p=D.precos.find(x=>x.data===m&&x.modelo.startsWith(md));return p?p.preco_brl/1000:null})}}),
+    {label:"Imposto importação (%)",data:meses.map(impAt),stepped:true,borderColor:css("--muted"),backgroundColor:css("--muted"),borderDash:[4,4],pointRadius:0,yAxisID:"y1"}]},
+    options:(o=>{o.scales.y.beginAtZero=false;o.scales.y.title={display:true,text:"R$ mil",color:css("--muted")};o.scales.y1={position:"right",min:0,max:40,ticks:{color:css("--muted")},grid:{display:false}};
+      o.plugins.legend.labels.font={size:10};return o})(baseOpts())});
+
+  // Estatística
+  const tots=ANOS.filter(a=>a<2026).map(a=>IND[a].tot);
+  const cagr=(Math.pow(tots[tots.length-1]/tots[0],1/(tots.length-1))-1)*100;
+  const shares=rows.filter(r=>r.marca!=="Outros").map(r=>r.share);
+  const media=shares.reduce((a,b)=>a+b,0)/shares.length, dp=Math.sqrt(shares.reduce((a,b)=>a+(b-media)**2,0)/(shares.length-1));
+  const sorted=[...shares].sort((a,b)=>a-b), med=sorted.length%2?sorted[(sorted.length-1)/2]:(sorted[sorted.length/2-1]+sorted[sorted.length/2])/2;
+  let gini=0; sorted.forEach((x,i)=>gini+=(2*(i+1)-sorted.length-1)*x); gini/=sorted.length*sorted.reduce((a,b)=>a+b,0);
+  // correlação entre imposto e HHI por ano
+  const xs=ANOS.map(a=>impAt(a+"-12")), ys=ANOS.map(a=>IND[a].hhi), mx=xs.reduce((a,b)=>a+b)/xs.length,my=ys.reduce((a,b)=>a+b)/ys.length;
+  const corr=xs.reduce((s,x,i)=>s+(x-mx)*(ys[i]-my),0)/Math.sqrt(xs.reduce((s,x)=>s+(x-mx)**2,0)*ys.reduce((s,y)=>s+(y-my)**2,0));
+  document.getElementById("statTbl").innerHTML = `<tbody>
+    <tr><td>Crescimento médio anual 2020–2025 (CAGR)</td><td class="n">${pct(cagr,0)}</td></tr>
+    <tr><td>Participação média por marca em ${st.ano}</td><td class="n">${pct(media)}</td></tr>
+    <tr><td>Mediana da participação</td><td class="n">${pct(med)}</td></tr>
+    <tr><td>Desvio-padrão da participação</td><td class="n">${pct(dp)}</td></tr>
+    <tr><td>Índice de Gini entre marcas</td><td class="n">${gini.toLocaleString("pt-BR",{maximumFractionDigits:2})}</td></tr>
+    <tr><td>Correlação imposto × HHI (2020–2026)</td><td class="n">${corr.toLocaleString("pt-BR",{maximumFractionDigits:2})}</td></tr></tbody>`;
+  document.getElementById("statNote").textContent = `Média bem acima da mediana e Gini de ${gini.toFixed(2).replace(".",",")} mostram que poucas marcas concentram o mercado. Correlação não é causa: o HHI subiu por causa do preço da BYD, e o imposto subiu ao mesmo tempo.`;
+
+  // Timeline
+  document.getElementById("tl").innerHTML = D.eventos.map(e=>`<li><time>${e.data.split("-").reverse().join("/")}</time><span>${e.evento}</span></li>`).join("");
+
+  // Conclusões
+  const g26=doAno(2026).find(r=>r.marca==="Geely");
+  document.getElementById("concl").innerHTML = `<ul>
+    <li><b>De mercado fragmentado a quase monopólio.</b> Até 2022 o HHI ficava entre ${fmt(IND[2021].hhi)} e ${fmt(IND[2022].hhi)}, com Volvo, Porsche, BMW, JAC e Mercedes dividindo um mercado pequeno. Com a BYD, chegou a ${fmt(IND[2025].hhi)} em 2025.</li>
+    <li><b>A rivalidade é por preço.</b> O Dolphin Mini (R$ 115,8 mil em 2024, R$ 109,9 mil em 2026) puxou a faixa de entrada. Quem não compete nessa faixa (Volvo, BMW, Mercedes, Porsche) virou nicho premium.</li>
+    <li><b>2026 trouxe um rival de verdade.</b> A Geely chegou a ${pct(g26.share)} com o EX2, e o HHI caiu para ${fmt(IND[2026].hhi)}. Ainda é concentração alta, mas foi a primeira queda desde 2022.</li>
+    <li><b>Barreiras de entrada crescendo.</b> O imposto de importação foi de 0% para 35% e favorece quem monta no Brasil (BYD em Camaçari). Novas marcas que só importam terão mais dificuldade.</li>
+    <li><b>Oportunidades:</b> mercado crescendo rápido (mais de 186 mil carros em 10 meses de 2026), espaço para produção local, rede de recarga e pós-venda como diferencial. <b>Desafios:</b> guerra de preços aperta margens e dependência de importação encarece o carro.</li></ul>`;
+  aplicaPaineis();
+}
+
+function simular(){
+  const rows=doAno(st.ano).filter(r=>r.marca!=="Outros");
+  let s=Object.fromEntries(rows.map(r=>[r.marca,r.share]));
+  const atual=Object.values(s).reduce((t,x)=>t+x*x,0);
+  const de=document.getElementById("simDe").value, para=document.getElementById("simPara").value, pp=+document.getElementById("simPp").value;
+  document.getElementById("simPpV").textContent=pp;
+  if(de!==para){const t=Math.min(pp,s[de]);s[de]-=t;s[para]+=t}
+  const a=document.getElementById("fusA").value,b=document.getElementById("fusB").value;
+  if(document.getElementById("fusOn").checked && a!==b){s[a]+=s[b];delete s[b]}
+  const novo=Object.values(s).reduce((t,x)=>t+x*x,0), d=novo-atual;
+  document.getElementById("simAtual").textContent=fmt(atual);
+  document.getElementById("simNovo").textContent=fmt(novo);
+  document.getElementById("simDelta").innerHTML=`<span class="pill ${faixa(novo)}">${d>=0?"+":"−"}${fmt(Math.abs(d))} pontos · concentração ${faixa(novo)}</span>`;
+  document.getElementById("simLeitura").textContent = document.getElementById("fusOn").checked && Math.abs(d)>200 && novo>2500
+    ? "Pelo guia do CADE, uma fusão que aumenta o HHI em mais de 200 pontos num mercado já concentrado seria analisada com atenção."
+    : d<0 ? "O cenário reduz a concentração: mais rivalidade entre as marcas." : "O cenário aumenta a concentração.";
+}
+["simDe","simPara","simPp","fusA","fusB","fusOn"].forEach(id=>document.getElementById(id).addEventListener("input",simular));
+
+// ---------- compartilhar
+function toast(t){const e=document.getElementById("toast");e.textContent=t;e.hidden=false;clearTimeout(e._t);e._t=setTimeout(()=>e.hidden=true,2200)}
+function copiar(txt,ok){ const fb=()=>{const ta=document.createElement("textarea");ta.value=txt;document.querySelector(".wrap").appendChild(ta);ta.select();toast("Selecionado. Use Ctrl+C para copiar.");setTimeout(()=>ta.remove(),8000)};
+  try{navigator.clipboard.writeText(txt).then(()=>toast(ok),fb)}catch(e){fb()} }
+document.getElementById("btnResumo").onclick=()=>{const I=IND[st.ano];
+  copiar(`Carros elétricos no Brasil, ${st.ano}${st.ano===2026?" (jan-out)":""}: ${fmt(I.tot)} emplacamentos. Líder ${I.lider} com ${pct(I.cr1)}. HHI ${fmt(I.hhi)} (concentração ${faixa(I.hhi)}), CR4 ${pct(I.cr4)}, ${I.n} marcas ativas.`,"Resumo copiado")};
+document.getElementById("btnCsv").onclick=()=>copiar("ano,marca,unidades,status\n"+D.marcas.map(r=>[r.ano,r.marca,r.unidades,r.status].join(",")).join("\n"),"Dados copiados em CSV");
+
+window.addEventListener("hashchange",()=>{const m=location.hash.match(/^#ano-(\d{4})$/);if(m&&ANOS.includes(+m[1])){st.ano=+m[1];render()}});
+const mq=matchMedia("(prefers-color-scheme: dark)"); mq.addEventListener&&mq.addEventListener("change",render);
+new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+window.renderDados = render;
+render();
+})();
+</script>
+<script>
+(function(){
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const D = window.DADOS;
+const tot26 = D.marcas.filter(r=>r.ano===2026).reduce((s,r)=>s+r.unidades,0);
+const sh = m => { const r = D.marcas.find(x=>x.ano===2026 && x.marca===m); return r ? {u:r.unidades, s:r.unidades/tot26*100} : {u:0,s:0}; };
+
+const FORCAS = [
+  {k:"Rivalidade entre concorrentes", a:3, b:4, txt:"Em 2022 eram várias marcas premium com volumes pequenos. Em 2026 a Geely chegou a 18% e a BYD respondeu cortando preço. O HHI caiu de 5.561 para 4.344."},
+  {k:"Ameaça de novos entrantes", a:4, b:3, txt:"Sem imposto, era fácil importar e entrar. Com 35% de imposto e fábricas de R$ 5 bi a R$ 10 bi, a barreira subiu. Mesmo assim GAC, Zeekr, Leapmotor e Omoda entraram em 2025."},
+  {k:"Poder dos fornecedores", a:4, b:3, txt:"A bateria é 30–40% do custo. A BYD faz a própria bateria (verticalização), e as demais dependem de CATL e outros fornecedores chineses."},
+  {k:"Poder dos compradores", a:2, b:4, txt:"Em 2022 havia pouca escolha e clientes ricos. Em 2026 são mais de 15 marcas, o cliente compara preço e 47% só pagariam até R$ 100 mil. Locadoras e frotas de aplicativo negociam volume."},
+  {k:"Ameaça de substitutos", a:4, b:4, txt:"Híbridos plug-in venderam mais que os elétricos puros em 2025 (101 mil contra 80 mil). Carro flex com etanol e transporte por aplicativo também competem."},
+];
+const LS="forcas26"; try{const v=JSON.parse(localStorage.getItem(LS)); if(Array.isArray(v)&&v.length===5) v.forEach((x,i)=>FORCAS[i].b=x);}catch(e){}
+
+const box = document.getElementById("forces");
+box.innerHTML = FORCAS.map((f,i)=>`<div class="force"><header><b>${f.k}</b><span style="font:12px var(--f-mono);color:var(--muted)">2022: ${f.a} · 2026: <b id="fv${i}">${f.b}</b></span></header>
+  <p>${f.txt}</p><div class="sl"><span>fraca</span><input type="range" id="f${i}" min="1" max="5" step="1" value="${f.b}" aria-label="Intensidade em 2026: ${f.k}"><span>forte</span></div></div>`).join("");
+FORCAS.forEach((f,i)=>document.getElementById("f"+i).addEventListener("input",e=>{f.b=+e.target.value;document.getElementById("fv"+i).textContent=f.b;
+  try{localStorage.setItem(LS,JSON.stringify(FORCAS.map(x=>x.b)))}catch(_){} drawPorter();}));
+
+let ch={};
+function mk(id,cfg){ if(ch[id]) ch[id].destroy(); ch[id]=new Chart(document.getElementById(id),cfg); }
+function drawPorter(){
+  const fg=css("--muted"), grid=css("--line");
+  mk("cPorter",{type:"radar",data:{labels:FORCAS.map(f=>f.k.replace("Poder dos ","Poder: ").replace("Ameaça de ","Ameaça: ")),datasets:[
+    {label:"2022",data:FORCAS.map(f=>f.a),borderColor:fg,backgroundColor:"rgba(128,128,128,.15)",pointRadius:3},
+    {label:"2026",data:FORCAS.map(f=>f.b),borderColor:"#d01c36",backgroundColor:"rgba(208,28,54,.18)",pointRadius:4}]},
+    options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{labels:{color:fg}}},
+      scales:{r:{min:0,max:5,ticks:{stepSize:1,color:fg,backdropColor:"transparent"},grid:{color:grid},angleLines:{color:grid},pointLabels:{color:css("--fg"),font:{size:11}}}}}});
+  const m22=FORCAS.reduce((s,f)=>s+f.a,0)/5, m26=FORCAS.reduce((s,f)=>s+f.b,0)/5;
+  const f1=x=>x.toFixed(1).replace(".",",");
+  document.getElementById("porterLeitura").innerHTML=`Média das forças: <b>${f1(m22)}</b> em 2022 e <b>${f1(m26)}</b> em 2026. ${m26>m22?"As forças ficaram mais fortes: o setor ficou <b>menos atrativo</b> e a margem tende a cair. Só ganha quem tem custo baixo.":m26<m22?"As forças ficaram mais fracas: o setor ficou mais atrativo para quem já está dentro.":"A pressão total ficou parecida, mas mudou de lugar."} A grande mudança foi o poder do comprador, que ganhou opções e passou a escolher pelo preço.`;
+}
+
+const GEN=[{m:"BYD",p:110,mod:"Dolphin Mini"},{m:"Geely",p:120,mod:"EX2"},{m:"Renault",p:100,mod:"Kwid E-Tech"},{m:"GWM",p:150,mod:"Ora 03"},
+  {m:"Chevrolet",p:160,mod:"Spark EUV"},{m:"Volvo",p:230,mod:"EX30"},{m:"BMW",p:300,mod:"iX1"},{m:"Mercedes-Benz",p:350,mod:"EQA"},{m:"Porsche",p:700,mod:"Taycan"},{m:"GAC",p:180,mod:"Aion"},{m:"Zeekr",p:250,mod:"X"}];
+const COR={"BYD":"#d01c36","Geely":"#2a63d4","Volvo":"#6b7f93","GWM":"#e08a00","BMW":"#3aa0e0","Mercedes-Benz":"#7a7a86","Renault":"#e6b800","Chevrolet":"#a0703a","Porsche":"#8a4bb0","GAC":"#d45087","Zeekr":"#00a6a6"};
+function drawGen(){
+  const fg=css("--muted"), grid=css("--line");
+  mk("cGen",{type:"bubble",data:{datasets:GEN.map(g=>{const x=sh(g.m);return{label:g.m,backgroundColor:COR[g.m]+"cc",borderColor:COR[g.m],
+    data:[{x:g.p,y:+x.s.toFixed(1),r:Math.max(4,Math.sqrt(x.u)/12),mod:g.mod,u:x.u}]}})},
+    options:{responsive:true,maintainAspectRatio:false,animation:false,
+      plugins:{legend:{position:"bottom",labels:{color:fg,boxWidth:10,font:{size:10}}},tooltip:{callbacks:{label:c=>`${c.dataset.label} ${c.raw.mod}: R$ ${c.raw.x} mil · ${c.raw.y.toLocaleString("pt-BR")}% · ${c.raw.u.toLocaleString("pt-BR")} carros`}}},
+      scales:{x:{type:"logarithmic",min:80,max:900,title:{display:true,text:"Preço do modelo de entrada (R$ mil, aproximado)",color:fg},ticks:{color:fg,callback:v=>[100,150,200,300,500,700].includes(v)?v:""},grid:{color:grid}},
+        y:{min:-5,max:75,title:{display:true,text:"% do mercado 2026",color:fg},ticks:{color:fg},grid:{color:grid}}}}});
+}
+
+const SWOT={
+ "BYD":{S:["Bateria própria (Blade) e integração vertical: menor custo do setor","Fábrica em Camaçari: escapa do imposto de 35%","Linha completa: elétricos, híbridos e ônibus","63% do mercado e a maior rede de concessionárias entre as chinesas"],
+        W:["Marca nova, com dúvidas sobre revenda e pós-venda","Caso trabalhista na obra de Camaçari prejudicou a imagem","Produção ainda em SKD, dependente de kits da China"],
+        O:["Exportar do Brasil para a América Latina","Mercado de elétricos crescendo mais de 100% ao ano","Frotas, locadoras e motoristas de aplicativo"],
+        T:["Geely e outras chinesas com preço igual","Pressão da Anfavea contra cotas de imposto zero","Guerra de preço derrubando a margem","Tensões comerciais entre China e Ocidente"]},
+ "Geely":{S:["Dona da Volvo e da Zeekr: tecnologia e plataformas","Sociedade com a Renault: fábrica e rede prontas","EX2 com mais de 20 mil vendidos no primeiro ano"],
+        W:["Marca pouco conhecida no Brasil","Depende de importação até o fim de 2026","Linha de produtos menor que a da BYD"],
+        O:["Produção do EX2 no Paraná a partir do fim de 2026","Clientes da Renault migrando para elétricos"],
+        T:["Reação de preço da BYD","Conflito de interesses dentro da sociedade com a Renault"]},
+ "Premium (Volvo, Mercedes, BMW)":{S:["Marca forte, segurança e valor de revenda","Clientes fiéis e de alta renda","Pioneiras: venderam elétricos no Brasil antes de todos"],
+        W:["Preços de R$ 230 mil a R$ 700 mil","Tudo importado: paga 35% de imposto","Participação caiu de cerca de 45% (2022) para menos de 6%"],
+        O:["Assinatura e venda corporativa","Híbridos plug-in premium","Clientes que querem marca, não só preço"],
+        T:["Chinesas premium (Zeekr, Denza) com mais tecnologia por menos","Câmbio e imposto encarecendo ainda mais"]},
+ "Setor":{S:["Crescimento de mais de 150% ao ano desde 2020","Matriz elétrica limpa do Brasil"],
+        W:["Recarga pública ainda limitada (25 mil pontos)","Preço alto para a renda média do brasileiro"],
+        O:["Produção local de baterias com lítio de Minas Gerais","Incentivos do programa Mover"],
+        T:["Híbridos flex com etanol como alternativa nacional","Juros altos encarecendo o financiamento"]},
+};
+const seg=document.getElementById("swotSeg");
+Object.keys(SWOT).forEach(k=>{const b=document.createElement("button");b.type="button";b.textContent=k;b.onclick=()=>showSwot(k);seg.appendChild(b)});
+function showSwot(k){ seg.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.textContent===k)); const s=SWOT[k];
+  document.getElementById("swot").innerHTML=[["S","Forças"],["W","Fraquezas"],["O","Oportunidades"],["T","Ameaças"]].map(([c,n])=>`<div class="${c}"><b>${n}</b><ul>${s[c].map(x=>`<li>${x}</li>`).join("")}</ul></div>`).join(""); }
+showSwot("BYD");
+
+function route(){
+  const e = location.hash==="#estrategia";
+  document.getElementById("vDados").hidden=e; document.getElementById("vEstr").hidden=!e;
+  document.getElementById("tabDados").setAttribute("aria-current", e?"false":"page");
+  document.getElementById("tabEstr").setAttribute("aria-current", e?"page":"false");
+  if(e){drawPorter();drawGen();} else if(window.renderDados) window.renderDados();
+}
+window.addEventListener("hashchange",route);
+const redraw=()=>{ if(location.hash==="#estrategia"){drawPorter();drawGen();} };
+new MutationObserver(redraw).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+const mq=matchMedia("(prefers-color-scheme: dark)"); mq.addEventListener&&mq.addEventListener("change",redraw);
+route();
+})();
+</script>

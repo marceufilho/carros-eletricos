@@ -1,0 +1,8 @@
+ano,periodo,total_bev,status,fonte
+2020,ano,801,estimado,ABVE (série histórica; confirmar no ABVE Data)
+2021,ano,2851,estimado,ABVE (série histórica; confirmar no ABVE Data)
+2022,ano,8460,verificado,ABVE balanço 2022 (BEV = 17% de 49.245 eletrificados)
+2023,ano,19310,verificado,ABVE/BYD balanço 2023
+2024,ano,61615,verificado,ABVE balanço 2024
+2025,ano,80178,verificado,ABVE balanço 2025 (36% de 223.912 eletrificados)
+2026,jan-out,186250,parcial,Fenabrave jan-out/2026 (BYD 117.523 = 63.1%)

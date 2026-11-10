@@ -1,0 +1,91 @@
+ano,marca,unidades,status,fonte
+2020,Nissan,230,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2020,JAC,180,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2020,Renault,140,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2020,Chevrolet,90,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2020,BMW,60,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2020,Porsche,40,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2020,Outros,61,calculado,Total ABVE/Fenabrave menos marcas listadas
+2021,Porsche,520,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2021,Volvo,510,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2021,JAC,420,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2021,Nissan,300,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2021,Audi,290,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2021,Renault,260,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2021,BMW,200,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2021,Chevrolet,120,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2021,Mercedes-Benz,90,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2021,Caoa Chery,60,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2021,BYD,40,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2021,Outros,41,calculado,Total ABVE/Fenabrave menos marcas listadas
+2022,Volvo,2700,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2022,JAC,900,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2022,BMW,850,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2022,Renault,700,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2022,Caoa Chery,650,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2022,Peugeot,600,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2022,Porsche,520,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2022,BYD,450,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2022,Audi,330,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2022,Mercedes-Benz,280,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2022,Nissan,250,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2022,Mini,180,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2022,Outros,50,calculado,Total ABVE/Fenabrave menos marcas listadas
+2023,BYD,10274,verificado,BYD/ABVE balanço 2023 (52.3%)
+2023,Volvo,3900,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2023,GWM,1450,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2023,Renault,750,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2023,BMW,700,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2023,Peugeot,450,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2023,JAC,430,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2023,Porsche,380,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2023,Mercedes-Benz,330,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2023,Caoa Chery,200,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2023,Mini,180,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2023,Audi,150,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2023,Nissan,60,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2023,Outros,56,calculado,Total ABVE/Fenabrave menos marcas listadas
+2024,BYD,43726,verificado,Olhar Digital/ABVE (71%)
+2024,Volvo,4700,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2024,GWM,3500,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2024,BMW,2300,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2024,Renault,1900,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2024,Chevrolet,1300,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2024,Peugeot,600,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2024,Mercedes-Benz,550,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2024,JAC,450,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2024,Porsche,400,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2024,Mini,350,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2024,Audi,250,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2024,Caoa Chery,200,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2024,Outros,1389,calculado,Total ABVE/Fenabrave menos marcas listadas
+2025,BYD,59330,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2025,Volvo,4900,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2025,GWM,3300,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2025,Geely,3100,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2025,Chevrolet,1900,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2025,Renault,1700,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2025,BMW,1300,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2025,GAC,1000,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2025,Zeekr,600,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2025,Mercedes-Benz,500,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2025,Peugeot,350,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2025,Porsche,300,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2025,Mini,300,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2025,JAC,250,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2025,Outros,1348,calculado,Total ABVE/Fenabrave menos marcas listadas
+2026,BYD,117523,verificado,Fenabrave jan-out/2026
+2026,Geely,33529,verificado,Fenabrave jan-out/2026
+2026,Volvo,6300,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2026,GWM,5600,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2026,Chevrolet,4800,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2026,Renault,4100,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2026,GAC,3600,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2026,BMW,2100,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2026,Zeekr,1500,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2026,Mercedes-Benz,900,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2026,Peugeot,600,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2026,Mini,400,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2026,Porsche,350,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2026,JAC,200,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
+2026,Outros,4748,calculado,Total ABVE/Fenabrave menos marcas listadas
