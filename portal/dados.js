@@ -229,7 +229,7 @@ window.DADOS = {
    "marca": "BYD",
    "unidades": 10274,
    "status": "verificado",
-   "fonte": "BYD/ABVE balanço 2023 (52.3%)"
+   "fonte": "BYD/ABVE balanço 2023 (fonte cita 52.3%; 10.274/19.310 = 53.2% - conferir qual total a fonte usou)"
   },
   {
    "ano": 2023,
@@ -325,310 +325,520 @@ window.DADOS = {
   {
    "ano": 2024,
    "marca": "BYD",
-   "unidades": 43726,
+   "unidades": 43817,
    "status": "verificado",
-   "fonte": "Olhar Digital/ABVE (71%)"
-  },
-  {
-   "ano": 2024,
-   "marca": "Volvo",
-   "unidades": 4700,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2024,
    "marca": "GWM",
-   "unidades": 3500,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
+   "unidades": 6326,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2024,
-   "marca": "BMW",
-   "unidades": 2300,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
-  },
-  {
-   "ano": 2024,
-   "marca": "Renault",
-   "unidades": 1900,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
-  },
-  {
-   "ano": 2024,
-   "marca": "Chevrolet",
-   "unidades": 1300,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
-  },
-  {
-   "ano": 2024,
-   "marca": "Peugeot",
-   "unidades": 600,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
-  },
-  {
-   "ano": 2024,
-   "marca": "Mercedes-Benz",
-   "unidades": 550,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
+   "marca": "Volvo",
+   "unidades": 4340,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2024,
    "marca": "JAC",
-   "unidades": 450,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
+   "unidades": 1336,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2024,
+   "marca": "Renault",
+   "unidades": 1243,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2024,
+   "marca": "BMW",
+   "unidades": 1024,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2024,
+   "marca": "Peugeot",
+   "unidades": 349,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2024,
    "marca": "Porsche",
-   "unidades": 400,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
+   "unidades": 319,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2024,
    "marca": "Mini",
-   "unidades": 350,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
+   "unidades": 306,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2024,
+   "marca": "Chevrolet",
+   "unidades": 227,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2024,
+   "marca": "Mercedes-Benz",
+   "unidades": 148,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2024,
    "marca": "Audi",
-   "unidades": 250,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
+   "unidades": 148,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2024,
+   "marca": "Ford",
+   "unidades": 134,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2024,
+   "marca": "Zeekr",
+   "unidades": 94,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2024,
+   "marca": "Volkswagen",
+   "unidades": 93,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2024,
+   "marca": "Nissan",
+   "unidades": 58,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2024,
    "marca": "Caoa Chery",
-   "unidades": 200,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
+   "unidades": 54,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2024,
+   "marca": "GMC",
+   "unidades": 12,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2024,
+   "marca": "Dongfeng",
+   "unidades": 9,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2024,
+   "marca": "Kia",
+   "unidades": 9,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2024,
+   "marca": "Hyundai",
+   "unidades": 8,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2024,
+   "marca": "Henrey",
+   "unidades": 6,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2024,
+   "marca": "GAC",
+   "unidades": 5,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2024,
+   "marca": "Tesla",
+   "unidades": 4,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2024,
+   "marca": "Fiat",
+   "unidades": 4,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2024,
    "marca": "Outros",
-   "unidades": 1389,
+   "unidades": 101,
    "status": "calculado",
-   "fonte": "Total ABVE/Fenabrave menos marcas listadas"
+   "fonte": "Total Fenabrave menos as marcas do ranking mensal (15 maiores; em out/2026, 5 maiores)"
   },
   {
    "ano": 2025,
    "marca": "BYD",
-   "unidades": 59330,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
+   "unidades": 57140,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2025,
    "marca": "Volvo",
-   "unidades": 4900,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
-  },
-  {
-   "ano": 2025,
-   "marca": "GWM",
-   "unidades": 3300,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
+   "unidades": 5162,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2025,
    "marca": "Geely",
-   "unidades": 3100,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
+   "unidades": 3364,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2025,
+   "marca": "GWM",
+   "unidades": 3238,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2025,
    "marca": "Chevrolet",
-   "unidades": 1900,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
+   "unidades": 2206,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2025,
    "marca": "Renault",
-   "unidades": 1700,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
-  },
-  {
-   "ano": 2025,
-   "marca": "BMW",
-   "unidades": 1300,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
+   "unidades": 1728,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2025,
    "marca": "GAC",
-   "unidades": 1000,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
+   "unidades": 1447,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2025,
+   "marca": "BMW",
+   "unidades": 944,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2025,
+   "marca": "Omoda Jaecoo",
+   "unidades": 737,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2025,
    "marca": "Zeekr",
-   "unidades": 600,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
-  },
-  {
-   "ano": 2025,
-   "marca": "Mercedes-Benz",
-   "unidades": 500,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
-  },
-  {
-   "ano": 2025,
-   "marca": "Peugeot",
-   "unidades": 350,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
-  },
-  {
-   "ano": 2025,
-   "marca": "Porsche",
-   "unidades": 300,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
-  },
-  {
-   "ano": 2025,
-   "marca": "Mini",
-   "unidades": 300,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
+   "unidades": 571,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2025,
    "marca": "JAC",
-   "unidades": 250,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
+   "unidades": 537,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2025,
+   "marca": "Mini",
+   "unidades": 533,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2025,
+   "marca": "Porsche",
+   "unidades": 468,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2025,
+   "marca": "Audi",
+   "unidades": 164,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2025,
+   "marca": "Neta",
+   "unidades": 161,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2025,
+   "marca": "Mercedes-Benz",
+   "unidades": 104,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2025,
+   "marca": "Nissan",
+   "unidades": 100,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2025,
+   "marca": "Leapmotor",
+   "unidades": 93,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2025,
+   "marca": "MG",
+   "unidades": 89,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2025,
+   "marca": "Volkswagen",
+   "unidades": 79,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2025,
+   "marca": "Hyundai",
+   "unidades": 67,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2025,
+   "marca": "Ford",
+   "unidades": 32,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2025,
+   "marca": "Dongfeng",
+   "unidades": 16,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2025,
+   "marca": "Kia",
+   "unidades": 4,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2025,
    "marca": "Outros",
-   "unidades": 1348,
+   "unidades": 431,
    "status": "calculado",
-   "fonte": "Total ABVE/Fenabrave menos marcas listadas"
+   "fonte": "Total Fenabrave menos as marcas do ranking mensal (15 maiores; em out/2026, 5 maiores)"
   },
   {
    "ano": 2026,
    "marca": "BYD",
-   "unidades": 117523,
+   "unidades": 117586,
    "status": "verificado",
-   "fonte": "Fenabrave jan-out/2026"
+   "fonte": "Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2026,
    "marca": "Geely",
-   "unidades": 33529,
+   "unidades": 33547,
    "status": "verificado",
-   "fonte": "Fenabrave jan-out/2026"
-  },
-  {
-   "ano": 2026,
-   "marca": "Volvo",
-   "unidades": 6300,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
-  },
-  {
-   "ano": 2026,
-   "marca": "GWM",
-   "unidades": 5600,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
+   "fonte": "Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2026,
    "marca": "Chevrolet",
-   "unidades": 4800,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
-  },
-  {
-   "ano": 2026,
-   "marca": "Renault",
-   "unidades": 4100,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
+   "unidades": 8247,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2026,
    "marca": "GAC",
-   "unidades": 3600,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
+   "unidades": 7690,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2026,
-   "marca": "BMW",
-   "unidades": 2100,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
+   "marca": "GWM",
+   "unidades": 6258,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2026,
+   "marca": "MG",
+   "unidades": 2868,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2026,
+   "marca": "Volvo",
+   "unidades": 2809,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2026,
+   "marca": "Leapmotor",
+   "unidades": 2734,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2026,
+   "marca": "Omoda Jaecoo",
+   "unidades": 650,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2026,
    "marca": "Zeekr",
-   "unidades": 1500,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
-  },
-  {
-   "ano": 2026,
-   "marca": "Mercedes-Benz",
-   "unidades": 900,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
-  },
-  {
-   "ano": 2026,
-   "marca": "Peugeot",
-   "unidades": 600,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
+   "unidades": 564,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2026,
    "marca": "Mini",
-   "unidades": 400,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
+   "unidades": 338,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2026,
-   "marca": "Porsche",
-   "unidades": 350,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
+   "marca": "Renault",
+   "unidades": 241,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2026,
+   "marca": "BMW",
+   "unidades": 193,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2026,
+   "marca": "Neta",
+   "unidades": 177,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2026,
    "marca": "JAC",
-   "unidades": 200,
-   "status": "estimado",
-   "fonte": "Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave"
+   "unidades": 139,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2026,
+   "marca": "Porsche",
+   "unidades": 137,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2026,
+   "marca": "Denza",
+   "unidades": 52,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2026,
+   "marca": "Suzuki",
+   "unidades": 48,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2026,
+   "marca": "Toyota",
+   "unidades": 45,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2026,
+   "marca": "Lexus",
+   "unidades": 20,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2026,
+   "marca": "Ford",
+   "unidades": 19,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+  },
+  {
+   "ano": 2026,
+   "marca": "Cadillac",
+   "unidades": 7,
+   "status": "verificado",
+   "fonte": "Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
   },
   {
    "ano": 2026,
    "marca": "Outros",
-   "unidades": 4748,
+   "unidades": 2145,
    "status": "calculado",
-   "fonte": "Total ABVE/Fenabrave menos marcas listadas"
+   "fonte": "Total Fenabrave menos as marcas do ranking mensal (15 maiores; em out/2026, 5 maiores)"
   }
  ],
  "totais": [
@@ -663,23 +873,23 @@ window.DADOS = {
   {
    "ano": 2024,
    "periodo": "ano",
-   "total_bev": 61615,
+   "total_bev": 60174,
    "status": "verificado",
-   "fonte": "ABVE balanço 2024"
+   "fonte": "Fenabrave, elétricos (automóveis); a ABVE, que inclui comerciais leves, divulgou 61.615"
   },
   {
    "ano": 2025,
    "periodo": "ano",
-   "total_bev": 80178,
+   "total_bev": 79415,
    "status": "verificado",
-   "fonte": "ABVE balanço 2025 (36% de 223.912 eletrificados)"
+   "fonte": "Fenabrave, elétricos (automóveis); a ABVE, que inclui comerciais leves, divulgou 80.178"
   },
   {
    "ano": 2026,
    "periodo": "jan-out",
-   "total_bev": 186250,
+   "total_bev": 186514,
    "status": "parcial",
-   "fonte": "Fenabrave jan-out/2026 (BYD 117.523 = 63.1%)"
+   "fonte": "Fenabrave, elétricos (automóveis); outubro estimado pela participação da BYD"
   }
  ],
  "precos": [
@@ -832,11 +1042,11 @@ window.DADOS = {
   },
   {
    "data": "2025-07",
-   "evento": "BYD inicia montagem em Camaçari (BA)"
+   "evento": "BYD inicia montagem (SKD) em Camaçari (BA); inauguração oficial em out/2025"
   },
   {
    "data": "2025-10",
-   "evento": "Geely lança o EX2 e vira a segunda marca em vendas"
+   "evento": "Geely lança o EX2; em nov/2025 já é a segunda marca do mês e fecha 2025 em 3º"
   },
   {
    "data": "2026-07",

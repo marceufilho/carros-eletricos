@@ -31,7 +31,7 @@ ano,marca,unidades,status,fonte
 2022,Nissan,250,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
 2022,Mini,180,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
 2022,Outros,50,calculado,Total ABVE/Fenabrave menos marcas listadas
-2023,BYD,10274,verificado,BYD/ABVE balanço 2023 (52.3%)
+2023,BYD,10274,verificado,BYD/ABVE balanço 2023 (fonte cita 52.3%; 10.274/19.310 = 53.2% - conferir qual total a fonte usou)
 2023,Volvo,3900,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
 2023,GWM,1450,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
 2023,Renault,750,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
@@ -45,47 +45,77 @@ ano,marca,unidades,status,fonte
 2023,Audi,150,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
 2023,Nissan,60,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
 2023,Outros,56,calculado,Total ABVE/Fenabrave menos marcas listadas
-2024,BYD,43726,verificado,Olhar Digital/ABVE (71%)
-2024,Volvo,4700,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2024,GWM,3500,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2024,BMW,2300,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2024,Renault,1900,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2024,Chevrolet,1300,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2024,Peugeot,600,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2024,Mercedes-Benz,550,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2024,JAC,450,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2024,Porsche,400,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2024,Mini,350,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2024,Audi,250,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2024,Caoa Chery,200,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2024,Outros,1389,calculado,Total ABVE/Fenabrave menos marcas listadas
-2025,BYD,59330,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2025,Volvo,4900,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2025,GWM,3300,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2025,Geely,3100,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2025,Chevrolet,1900,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2025,Renault,1700,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2025,BMW,1300,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2025,GAC,1000,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2025,Zeekr,600,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2025,Mercedes-Benz,500,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2025,Peugeot,350,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2025,Porsche,300,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2025,Mini,300,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2025,JAC,250,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2025,Outros,1348,calculado,Total ABVE/Fenabrave menos marcas listadas
-2026,BYD,117523,verificado,Fenabrave jan-out/2026
-2026,Geely,33529,verificado,Fenabrave jan-out/2026
-2026,Volvo,6300,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2026,GWM,5600,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2026,Chevrolet,4800,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2026,Renault,4100,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2026,GAC,3600,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2026,BMW,2100,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2026,Zeekr,1500,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2026,Mercedes-Benz,900,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2026,Peugeot,600,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2026,Mini,400,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2026,Porsche,350,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2026,JAC,200,estimado,Estimativa do grupo a partir de rankings mensais/modelos; confirmar na Fenabrave
-2026,Outros,4748,calculado,Total ABVE/Fenabrave menos marcas listadas
+2024,BYD,43817,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,GWM,6326,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,Volvo,4340,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,JAC,1336,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,Renault,1243,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,BMW,1024,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,Peugeot,349,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,Porsche,319,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,Mini,306,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,Chevrolet,227,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,Mercedes-Benz,148,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,Audi,148,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,Ford,134,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,Zeekr,94,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,Volkswagen,93,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,Nissan,58,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,Caoa Chery,54,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,GMC,12,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,Dongfeng,9,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,Kia,9,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,Hyundai,8,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,Henrey,6,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,GAC,5,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,Tesla,4,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,Fiat,4,verificado,"Fenabrave, informativos mensais (jan-dez/2024), soma dos rankings de elétricos (automóveis)"
+2024,Outros,101,calculado,"Total Fenabrave menos as marcas do ranking mensal (15 maiores; em out/2026, 5 maiores)"
+2025,BYD,57140,verificado,"Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+2025,Volvo,5162,verificado,"Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+2025,Geely,3364,verificado,"Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+2025,GWM,3238,verificado,"Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+2025,Chevrolet,2206,verificado,"Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+2025,Renault,1728,verificado,"Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+2025,GAC,1447,verificado,"Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+2025,BMW,944,verificado,"Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+2025,Omoda Jaecoo,737,verificado,"Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+2025,Zeekr,571,verificado,"Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+2025,JAC,537,verificado,"Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+2025,Mini,533,verificado,"Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+2025,Porsche,468,verificado,"Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+2025,Audi,164,verificado,"Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+2025,Neta,161,verificado,"Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+2025,Mercedes-Benz,104,verificado,"Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+2025,Nissan,100,verificado,"Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+2025,Leapmotor,93,verificado,"Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+2025,MG,89,verificado,"Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+2025,Volkswagen,79,verificado,"Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+2025,Hyundai,67,verificado,"Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+2025,Ford,32,verificado,"Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+2025,Dongfeng,16,verificado,"Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+2025,Kia,4,verificado,"Fenabrave, informativos mensais (jan-dez/2025), soma dos rankings de elétricos (automóveis)"
+2025,Outros,431,calculado,"Total Fenabrave menos as marcas do ranking mensal (15 maiores; em out/2026, 5 maiores)"
+2026,BYD,117586,verificado,"Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+2026,Geely,33547,verificado,"Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+2026,Chevrolet,8247,verificado,"Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+2026,GAC,7690,verificado,"Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+2026,GWM,6258,verificado,"Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+2026,MG,2868,verificado,"Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+2026,Volvo,2809,verificado,"Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+2026,Leapmotor,2734,verificado,"Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+2026,Omoda Jaecoo,650,verificado,"Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+2026,Zeekr,564,verificado,"Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+2026,Mini,338,verificado,"Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+2026,Renault,241,verificado,"Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+2026,BMW,193,verificado,"Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+2026,Neta,177,verificado,"Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+2026,JAC,139,verificado,"Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+2026,Porsche,137,verificado,"Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+2026,Denza,52,verificado,"Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+2026,Suzuki,48,verificado,"Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+2026,Toyota,45,verificado,"Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+2026,Lexus,20,verificado,"Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+2026,Ford,19,verificado,"Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+2026,Cadillac,7,verificado,"Fenabrave, informativos mensais (jan-out/2026), soma dos rankings de elétricos (automóveis)"
+2026,Outros,2145,calculado,"Total Fenabrave menos as marcas do ranking mensal (15 maiores; em out/2026, 5 maiores)"

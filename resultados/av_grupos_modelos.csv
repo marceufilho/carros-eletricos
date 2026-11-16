@@ -1,0 +1,69 @@
+marca,modelo_curto,grupo,preco_0km,potencia_cv,bateria_kwh
+Renault,Renault Kwid E-Tech,1,100704,65,26.8
+JAC,JAC e-JS1,1,119900,62,30.2
+BYD,BYD Dolphin Mini,1,120832,75,38.0
+Neta,Neta Aya,1,124388,95,40.7
+Geely,Geely EX2,1,125671,116,39.4
+BYD,BYD Dolphin,1,147055,95,44.9
+Chevrolet,Chevrolet Spark EUV,1,151927,102,42.0
+Fiat,Fiat 500e,1,214990,118,42.0
+GWM,GWM Ora 03 Skin,2,155169,171,48.0
+GAC,GAC Aion ES,2,168790,136,55.2
+MG,MG4 Comfort,2,172958,170,51.0
+GAC,GAC Aion Y,2,175990,204,63.2
+Leapmotor,Leapmotor B10,2,181285,218,56.2
+BYD,BYD Dolphin Plus,2,182902,204,60.5
+BYD,BYD Yuan Pro,2,182990,177,45.1
+GWM,GWM Ora 03 GT,2,184635,171,63.0
+MG,MG4 Luxury,2,186979,204,64.0
+Geely,Geely EX5,2,192410,218,60.2
+Neta,Neta X,2,202624,163,64.0
+Omoda Jaecoo,Omoda E5,2,205366,204,61.0
+Leapmotor,Leapmotor C10,2,205620,218,69.9
+Chevrolet,Chevrolet Captiva EV,2,209017,204,60.0
+GAC,GAC Aion V,2,219990,204,75.3
+Volvo,Volvo EX30 Core,2,226392,272,51.0
+MG,MG4 XPower,2,229825,435,64.0
+BYD,BYD Yuan Plus,2,234852,204,60.5
+JAC,JAC e-JS4,2,245977,150,55.0
+JAC,JAC E-J7,2,250803,193,50.1
+Renault,Renault Megane E-Tech,2,268310,220,60.0
+Mini,Mini Aceman E,2,279530,184,42.5
+Zeekr,Zeekr X Premium,2,298000,272,66.0
+Volvo,Volvo EX30 Twin,2,314045,428,69.0
+Zeekr,Zeekr X Flagship,2,322170,428,66.0
+Mini,Mini Aceman SE,2,325990,218,54.2
+Mini,Mini Countryman SE,2,342823,313,66.5
+Volvo,Volvo EX40 Plus,2,345950,238,69.0
+Volvo,Volvo EC40 Plus,2,350116,238,69.0
+BMW,BMW iX1 eDrive20,2,367508,204,64.7
+Mercedes-Benz,Mercedes EQA 250,2,392497,190,66.5
+Mercedes-Benz,Mercedes EQB 350,2,444905,292,66.5
+BMW,BMW iX1 xDrive30,2,468376,313,64.7
+BMW,BMW iX2 xDrive30,2,497164,313,64.7
+BYD,BYD Seal,3,299673,531,82.5
+BYD,BYD Sealion 7,3,339063,530,82.5
+Chevrolet,Chevrolet Equinox EV,3,349972,292,85.0
+Volvo,Volvo EX40 Ultra AWD,3,400950,408,82.0
+Volvo,Volvo EC40 Ultra AWD,3,405957,408,82.0
+BYD,BYD Tan,3,429964,517,108.8
+Ford,Ford Mustang Mach-E GT,3,449000,487,91.0
+Zeekr,Zeekr 7X,3,468000,646,100.0
+Zeekr,Zeekr 001 Premium,3,495000,544,100.0
+Chevrolet,Chevrolet Blazer EV,3,503190,347,85.0
+BMW,BMW iX3,3,521418,286,80.0
+MG,MG Cyberster,3,529800,510,77.0
+Audi,Audi Q6 e-tron,3,534528,387,100.0
+BYD,BYD Han,3,551838,517,85.4
+BMW,BMW i4 eDrive40,3,583983,340,83.9
+BMW,BMW iX xDrive40,3,630079,326,76.6
+Mercedes-Benz,Mercedes EQE 350+,3,635720,292,90.6
+BMW,BMW i4 M50,3,673246,544,83.9
+BMW,BMW i5 M60,3,777402,601,83.9
+Volvo,Volvo EX90,3,793945,517,111.0
+Porsche,Porsche Macan 4,3,862500,408,100.0
+BMW,BMW iX xDrive50,3,864110,523,111.5
+BMW,BMW iX M60,3,1022578,619,111.5
+Porsche,Porsche Macan Turbo,3,1212500,639,100.0
+BMW,BMW i7 xDrive60,3,1372402,544,105.7
+Porsche,Porsche Taycan Turbo S,3,1975000,952,105.0

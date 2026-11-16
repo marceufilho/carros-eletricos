@@ -11,9 +11,10 @@
 #   resultados/resumo.md        texto com os principais achados
 #   portal/dados.js             base usada pelo portal (protótipo)
 #
-# ATENÇÃO: a coluna "status" separa número verificado em fonte pública de
-# número estimado pelo grupo. Antes de entregar, troquem os "estimado" pelos
-# dados da Fenabrave (emplacamentos por marca) ou do ABVE Data.
+# A coluna "status" separa número verificado em fonte pública de número estimado
+# pelo grupo. 2024-2026 vêm dos informativos mensais da Fenabrave (coleta_dados.py);
+# 2020-2023 por marca ainda são estimativas, porque a Fenabrave não publicava o
+# ranking de elétricos nesses anos (conferir no ABVE Data).
 
 # %%
 import json
@@ -60,11 +61,20 @@ part.round(2).to_csv(RES / "participacao.csv")
 # HHI = soma dos quadrados das participações (%). "Outros" é um grupo de várias
 # marcas pequenas, então fica fora da soma (contribuição desprezível).
 # Faixas usadas pelo CADE/DOJ: <1500 baixa, 1500-2500 moderada, >2500 alta.
+# Grupo econômico (critério do CADE): marcas do mesmo controlador contam como uma só.
+GRUPOS = {"Volvo": "Geely Holding", "Zeekr": "Geely Holding", "Geely": "Geely Holding",
+          "Mini": "BMW Group", "BMW": "BMW Group", "Porsche": "VW Group", "Audi": "VW Group",
+          "Volkswagen": "VW Group", "Denza": "BYD", "GMC": "Chevrolet", "Cadillac": "Chevrolet", "Lexus": "Toyota"}
+
+
 def indicadores(df):
     s = df[df["marca"] != "Outros"].sort_values("share", ascending=False)["share"]
+    sg = df[df["marca"] != "Outros"].assign(g=lambda d: d["marca"].replace(GRUPOS)).groupby("g")["share"].sum()
     return pd.Series({
         "total_bev": int(df["unidades"].sum()),
         "hhi": round((s ** 2).sum()),
+        "hhi_grupo": round((sg ** 2).sum()),
+        "outros_pct": round(df.loc[df["marca"] == "Outros", "share"].sum(), 1),
         "cr1": round(s.iloc[0], 1),
         "lider": df.loc[df["share"].idxmax(), "marca"],
         "cr4": round(s.iloc[:4].sum(), 1),
@@ -73,22 +83,44 @@ def indicadores(df):
     })
 
 ind = marcas.groupby("ano").apply(indicadores)
-ind["crescimento_pct"] = (ind["total_bev"].pct_change() * 100).round(1)
+# 2026 só vai até outubro: para comparar com anos cheios, anualiza (x 12/10).
+meses = totais.set_index("ano")["periodo"].map(lambda p: 10 if p == "jan-out" else 12)
+ind["total_anualizado"] = (ind["total_bev"] * 12 / meses).round().astype(int)
+ind["crescimento_pct"] = ((ind["total_anualizado"] / ind["total_bev"].shift() - 1) * 100).round(1)
 ind["faixa_hhi"] = pd.cut(ind["hhi"], [0, 1500, 2500, 10000], labels=["baixa", "moderada", "alta"])
-ind.to_csv(RES / "indicadores.csv")
 print(ind.to_string(), "\n")
 
-# Entradas e saídas de marcas (presença com >= 50 unidades)
+# Entradas e saídas de marcas (presença com >= 50 unidades).
+# Entrada = primeira vez que a marca aparece; reentrada = volta depois de sumir da base
+# (em geral é lacuna de dado, não uma saída real do mercado).
 pres = marcas[(marcas["marca"] != "Outros") & (marcas["unidades"] >= 50)].groupby("ano")["marca"].apply(set)
-entradas = {a: sorted(pres[a] - pres.get(a - 1, set())) for a in pres.index[1:]}
-print("Entradas por ano:", entradas, "\n")
+entradas, reentradas, saidas, vistas = {}, {}, {}, set(pres.iloc[0])
+for a in pres.index[1:]:
+    novas = pres[a] - pres[a - 1]
+    entradas[int(a)] = sorted(novas - vistas)
+    reentradas[int(a)] = sorted(novas & vistas)
+    saidas[int(a)] = sorted(pres[a - 1] - pres[a])
+    vistas |= pres[a]
+print("Entradas por ano:", entradas)
+print("Reentradas (provável lacuna de dado):", {a: v for a, v in reentradas.items() if v})
+print("Saídas da base:", {a: v for a, v in saidas.items() if v}, "\n")
 
-# Mobilidade: quanto o ranking muda de um ano para o outro (instabilidade = rivalidade)
-rank = marcas[marcas["marca"] != "Outros"].copy()
-rank["pos"] = rank.groupby("ano")["unidades"].rank(ascending=False)
-mob = rank.pivot(index="marca", columns="ano", values="pos")
-instab = {a: round(mob[a].sub(mob[a - 1]).abs().mean(), 2) for a in mob.columns[1:]}
-print("Mudança média de posição no ranking:", instab, "\n")
+# Aviso: se "Outros" é maior que marcas listadas, pode esconder marcas relevantes
+# (o nº de marcas e as últimas posições do ranking ficam pouco confiáveis).
+for a, g in marcas.groupby("ano"):
+    o = g.loc[g["marca"] == "Outros", "unidades"].sum()
+    menores = g[(g["marca"] != "Outros") & (g["unidades"] < o)]["marca"].tolist()
+    if len(menores) > 2:
+        print(f"AVISO {a}: 'Outros' ({o}) é maior que {len(menores)} marcas listadas; abrir esse grupo na Fenabrave.")
+print()
+
+# Instabilidade de participação (Hymer e Pashigian, 1962): metade da soma das variações
+# absolutas de share. 0 = nada mudou; 100 = o mercado trocou inteiro de mãos.
+# Diferente da média de posições no ranking, conta também quem entrou e quem saiu.
+instab = {int(a): round(float((part.loc[a] - part.loc[a - 1]).abs().sum() / 2), 1) for a in part.index[1:]}
+ind["instabilidade_pp"] = pd.Series(instab)
+ind.to_csv(RES / "indicadores.csv")
+print("Instabilidade de participação (p.p. que trocaram de mãos):", instab, "\n")
 
 # Variação de share (pontos percentuais) entre 2023 e 2026
 delta = (part.loc[2026] - part.loc[2023]).sort_values()
@@ -151,9 +183,12 @@ fig, ax = plt.subplots(figsize=(8, 4))
 ax.plot(part.index, part["BYD"], marker="o", color=CORES["BYD"], label="BYD (% do mercado)")
 ax.plot(part.index, part["Geely"], marker="o", color=CORES["Geely"], label="Geely (% do mercado)")
 ax.plot(part.index, part["Volvo"], marker="o", color=CORES["Volvo"], label="Volvo (% do mercado)")
-imp_ano = imposto.assign(ano=imposto["data"].str[:4].astype(int)).groupby("ano")["aliquota_bev_pct"].max()
-imp_ano = imp_ano.reindex(part.index).ffill().fillna(0)
-ax.step(imp_ano.index, imp_ano.values, where="post", color="#555", ls="--", label="Imposto de importação BEV (%)")
+# Imposto na data em que cada alíquota entrou em vigor (ano + fração do ano); a participação
+# anual é plotada no meio do ano. Antes de 2024 os elétricos eram isentos.
+imp_x = [2019.5] + [int(d[:4]) - 0.5 + (int(d[5:]) - 1) / 12 for d in imposto["data"]] + [2026.5]
+imp_y = [0] + imposto["aliquota_bev_pct"].tolist() + [imposto["aliquota_bev_pct"].iloc[-1]]
+ax.step(imp_x, imp_y, where="post", color="#555", ls="--", label="Imposto de importação BEV (%)")
+ax.set_xlim(2019.6, 2026.6)
 ax.set_ylabel("%"); ax.legend(frameon=False, fontsize=8)
 ax.set_title("Liderança da BYD, entrada da Geely e imposto de importação")
 fig.tight_layout(); fig.savefig(GRAF / "05_imposto_lideres.png"); plt.close(fig)
@@ -178,15 +213,18 @@ l26 = ind.loc[2026]
 resumo = f"""# Principais achados
 
 - O mercado de carros 100% elétricos foi de {br(ind.loc[2020,'total_bev'])} unidades em 2020 para {br(ind.loc[2025,'total_bev'])} em 2025 (CAGR de {cagr:.0f}% ao ano). Só de janeiro a outubro de 2026 já são {br(l26['total_bev'])}.
-- Até 2022 o mercado era pequeno e disputado por marcas premium importadas (Volvo, Porsche, BMW, Audi, Mercedes). HHI de {br(ind.loc[2022,'hhi'])}: concentração {ind.loc[2022,'faixa_hhi']}.
-- A entrada da BYD em 2023 com preço abaixo de R$ 150 mil mudou o setor. O HHI saltou para {br(ind.loc[2024,'hhi'])} em 2024 e chegou ao pico de {br(ind.loc[2025,'hhi'])} em 2025, com a BYD sozinha em {str(ind.loc[2025,'cr1']).replace('.', ',')}%.
-- Em 2026 a Geely ({part.loc[2026,'Geely']:.1f}%) virou a segunda força, e o HHI caiu para {br(l26['hhi'])}. Ainda é alta concentração, mas a rivalidade aumentou.
-- A rivalidade acontece por preço: Dolphin Mini (R$ 115,8 mil em 2024, R$ 109,9 mil em 2026), Geely EX2 e Renault Kwid E-Tech brigam na faixa de R$ 100-120 mil. As premium (Volvo, BMW, Mercedes, Porsche) perderam participação e ficaram num nicho.
+- Até 2022 o mercado era pequeno e disputado por marcas premium importadas (Volvo, Porsche, BMW, Audi, Mercedes). HHI entre {br(ind.loc[2021,'hhi'])} e {br(ind.loc[2022,'hhi'])}, na fronteira entre concentração baixa e moderada (dados desses anos são estimativas do grupo).
+- A entrada da BYD em 2023 com preço abaixo de R$ 150 mil mudou o setor. O HHI saltou para {br(ind.loc[2024,'hhi'])} em 2024 e recuou pouco em 2025 ({br(ind.loc[2025,'hhi'])}), com a BYD sozinha em cerca de {ind.loc[2025,'cr1']:.0f}%.
+- Em 2026 a Geely ({part.loc[2026,'Geely']:.1f}%) virou a segunda força, e o HHI caiu para {br(l26['hhi'])}. Ainda é alta concentração, mas a rivalidade aumentou. Por grupo econômico (Geely + Volvo + Zeekr), o HHI de 2026 é {br(l26['hhi_grupo'])}.
+- 2026 tem só 10 meses: anualizado, o mercado chegaria a cerca de {br(l26['total_anualizado'])} unidades ({l26['crescimento_pct']:.0f}% sobre 2025).
+- A rivalidade acontece por preço: Dolphin Mini (R$ 115,8 mil em 2024, R$ 120,0 mil em 2025, R$ 110,0 mil em 2026, valores nominais), Geely EX2 e Renault Kwid E-Tech brigam na faixa de R$ 100-120 mil. As premium (Volvo, BMW, Mercedes, Porsche) perderam participação e ficaram num nicho.
 - O imposto de importação subiu de 0% (2023) para 35% (jul/2026). Isso favorece quem produz no Brasil (BYD em Camaçari) e é barreira para novos entrantes que só importam.
 - Comparado com outros setores, o elétrico é mais concentrado que o mercado automotivo como um todo (HHI ~1.000) e que os bancos, e passa até telefonia móvel (~3.100) e aviação doméstica (~3.300), setores com só 3 grandes empresas.
 
-Mudança média de posição no ranking por ano: {instab}
+Instabilidade de participação (Hymer-Pashigian, p.p. que trocaram de mãos em relação ao ano anterior): {instab}
 Entradas de marcas (>= 50 unidades): {entradas}
+Reentradas (provável lacuna de dado, conferir): {({a: v for a, v in reentradas.items() if v})}
+Limitações: 2020-2023 são estimativas do grupo por marca (ver resultados/av_montecarlo_hhi.csv para a faixa de incerteza). De 2024 em diante os dados são oficiais, mas a Fenabrave só publica as 15 maiores marcas de cada mês: marca pequena que "sai" da base pode só ter caído do ranking.
 """
 (RES / "resumo.md").write_text(resumo, encoding="utf-8")
 print(resumo)

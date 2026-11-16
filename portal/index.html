@@ -54,6 +54,10 @@ select{font:inherit;padding:5px 8px;border-radius:8px;border:1px solid var(--lin
 .panel.wide{grid-column:span 12}
 .panel h2{font-family:var(--f-display);font-size:17px;font-weight:700;margin:0}
 .panel .hint{color:var(--muted);font-size:13px;margin:0}
+.achados{display:grid;gap:8px}
+.achados details{border:1px solid var(--line);border-radius:var(--r);padding:10px 12px}
+.achados summary{cursor:pointer;font-weight:600}
+.achados p{margin:8px 0 0;font-size:14px;line-height:1.55}
 .chart{position:relative;height:300px}
 @media (max-width:860px){.panel{grid-column:span 12}}
 .tbl{overflow-x:auto}
@@ -81,6 +85,7 @@ textarea{width:100%;min-height:120px;font:12px var(--f-mono);background:var(--su
 .tabs a{padding:8px 14px;color:var(--muted);text-decoration:none;font:600 14px var(--f-body);border-bottom:3px solid transparent;margin-bottom:-1px}
 .tabs a[aria-current="page"]{color:var(--fg);border-bottom-color:var(--accent)}
 .view{display:grid;gap:18px}
+.view[hidden],.panel[hidden]{display:none}
 .thesis{background:var(--accent-soft);border-radius:var(--r);padding:16px 18px}
 .thesis p{margin:6px 0 0;font-size:15.5px;max-width:95ch}
 .porter{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:18px;align-items:start}
@@ -132,6 +137,7 @@ svg .s{font:11px var(--f-body);fill:var(--muted)}
   <nav class="tabs" aria-label="Seções">
     <a href="#dados" id="tabDados">Dados e concentração</a>
     <a href="#estrategia" id="tabEstr">Análise estratégica</a>
+    <a href="#mensal" id="tabMensal">Série mensal e estatística</a>
   </nav>
 
   <div id="vDados" class="view">
@@ -224,7 +230,7 @@ svg .s{font:11px var(--f-body);fill:var(--muted)}
   <div id="vEstr" class="view" hidden>
     <section class="thesis">
       <span class="eyebrow">Tese do grupo</span>
-      <p>As montadoras chinesas venceram a disputa dos elétricos no Brasil com <b>liderança em custo</b>: verticalização das baterias, preço abaixo de R$ 120 mil e fábricas compradas de montadoras ocidentais que saíram do país. As marcas premium europeias (Volvo, BMW, Mercedes, Porsche) ficaram com a <b>diferenciação</b> num nicho que caiu de mais da metade do mercado em 2022 para cerca de 5% em 2026. Agora a briga é entre chinesas, e quem não produzir no Brasil paga 35% de imposto.</p>
+      <p>As montadoras chinesas venceram a disputa dos elétricos no Brasil com <b>liderança em custo</b>: verticalização das baterias, preço abaixo de R$ 120 mil e fábricas compradas de montadoras ocidentais que saíram do país. As marcas premium europeias (Volvo, BMW, Mercedes, Porsche) ficaram com a <b>diferenciação</b> num nicho que caiu de mais da metade do mercado em 2022 para cerca de 2% em 2026. Agora a briga é entre chinesas, e quem não produzir no Brasil paga 35% de imposto.</p>
     </section>
 
     <div class="grid">
@@ -268,7 +274,7 @@ svg .s{font:11px var(--f-body);fill:var(--muted)}
           <tbody>
             <tr><td><b>JAC</b></td><td>2011</td><td>Importador independente (Grupo SHC)</td><td>Rede própria; fábrica prometida nunca saiu</td><td>–</td></tr>
             <tr><td><b>Chery</b></td><td>2014</td><td>Fábrica própria, depois JV com a CAOA (2017)</td><td>Jacareí (SP), Anápolis (GO) com a CAOA</td><td>–</td></tr>
-            <tr><td><b>BYD</b></td><td>2015 (ônibus e painéis solares); carros em 2021</td><td>Investimento direto, brownfield</td><td>Ex-fábrica da Ford em Camaçari (BA), inaugurada em out/2025; 100 mil carros montados até jul/2026</td><td>R$ 5,5 bi</td></tr>
+            <tr><td><b>BYD</b></td><td>2015 (ônibus e painéis solares); carros em 2021</td><td>Investimento direto, brownfield</td><td>Ex-fábrica da Ford em Camaçari (BA), montagem SKD desde jul/2025, inauguração oficial em out/2025; 100 mil carros montados até jul/2026</td><td>R$ 5,5 bi</td></tr>
             <tr><td><b>GWM</b></td><td>2021</td><td>Investimento direto, brownfield</td><td>Ex-fábrica da Mercedes em Iracemápolis (SP), inaugurada em ago/2025; 50 mil carros/ano de capacidade</td><td>R$ 10 bi até 2032</td></tr>
             <tr><td><b>Geely</b></td><td>2025</td><td>Joint venture: Renault Geely do Brasil (nov/2025)</td><td>Fábrica da Renault em São José dos Pinhais (PR); EX2 montado a partir do fim de 2026</td><td>R$ 5,8 bi (2025–27)</td></tr>
             <tr><td><b>Leapmotor</b></td><td>2025</td><td>Parceria com a Stellantis</td><td>Rede e estrutura da Stellantis</td><td>–</td></tr>
@@ -305,7 +311,7 @@ svg .s{font:11px var(--f-body);fill:var(--muted)}
         <div class="tbl"><table><tbody>
           <tr><td><b>Plano</b></td><td>Ser a maior montadora de eletrificados do Brasil, com produção local.</td></tr>
           <tr><td><b>Pretexto (manobra)</b></td><td>Anunciar a fábrica cedo para negociar cotas de imposto zero e incentivos, e lançar o Dolphin Mini abaixo do esperado para assustar concorrentes.</td></tr>
-          <tr><td><b>Padrão</b></td><td>Cortes de preço repetidos (2023, 2024, 2026) e lançamento de muitos modelos por ano.</td></tr>
+          <tr><td><b>Padrão</b></td><td>Preço de entrada abaixo dos rivais a cada lançamento (Dolphin em 2023, Dolphin Mini em 2024), corte de R$ 10 mil em 2026 quando a Geely chegou, e muitos modelos novos por ano.</td></tr>
           <tr><td><b>Posição</b></td><td>Elétrico acessível: carro de R$ 110 mil a R$ 150 mil, onde antes só havia carro a combustão.</td></tr>
           <tr><td><b>Perspectiva</b></td><td>Empresa de tecnologia e energia, com baterias, ônibus e painéis solares, e não só uma montadora.</td></tr>
         </tbody></table></div>
@@ -372,10 +378,65 @@ svg .s{font:11px var(--f-body);fill:var(--muted)}
     </div>
   </div><!-- /vEstr -->
 
+  <div id="vMensal" class="view" hidden>
+    <section class="thesis">
+      <span class="eyebrow">O que os dados mensais oficiais acrescentam</span>
+      <p id="mTese"></p>
+    </section>
+    <section class="kpis" id="mKpis" aria-label="Indicadores mensais"></section>
+    <div class="grid">
+      <section class="panel wide">
+        <h2>Participação mês a mês e imposto de importação</h2>
+        <p class="hint">Fenabrave, automóveis 100% elétricos, jan/2024 a out/2026 (outubro só com as 5 maiores marcas). A linha tracejada é a alíquota do imposto.</p>
+        <div class="chart"><canvas id="cmShare"></canvas></div>
+      </section>
+      <section class="panel">
+        <h2>HHI mensal</h2>
+        <p class="hint">Mesmo no mês menos concentrado o índice fica acima de 2.500.</p>
+        <div class="chart"><canvas id="cmHhi"></canvas></div>
+      </section>
+      <section class="panel">
+        <h2>O HHI depende da definição de mercado</h2>
+        <p class="hint">Média de 2026. Quanto mais larga a definição, menor a concentração e a fatia da BYD.</p>
+        <div class="tbl"><table id="mDef"></table></div>
+      </section>
+      <section class="panel wide">
+        <h2>Importados x emplacados: a corrida antes de cada alta do imposto</h2>
+        <p class="hint">Importações da NCM 8703.80 (Comex Stat) e emplacamentos (Fenabrave), em unidades por mês.</p>
+        <div class="chart"><canvas id="cmImp"></canvas></div>
+        <div class="tbl"><table id="mImpTbl"></table></div>
+      </section>
+      <section class="panel">
+        <h2>O que mexeu na participação da BYD</h2>
+        <p class="hint" id="mItsHint"></p>
+        <div class="tbl"><table id="mIts"></table></div>
+      </section>
+      <section class="panel">
+        <h2>Até onde o mercado cresce (curva de Bass)</h2>
+        <p class="hint">O teto ainda não aparece nos dados, então são três cenários de mercado potencial.</p>
+        <div class="tbl"><table id="mBass"></table></div>
+      </section>
+      <section class="panel wide" id="mPrecoSec">
+        <h2>Preços reais e número de modelos (Tabela FIPE, zero km)</h2>
+        <p class="hint">Preços corrigidos pelo IPCA. Marcas acompanhadas todo mês: BYD, Geely, GWM, GAC, Zeekr, JAC, Leapmotor, MG, Volvo, Renault e Chevrolet.</p>
+        <div class="chart"><canvas id="cmPreco"></canvas></div>
+      </section>
+      <section class="panel wide" id="mGrupoSec">
+        <h2>Grupos estratégicos encontrados pelos dados</h2>
+        <p class="hint">Agrupamento k-means dos modelos por preço, potência e bateria.</p>
+        <div class="tbl"><table id="mGrupos"></table></div>
+      </section>
+      <section class="panel wide">
+        <h2>Achados das análises estatísticas</h2>
+        <div id="mAchados" class="achados"></div>
+      </section>
+    </div>
+  </div><!-- /vMensal -->
+
   <footer>
     <div><b>Fontes da análise estratégica:</b> BYD Brasil, Canal VE, Canaltech (Camaçari); Autodata, Vrum (Renault Geely do Brasil); GWM Media Center, Bloomberg Línea, Forbes (Iracemápolis); Instituto Locomotiva, Deloitte, EY, Banco BV, Webmotors, ABVE/Tupi (consumidor e recarga). Referências teóricas: Porter (1979, 1980), Mintzberg (1987), Chandler (1962), Davis (1989), Johanson e Vahlne (1977).</div>
-    <div><b>Fontes:</b> ABVE (balanços anuais 2022–2025), Fenabrave (jan–out/2026), BYD, imprensa especializada (Motor Show, Canal VE, Olhar Digital). Setores: Fenabrave, Banco Central, Anatel, ANAC (valores aproximados).</div>
-    <div><span class="pill verificado">verificado</span> número publicado em fonte · <span class="pill estimado">estimado</span> estimativa do grupo, a confirmar na Fenabrave · <span class="pill calculado">calculado</span> total menos as marcas listadas. O HHI ignora o grupo "Outros", que reúne várias marcas pequenas.</div>
+    <div><b>Fontes:</b> Fenabrave (informativos mensais, jan/2024 a out/2026), ABVE (totais de 2020 a 2023), Comex Stat/MDIC (importações), Banco Central (juros, câmbio, IPCA), Tabela FIPE (preços), BYD, imprensa especializada (Motor Show, Canal VE, Olhar Digital). Setores: Fenabrave, Banco Central, Anatel, ANAC (valores aproximados).</div>
+    <div><span class="pill verificado">verificado</span> número publicado em fonte · <span class="pill estimado">estimado</span> estimativa do grupo para 2020–2023 (a Fenabrave não publicava o ranking de elétricos) · <span class="pill calculado">calculado</span> total menos as marcas listadas. O HHI ignora o grupo "Outros", que reúne várias marcas pequenas.</div>
   </footer>
 </div>
 <div class="toast" id="toast" hidden></div>
@@ -436,7 +497,7 @@ function render(){
 
   // KPIs
   document.getElementById("kpis").innerHTML = [
-    ["Carros elétricos emplacados", fmt(I.tot), P? dl(I.tot,P.tot,x=>pct(x/P.tot*100,0).replace("%","% ")).replace(/vs/,"crescimento vs"):"", st.ano===2026?"jan–out":""],
+    ["Carros elétricos emplacados", fmt(I.tot), P? dl(I.tot,P.tot,x=>pct(x/P.tot*100,0).replace("%","% ")).replace(/vs/,"crescimento vs"):"", st.ano===2026?"jan–out (10 meses contra o ano cheio de 2025)":""],
     ["Índice HHI", fmt(I.hhi), P?dl(I.hhi,P.hhi,fmt):"", `<span class="pill ${faixa(I.hhi)}">concentração ${faixa(I.hhi)}</span>`],
     ["Líder: "+I.lider, pct(I.cr1), "participação da maior marca (CR1)", ""],
     ["4 maiores (CR4)", pct(I.cr4), P?dl(I.cr4,P.cr4,x=>x.toLocaleString("pt-BR",{maximumFractionDigits:1})," p.p."):"", ""],
@@ -513,9 +574,9 @@ function render(){
   // Conclusões
   const g26=doAno(2026).find(r=>r.marca==="Geely");
   document.getElementById("concl").innerHTML = `<ul>
-    <li><b>De mercado fragmentado a quase monopólio.</b> Até 2022 o HHI ficava entre ${fmt(IND[2021].hhi)} e ${fmt(IND[2022].hhi)}, com Volvo, Porsche, BMW, JAC e Mercedes dividindo um mercado pequeno. Com a BYD, chegou a ${fmt(IND[2025].hhi)} em 2025.</li>
+    <li><b>De mercado fragmentado a quase monopólio.</b> Até 2022 o HHI ficava entre ${fmt(IND[2021].hhi)} e ${fmt(IND[2022].hhi)}, com Volvo, Porsche, BMW, JAC e Mercedes dividindo um mercado pequeno. Com a BYD, passou de ${fmt(IND[2024].hhi)} em 2024 e ficou em ${fmt(IND[2025].hhi)} em 2025.</li>
     <li><b>A rivalidade é por preço.</b> O Dolphin Mini (R$ 115,8 mil em 2024, R$ 109,9 mil em 2026) puxou a faixa de entrada. Quem não compete nessa faixa (Volvo, BMW, Mercedes, Porsche) virou nicho premium.</li>
-    <li><b>2026 trouxe um rival de verdade.</b> A Geely chegou a ${pct(g26.share)} com o EX2, e o HHI caiu para ${fmt(IND[2026].hhi)}. Ainda é concentração alta, mas foi a primeira queda desde 2022.</li>
+    <li><b>2026 trouxe um rival de verdade.</b> A Geely chegou a ${pct(g26.share)} com o EX2, e o HHI caiu para ${fmt(IND[2026].hhi)}. Ainda é concentração alta, mas foi a primeira queda relevante desde a chegada da BYD.</li>
     <li><b>Barreiras de entrada crescendo.</b> O imposto de importação foi de 0% para 35% e favorece quem monta no Brasil (BYD em Camaçari). Novas marcas que só importam terão mais dificuldade.</li>
     <li><b>Oportunidades:</b> mercado crescendo rápido (mais de 186 mil carros em 10 meses de 2026), espaço para produção local, rede de recarga e pós-venda como diferencial. <b>Desafios:</b> guerra de preços aperta margens e dependência de importação encarece o carro.</li></ul>`;
   aplicaPaineis();
@@ -560,10 +621,12 @@ render();
 const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const D = window.DADOS;
 const tot26 = D.marcas.filter(r=>r.ano===2026).reduce((s,r)=>s+r.unidades,0);
+const hhiAno = a => { const rs = D.marcas.filter(r=>r.ano===a), t = rs.reduce((s,r)=>s+r.unidades,0);
+  return Math.round(rs.filter(r=>r.marca!=="Outros").reduce((s,r)=>s+(r.unidades/t*100)**2,0)).toLocaleString("pt-BR"); };
 const sh = m => { const r = D.marcas.find(x=>x.ano===2026 && x.marca===m); return r ? {u:r.unidades, s:r.unidades/tot26*100} : {u:0,s:0}; };
 
 const FORCAS = [
-  {k:"Rivalidade entre concorrentes", a:3, b:4, txt:"Em 2022 eram várias marcas premium com volumes pequenos. Em 2026 a Geely chegou a 18% e a BYD respondeu cortando preço. O HHI caiu de 5.561 para 4.344."},
+  {k:"Rivalidade entre concorrentes", a:3, b:4, txt:`Em 2022 eram várias marcas premium com volumes pequenos. Em 2026 a Geely chegou a 18% e a BYD respondeu cortando preço. O HHI caiu de ${hhiAno(2025)} para ${hhiAno(2026)}.`},
   {k:"Ameaça de novos entrantes", a:4, b:3, txt:"Sem imposto, era fácil importar e entrar. Com 35% de imposto e fábricas de R$ 5 bi a R$ 10 bi, a barreira subiu. Mesmo assim GAC, Zeekr, Leapmotor e Omoda entraram em 2025."},
   {k:"Poder dos fornecedores", a:4, b:3, txt:"A bateria é 30–40% do custo. A BYD faz a própria bateria (verticalização), e as demais dependem de CATL e outros fornecedores chineses."},
   {k:"Poder dos compradores", a:2, b:4, txt:"Em 2022 havia pouca escolha e clientes ricos. Em 2026 são mais de 15 marcas, o cliente compara preço e 47% só pagariam até R$ 100 mil. Locadoras e frotas de aplicativo negociam volume."},
@@ -629,11 +692,12 @@ function showSwot(k){ seg.querySelectorAll("button").forEach(b=>b.setAttribute("
 showSwot("BYD");
 
 function route(){
-  const e = location.hash==="#estrategia";
-  document.getElementById("vDados").hidden=e; document.getElementById("vEstr").hidden=!e;
-  document.getElementById("tabDados").setAttribute("aria-current", e?"false":"page");
+  const e = location.hash==="#estrategia", m = location.hash==="#mensal";
+  document.getElementById("vDados").hidden=e||m; document.getElementById("vEstr").hidden=!e; document.getElementById("vMensal").hidden=!m;
+  document.getElementById("tabDados").setAttribute("aria-current", e||m?"false":"page");
   document.getElementById("tabEstr").setAttribute("aria-current", e?"page":"false");
-  if(e){drawPorter();drawGen();} else if(window.renderDados) window.renderDados();
+  document.getElementById("tabMensal").setAttribute("aria-current", m?"page":"false");
+  if(e){drawPorter();drawGen();} else if(m){ if(window.renderMensal) window.renderMensal(); } else if(window.renderDados) window.renderDados();
 }
 window.addEventListener("hashchange",route);
 const redraw=()=>{ if(location.hash==="#estrategia"){drawPorter();drawGen();} };
@@ -642,3 +706,79 @@ const mq=matchMedia("(prefers-color-scheme: dark)"); mq.addEventListener&&mq.add
 route();
 })();
 </script>
+<script src="dados_avancado.js"></script>
+<script>
+(function(){
+const A = window.AVANCADO; if(!A) return;
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const n = (x,d=0) => Number(x).toLocaleString("pt-BR",{minimumFractionDigits:d,maximumFractionDigits:d});
+const COR = {"BYD":"#d01c36","Geely":"#2a63d4","GWM":"#e08a00","Volvo":"#6b7f93","Chevrolet":"#a0703a","GAC":"#d45087"};
+const charts = {};
+function chart(id,cfg){ if(charts[id]) charts[id].destroy(); const el=document.getElementById(id); if(el) charts[id]=new Chart(el,cfg); }
+function opts(){ const fg=css("--muted"), grid=css("--line");
+  return {responsive:true,maintainAspectRatio:false,animation:false,
+    plugins:{legend:{labels:{color:fg,boxWidth:10}},tooltip:{mode:"index",intersect:false}},
+    scales:{x:{ticks:{color:fg,maxRotation:0,autoSkipPadding:12},grid:{color:grid}},y:{ticks:{color:fg},grid:{color:grid},beginAtZero:true}}}; }
+const rot = m => m.slice(5)+"/"+m.slice(2,4);
+
+function render(){
+  const M = A.mensal, u = M.meses.length-1, byd = M.shares.BYD, gee = M.shares.Geely;
+  const pico = Math.max(...gee), iPico = gee.indexOf(pico);
+  document.getElementById("mTese").innerHTML = `Com ${M.meses.length} meses de dados da Fenabrave, a história anual ganha detalhe: a Geely chegou a <b>${n(pico,1)}%</b> do mercado em ${rot(M.meses[iPico])} e caiu para <b>${n(gee[u],1)}%</b> em ${rot(M.meses[u])}, nos meses seguintes à alta do imposto de importação para 35%. A BYD, que monta em Camaçari, voltou a <b>${n(byd[u],1)}%</b>. A rivalidade aumentou em 2026, mas a principal desafiante, que ainda só importa, perdeu fôlego. Os testes estatísticos abaixo mostram o que dá e o que não dá para afirmar.`;
+  const D = A.definicoes;
+  document.getElementById("mKpis").innerHTML = [
+    ["BYD em "+rot(M.meses[u]), n(byd[u],1)+"%", "piso de "+n(Math.min(...byd.slice(0,u)),1)+"% em "+rot(M.meses[byd.indexOf(Math.min(...byd.slice(0,u)))])],
+    ["Geely em "+rot(M.meses[u]), n(gee[u],1)+"%", "pico de "+n(pico,1)+"% em "+rot(M.meses[iPico])],
+    ["HHI só elétricos", n(D.hhi_eletricos), "média de 2026"],
+    ["HHI todos os automóveis", n(D.hhi_automoveis), "BYD com "+n(D.byd_automoveis,1)+"% do total"],
+    ["Elétricos no total de automóveis", n(D.bev_pct_dos_automoveis,1)+"%", "média de 2026"],
+  ].map(([l,v,d])=>`<div class="kpi"><span class="eyebrow">${l}</span><span class="v">${v}</span><span class="d">${d}</span></div>`).join("");
+
+  chart("cmShare",{type:"line",data:{labels:M.meses.map(rot),datasets:[
+    ...Object.keys(M.shares).map(m=>({label:m,data:M.shares[m],borderColor:COR[m],backgroundColor:COR[m],pointRadius:2,borderWidth:m==="BYD"||m==="Geely"?2.5:1.5,yAxisID:"y"})),
+    {label:"Imposto de importação (%)",data:M.aliquota,stepped:true,borderColor:css("--muted"),backgroundColor:css("--muted"),borderDash:[4,4],pointRadius:0,yAxisID:"y"}]},
+    options:(o=>{o.scales.y.max=90;o.scales.y.title={display:true,text:"%",color:css("--muted")};return o})(opts())});
+  chart("cmHhi",{type:"line",data:{labels:M.meses.map(rot),datasets:[{label:"HHI",data:M.hhi,borderColor:css("--fg"),backgroundColor:css("--fg"),pointRadius:2}]},
+    options:(o=>{o.plugins.legend.display=false;o.scales.y.max=7000;return o})(opts())});
+
+  document.getElementById("mDef").innerHTML = `<thead><tr><th>Mercado</th><th style="text-align:right">HHI</th><th style="text-align:right">BYD</th></tr></thead><tbody>
+    <tr><td>Só 100% elétricos</td><td class="n">${n(D.hhi_eletricos)}</td><td class="n">${n(D.byd_eletricos,1)}%</td></tr>
+    <tr><td>Elétricos + híbridos</td><td class="n">${n(D.hhi_eletrificados)}</td><td class="n">${n(D.byd_eletrificados,1)}%</td></tr>
+    <tr><td>Todos os automóveis</td><td class="n">${n(D.hhi_automoveis)}</td><td class="n">${n(D.byd_automoveis,1)}%</td></tr></tbody>`;
+
+  const I = A.importacoes;
+  chart("cmImp",{data:{labels:I.meses.map(rot),datasets:[
+    {type:"bar",label:"Importados",data:I.importados,backgroundColor:css("--muted")},
+    {type:"line",label:"Emplacados",data:I.emplacados,borderColor:COR.BYD,backgroundColor:COR.BYD,pointRadius:2}]},options:opts()});
+  document.getElementById("mImpTbl").innerHTML = `<thead><tr><th>Alta do imposto</th><th style="text-align:right">Média 3 meses antes</th><th style="text-align:right">Média 3 meses depois</th><th style="text-align:right">Antes ÷ depois</th></tr></thead><tbody>`+
+    I.eventos.map(e=>`<tr><td>${e.degrau} (${n(e.aliquota)}%)</td><td class="n">${n(e.media_3m_antes)}</td><td class="n">${n(e.media_3m_depois)}</td><td class="n">${n(e.razao_antes_depois,1)}×</td></tr>`).join("")+"</tbody>";
+
+  const T = A.its, NOME = {imposto_18_jul24:"Imposto a 18% (jul/2024)",imposto_25_camacari_jul25:"Imposto a 25% e início de Camaçari (jul/2025)",geely_ex2_nov25:"Geely EX2 em volume (nov/2025)",imposto_35_jul26:"Imposto a 35% (jul/2026)"};
+  document.getElementById("mItsHint").textContent = `Regressão da participação mensal da BYD com tendência e degraus em cada evento (R² = ${n(T.r2,2)}). O teste de quebra estrutural, sem informar datas, aponta ${T.quebra}.`;
+  document.getElementById("mIts").innerHTML = `<thead><tr><th>Evento</th><th style="text-align:right">Efeito (p.p.)</th><th style="text-align:right">p-valor</th></tr></thead><tbody>`+
+    Object.entries(T.coef).map(([k,[c,p]])=>`<tr><td>${NOME[k]||k}</td><td class="n">${c>0?"+":""}${n(c,1)}</td><td class="n">${n(p,3)}${p<0.05?" *":""}</td></tr>`).join("")+`</tbody>`;
+
+  document.getElementById("mBass").innerHTML = `<thead><tr><th>Mercado potencial</th><th style="text-align:right">Pico de vendas</th><th style="text-align:right">Carros por mês no pico</th></tr></thead><tbody>`+
+    A.bass.map(b=>`<tr><td>${b.cenario_m} de carros</td><td class="n">${b.pico_mes}</td><td class="n">${n(b.pico_unidades_mes)}</td></tr>`).join("")+"</tbody>";
+
+  if(A.precos){ const P=A.precos;
+    chart("cmPreco",{type:"line",data:{labels:P.meses.map(rot),datasets:[
+      {label:"Elétrico mais barato (R$ mil)",data:P.mais_barato.map(x=>x/1000),borderColor:COR.BYD,backgroundColor:COR.BYD,pointRadius:2,yAxisID:"y"},
+      {label:"Preço mediano (R$ mil)",data:P.mediana.map(x=>x/1000),borderColor:COR.Geely,backgroundColor:COR.Geely,pointRadius:2,yAxisID:"y"},
+      {label:"Modelos à venda",data:P.modelos,borderColor:css("--fg"),backgroundColor:css("--fg"),borderDash:[5,4],pointRadius:0,yAxisID:"y1"}]},
+      options:(o=>{o.scales.y1={position:"right",beginAtZero:true,ticks:{color:css("--muted")},grid:{display:false}};return o})(opts())});
+  } else document.getElementById("mPrecoSec").hidden = true;
+
+  if(A.grupos){
+    document.getElementById("mGrupos").innerHTML = `<thead><tr><th>Grupo</th><th style="text-align:right">Modelos</th><th style="text-align:right">Preço mediano</th><th style="text-align:right">Bateria média</th><th style="text-align:right">Potência média</th><th style="text-align:right">Marcas chinesas</th><th>Exemplos</th></tr></thead><tbody>`+
+      A.grupos.map(g=>`<tr><td>${g.grupo}</td><td class="n">${n(g.modelos)}</td><td class="n">R$ ${n(g.preco_mediano/1000)} mil</td><td class="n">${n(g.bateria_media)} kWh</td><td class="n">${n(g.potencia_media)} cv</td><td class="n">${n(g.pct_chinesas)}%</td><td>${g.exemplos}</td></tr>`).join("")+"</tbody>";
+  } else document.getElementById("mGrupoSec").hidden = true;
+
+  document.getElementById("mAchados").innerHTML = A.achados.map(a=>`<details><summary>${a.titulo}</summary><p>${a.texto}</p></details>`).join("");
+}
+window.renderMensal = render;
+new MutationObserver(()=>{ if(location.hash==="#mensal") render(); }).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+if(location.hash==="#mensal") render();
+})();
+</script>
+

@@ -1,0 +1,6 @@
+termo,coef,erro_padrao,p_valor
+const,7.399,0.414,0.0
+ln_bateria,0.785,0.217,0.0
+ln_potencia,0.365,0.14,0.009
+marca_chinesa,-0.302,0.06,0.0
+marca_premium,0.218,0.07,0.002
