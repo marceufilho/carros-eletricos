@@ -6,29 +6,22 @@
 <title>Concentrado, mas contestado: a rivalidade nos carros elétricos no Brasil</title>
 <meta name="description" content="Como o mercado brasileiro de carros 100% elétricos passou de um nicho premium a um mercado dominado pela BYD, e por que a liderança já está sendo contestada. Dados de 2020 a 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-/* Mesmos tokens do painel (explorar.html), para as duas páginas parecerem um site só. */
+/* Mesmos tokens do painel (explorar.html), para as duas páginas parecerem um site só.
+   Tema único e claro por escolha do grupo: fundo branco, texto preto, verde de energia como destaque. */
 :root{
-  --bg:#eef1f4; --surface:#ffffff; --surface-2:#f6f8fa; --line:#d6dce3;
-  --fg:#16202b; --muted:#5a6878; --accent:#1747c8; --accent-soft:#e3eaff;
-  --ok:#1d7f4e; --warn:#b26a00; --bad:#b4152b;
-  --ok-bg:#e1f3e9; --warn-bg:#fdf0da; --bad-bg:#fbe3e6;
-  --f-display:"Archivo",system-ui,sans-serif; --f-body:"IBM Plex Sans",system-ui,sans-serif; --f-mono:"IBM Plex Mono",ui-monospace,monospace;
-  --r:10px;
+  --bg:#ffffff; --surface:#ffffff; --surface-2:#f4f8f5; --line:#dfe7e1;
+  --fg:#0c1410; --muted:#56655c; --accent:#0e8a43; --accent-strong:#096b33; --accent-soft:#e5f4ea;
+  --ok:#11743c; --warn:#a35f00; --bad:#b4152b;
+  --ok-bg:#e2f3e8; --warn-bg:#fdf1dc; --bad-bg:#fbe6e8;
+  --f-display:"Space Grotesk","Segoe UI",system-ui,sans-serif; --f-body:"Inter","Segoe UI",system-ui,sans-serif; --f-mono:"JetBrains Mono",Consolas,ui-monospace,monospace;
+  --r:12px; color-scheme:light;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0f141a; --surface:#171e26; --surface-2:#1d2630; --line:#2c3743;
-  --fg:#e6ebf0; --muted:#97a4b2; --accent:#7c9bff; --accent-soft:#1f2a4a;
-  --ok:#5cc98e; --warn:#f0a83a; --bad:#ff6b7d; --ok-bg:#16301f; --warn-bg:#33270f; --bad-bg:#3a1820; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#0f141a; --surface:#171e26; --surface-2:#1d2630; --line:#2c3743;
-  --fg:#e6ebf0; --muted:#97a4b2; --accent:#7c9bff; --accent-soft:#1f2a4a;
-  --ok:#5cc98e; --warn:#f0a83a; --bad:#ff6b7d; --ok-bg:#16301f; --warn-bg:#33270f; --bad-bg:#3a1820; color-scheme:dark}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:64px}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:17px;line-height:1.65}
-a{color:var(--accent)}
+a{color:var(--accent-strong)}
 .nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .nav .in{max-width:1080px;margin:0 auto;padding:10px 16px;display:flex;gap:10px 18px;align-items:center;justify-content:space-between;flex-wrap:wrap}
 .nav .marca{font:700 14px var(--f-display);color:var(--fg);text-decoration:none}
@@ -36,26 +29,26 @@ a{color:var(--accent)}
 .nav .links a{font:500 13px var(--f-body);text-decoration:none;color:var(--fg);border:1px solid var(--line);background:var(--surface);padding:5px 11px;border-radius:8px}
 .nav .links a:hover{border-color:var(--accent)}
 .nav .links a.dest{background:var(--accent);border-color:var(--accent);color:#fff}
-:root[data-theme="dark"] .nav .links a.dest{color:#0f141a}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .nav .links a.dest{color:#0f141a}}
-.barra{height:3px;background:var(--accent);width:0;transition:width .1s linear}
+.nav .links a.dest:hover{background:var(--accent-strong)}
+.barra{height:4px;background:linear-gradient(90deg,var(--accent-strong),var(--accent) 70%,#36c46f);width:0;transition:width .1s linear}
 .col{max-width:720px;margin:0 auto;padding:0 16px}
 .larga{max-width:1080px;margin:0 auto;padding:0 16px}
 .eyebrow{font:500 12px var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
 .hero{padding:56px 0 28px}
-h1{font-family:var(--f-display);font-weight:800;font-size:clamp(34px,6.4vw,62px);line-height:1.03;letter-spacing:-.02em;margin:10px 0 16px;text-wrap:balance}
+h1{font-family:var(--f-display);font-weight:700;font-size:clamp(34px,6.4vw,62px);line-height:1.03;letter-spacing:-.02em;margin:10px 0 16px;text-wrap:balance}
 .lede{font-size:clamp(18px,2.3vw,21px);line-height:1.55;margin:0;max-width:60ch}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:30px 0 0}
 .kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px}
-.kpi .v{font:800 38px/1.05 var(--f-display);font-variant-numeric:tabular-nums}
+.kpi:first-child{background:var(--accent-soft);border-color:transparent}
+.kpi .v{font:700 38px/1.05 var(--f-display);font-variant-numeric:tabular-nums}
 .kpi .d{font-size:14px;color:var(--muted);margin-top:6px;line-height:1.45}
 .indice{margin:34px 0 0;padding:0;list-style:none;display:grid;gap:2px;counter-reset:b}
 .indice a{display:grid;grid-template-columns:2.2em 1fr;gap:4px;padding:7px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--fg);font-size:15.5px}
 .indice a::before{counter-increment:b;content:counter(b);font:500 13px var(--f-mono);color:var(--muted);padding-top:2px}
 .indice a:hover{color:var(--accent)}
 section.beat{padding:56px 0 8px}
-.num{font:500 13px var(--f-mono);color:var(--accent);letter-spacing:.06em}
-h2{font-family:var(--f-display);font-weight:800;font-size:clamp(25px,3.6vw,36px);line-height:1.12;letter-spacing:-.012em;margin:6px 0 16px;text-wrap:balance}
+.num{font:500 13px var(--f-mono);color:var(--accent-strong);letter-spacing:.06em}
+h2{font-family:var(--f-display);font-weight:700;font-size:clamp(25px,3.6vw,36px);line-height:1.12;letter-spacing:-.012em;margin:6px 0 16px;text-wrap:balance}
 h3{font:700 18px var(--f-display);margin:26px 0 6px}
 p{margin:0 0 16px}
 b,strong{font-weight:600}
@@ -68,12 +61,11 @@ b,strong{font-weight:600}
 .fonte{font-size:12.5px;color:var(--muted);margin:0;line-height:1.45}
 .ctl{display:flex;gap:10px 14px;align-items:center;flex-wrap:wrap;font-size:14px}
 .ctl label{color:var(--muted)}
-.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;flex-wrap:wrap}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;flex-wrap:wrap;background:var(--surface)}
 .seg button{border:0;background:transparent;color:var(--fg);font:500 13px var(--f-body);padding:7px 12px;cursor:pointer}
 .seg button+button{border-left:1px solid var(--line)}
 .seg button[aria-pressed="true"]{background:var(--accent);color:#fff}
-:root[data-theme="dark"] .seg button[aria-pressed="true"]{color:#0f141a}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .seg button[aria-pressed="true"]{color:#0f141a}}
+.seg button:hover:not([aria-pressed="true"]){background:var(--accent-soft)}
 button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 input[type=range]{accent-color:var(--accent);flex:1;min-width:160px;max-width:380px}
 .leitura{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
@@ -93,7 +85,7 @@ th{font:500 11px var(--f-mono);text-transform:uppercase;letter-spacing:.06em;col
 td.n,th.n{text-align:right;font-family:var(--f-mono);white-space:nowrap}
 .nota{border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 var(--r) var(--r) 0;padding:12px 16px;font-size:15.5px;margin:18px 0}
 .nota p:last-child{margin:0}
-.tese{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;margin:20px 0}
+.tese{background:var(--accent-soft);border:1px solid transparent;border-radius:var(--r);padding:22px 24px;margin:20px 0}
 .tese p{font-size:19px;line-height:1.55;margin:0}
 .lista{padding-left:20px;margin:0 0 16px}
 .lista li{margin-bottom:8px}
@@ -121,7 +113,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:26px 0 48px;colo
 </nav>
 
 <header class="hero larga" id="topo">
-  <div class="eyebrow">AP1 · Rivalidade setorial · Ibmec · dados de 2020 a out/2026</div>
+  <div class="eyebrow">AP2 · Rivalidade setorial · Ibmec · dados de 2020 a out/2026</div>
   <h1>Concentrado, mas contestado</h1>
   <p class="lede">Em seis anos, o carro 100% elétrico no Brasil saiu de um nicho de importados de luxo para um mercado em que uma única marca vende quase três de cada quatro carros. Mesmo assim, a disputa nunca foi tão intensa. Esta página mostra, dado por dado, como chegamos a essa conclusão.</p>
   <div class="kpis">
@@ -375,7 +367,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:26px 0 48px;colo
 </section>
 </main>
 
-<footer><div class="col">AP1 · Rivalidade setorial · Ibmec. Dados públicos de Fenabrave, ABVE, Comex Stat, FIPE e Banco Central, até outubro de 2026.</div></footer>
+<footer><div class="col">AP2 · Rivalidade setorial · Ibmec. Dados públicos de Fenabrave, ABVE, Comex Stat, FIPE e Banco Central, até outubro de 2026.</div></footer>
 
 <script src="dados.js"></script>
 <script src="dados_avancado.js"></script>
@@ -383,7 +375,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:26px 0 48px;colo
 <script>
 (function(){
 const D = window.DADOS, A = window.AVANCADO;
-const CORES = {"BYD":"#d01c36","Geely":"#2a63d4","Volvo":"#6b7f93","GWM":"#e08a00","BMW":"#3aa0e0","Mercedes-Benz":"#7a7a86","Renault":"#e6b800","Chevrolet":"#a0703a","Porsche":"#8a4bb0","JAC":"#2e9b62","Nissan":"#9a9a9a","GAC":"#d45087","Zeekr":"#00a6a6","Audi":"#b0b8c0","Outros":"#b8c0c8"};
+const CORES = {"BYD":"#d01c36","Geely":"#2a63d4","Volvo":"#6b7f93","GWM":"#e08a00","BMW":"#3aa0e0","Mercedes-Benz":"#4a4a52","Renault":"#e6b800","Chevrolet":"#a0703a","Porsche":"#8a4bb0","JAC":"#2e9b62","Nissan":"#9a9a9a","GAC":"#d45087","Zeekr":"#00a6a6","Audi":"#b0b8c0","Outros":"#b8c0c8"};
 const fmt = n => Math.round(n).toLocaleString("pt-BR");
 const dec = (n,d=1) => n.toLocaleString("pt-BR",{minimumFractionDigits:d,maximumFractionDigits:d});
 const pct = (n,d=0) => dec(n,d)+"%";
@@ -430,10 +422,10 @@ let charts = {};
 function chart(id,cfg){ if(charts[id]) charts[id].destroy(); charts[id]=new Chart($(id),cfg); }
 function base(extra={}){ const fg=css("--muted"), grid=css("--line");
   return Object.assign({responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:"index",intersect:false},
-    plugins:{legend:{labels:{color:fg,boxWidth:12,boxHeight:2,font:{family:"IBM Plex Sans",size:13}}},tooltip:{}},
+    plugins:{legend:{labels:{color:fg,boxWidth:12,boxHeight:2,font:{family:"Inter",size:13}}},tooltip:{}},
     scales:{x:{ticks:{color:fg,maxRotation:0,autoSkipPadding:14},grid:{display:false}},y:{ticks:{color:fg},grid:{color:grid},beginAtZero:true,border:{display:false}}}},extra); }
 // opções: ref.v = [{x: rótulo do eixo, texto, cor}], ref.h = [{y, texto, cor}]
-Chart.register({id:"ref",afterDatasetsDraw(c,_,o){ const {ctx,chartArea:a,scales:{x,y}}=c; ctx.save(); ctx.font="500 11px 'IBM Plex Mono', monospace";
+Chart.register({id:"ref",afterDatasetsDraw(c,_,o){ const {ctx,chartArea:a,scales:{x,y}}=c; ctx.save(); ctx.font="500 11px 'JetBrains Mono', monospace";
   (o.h||[]).forEach(l=>{ const py=y.getPixelForValue(l.y); if(py<a.top||py>a.bottom) return; ctx.strokeStyle=l.cor; ctx.setLineDash([5,4]); ctx.lineWidth=1;
     ctx.beginPath(); ctx.moveTo(a.left,py); ctx.lineTo(a.right,py); ctx.stroke(); ctx.fillStyle=l.cor; ctx.textAlign="right"; ctx.fillText(l.texto,a.right-4,py-5); });
   (o.v||[]).forEach((l,i)=>{ const k=c.data.labels.indexOf(l.x); if(k<0) return; const px=x.getPixelForValue(k);
@@ -450,7 +442,7 @@ function d1(){ const accent=css("--accent"), muted=css("--muted");
     datasets:[{data:vals,backgroundColor:ANOS.map(a=>a===2026?muted:accent),borderRadius:4}]},
     options:base({plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>fmt(c.parsed.y)+" carros"}}},
       scales:{x:{ticks:{color:muted},grid:{display:false}},y:{ticks:{color:muted,callback:v=>fmt(v)},grid:{color:css("--line")},border:{display:false}}}}),
-    plugins:[{id:"rot",afterDatasetsDraw(c){ const {ctx}=c; ctx.save(); ctx.font="600 12px 'IBM Plex Sans'"; ctx.fillStyle=css("--fg"); ctx.textAlign="center";
+    plugins:[{id:"rot",afterDatasetsDraw(c){ const {ctx}=c; ctx.save(); ctx.font="600 12px 'Inter'"; ctx.fillStyle=css("--fg"); ctx.textAlign="center";
       c.getDatasetMeta(0).data.forEach((b,i)=>ctx.fillText(fmt(vals[i]),b.x,b.y-6)); ctx.restore(); }}]}); }
 seg("s1",m=>{m1=m;d1()});
 
@@ -474,7 +466,7 @@ function d3(){ const M=A.montecarlo, fg=css("--fg"), accent=css("--accent"), est
       {label:"p05",data:M.map((r,i)=>est[i]?r.p05:null),borderWidth:0,pointRadius:0,fill:false},
       {label:"Faixa de 90% das simulações",data:M.map((r,i)=>est[i]?r.p95:null),borderWidth:0,pointRadius:0,fill:"-1",backgroundColor:accent+"40"},
       {label:"HHI",data:M.map(r=>r.hhi),borderColor:fg,backgroundColor:fg,borderWidth:2.5,pointRadius:4,tension:0}]},
-    options:base({plugins:{legend:{labels:{color:css("--muted"),filter:i=>i.text!=="p05",font:{family:"IBM Plex Sans",size:13}}},
+    options:base({plugins:{legend:{labels:{color:css("--muted"),filter:i=>i.text!=="p05",font:{family:"Inter",size:13}}},
         tooltip:{filter:i=>i.datasetIndex===2,callbacks:{label:c=>{const r=M[c.dataIndex];return "HHI "+fmt(r.hhi)+(est[c.dataIndex]?"  (faixa "+fmt(r.p05)+" a "+fmt(r.p95)+")":"  (oficial)")}}},
         ref:{h:[{y:1500,texto:"abaixo de 1.500: baixa",cor:css("--ok")},{y:2500,texto:"acima de 2.500: alta",cor:css("--bad")}]}},
       scales:{x:{ticks:{color:css("--muted")},grid:{display:false}},y:{min:0,max:6500,ticks:{color:css("--muted"),callback:v=>fmt(v)},grid:{color:css("--line")},border:{display:false}}}})}); }
@@ -489,7 +481,7 @@ function d4(){ const M=A.definicoes_mensal, h=A.definicoes["hhi_"+k4];
   $("r4byd").textContent=pct(A.definicoes["byd_"+k4],1); $("r4txt").textContent=DEFS[k4][2];
   chart("c4",{type:"line",data:{labels:M.meses.map(mesBR),datasets:Object.entries(DEFS).map(([k,[nome,cor]])=>(
       {label:nome,data:M["hhi_"+k],borderColor:k===k4?cor:cor+"55",backgroundColor:cor,borderWidth:k===k4?3:1.5,pointRadius:0,tension:.25,order:k===k4?0:1}))},
-    options:base({plugins:{legend:{labels:{color:css("--muted"),boxWidth:12,boxHeight:2,font:{family:"IBM Plex Sans",size:13}}},tooltip:{callbacks:{label:c=>c.dataset.label+": "+fmt(c.parsed.y)}},
+    options:base({plugins:{legend:{labels:{color:css("--muted"),boxWidth:12,boxHeight:2,font:{family:"Inter",size:13}}},tooltip:{callbacks:{label:c=>c.dataset.label+": "+fmt(c.parsed.y)}},
         ref:{h:[{y:1500,texto:"1.500",cor:css("--muted")},{y:2500,texto:"2.500",cor:css("--muted")}]}},
       scales:{x:{ticks:{color:css("--muted"),maxRotation:0,autoSkipPadding:18},grid:{display:false}},y:{min:0,max:7000,ticks:{color:css("--muted"),callback:v=>fmt(v)},grid:{color:css("--line")},border:{display:false}}}})}); }
 seg("s4",k=>{k4=k;d4()});
@@ -505,7 +497,7 @@ function d5(){ const M=A.mensal, muted=css("--muted"), fg=css("--fg");
   chart("c5",{type:"line",data:{labels:M.meses.map(mesBR),datasets:[
       {label:"BYD",data:M.shares.BYD,borderColor:CORES.BYD,backgroundColor:CORES.BYD,borderWidth:2.5,pointRadius:2,tension:.2},
       {label:"Geely",data:M.shares.Geely,borderColor:CORES.Geely,backgroundColor:CORES.Geely,borderWidth:2.5,pointRadius:2,tension:.2}]},
-    options:base({plugins:{legend:{labels:{color:muted,boxWidth:12,boxHeight:2,font:{family:"IBM Plex Sans",size:13}}},tooltip:{callbacks:{label:c=>c.dataset.label+": "+pct(c.parsed.y,1)}},ref:{v}},
+    options:base({plugins:{legend:{labels:{color:muted,boxWidth:12,boxHeight:2,font:{family:"Inter",size:13}}},tooltip:{callbacks:{label:c=>c.dataset.label+": "+pct(c.parsed.y,1)}},ref:{v}},
       scales:{x:{ticks:{color:muted,maxRotation:0,autoSkipPadding:18},grid:{display:false}},y:{min:0,max:100,ticks:{color:muted,callback:v=>v+"%"},grid:{color:css("--line")},border:{display:false}}}})});
   $("t5").innerHTML=EVS.map(e=>{ const [c,p]=A.its.coef[e[0]], sig=p<0.05;
     return `<tr><td>${e[2]}</td><td class="n">${sinal(c)} p.p.</td><td class="n">${dec(p,3)}</td><td>${sig?"<b>Efeito claro</b>":"Não se distingue de zero"}</td></tr>`; }).join(""); }
@@ -517,7 +509,7 @@ function d6(){ const I=A.importacoes, muted=css("--muted");
   chart("c6",{data:{labels:I.meses.map(mesBR),datasets:[
       {type:"line",label:"Emplacados",data:I.emplacados,borderColor:CORES.BYD,backgroundColor:CORES.BYD,borderWidth:2.5,pointRadius:0,tension:.2,spanGaps:false},
       {type:"bar",label:"Importados",data:I.importados,backgroundColor:css("--accent")+"88",borderRadius:2}]},
-    options:base({plugins:{legend:{labels:{color:muted,boxWidth:12,font:{family:"IBM Plex Sans",size:13}}},tooltip:{callbacks:{label:c=>c.dataset.label+": "+(c.parsed.y==null?"sem dado mensal":fmt(c.parsed.y))}},ref:{v}},
+    options:base({plugins:{legend:{labels:{color:muted,boxWidth:12,font:{family:"Inter",size:13}}},tooltip:{callbacks:{label:c=>c.dataset.label+": "+(c.parsed.y==null?"sem dado mensal":fmt(c.parsed.y))}},ref:{v}},
       scales:{x:{ticks:{color:muted,maxRotation:0,autoSkipPadding:18},grid:{display:false}},y:{ticks:{color:muted,callback:v=>fmt(v)},grid:{color:css("--line")},border:{display:false}}}})});
   $("r6").innerHTML=ev.map(e=>`<div><div class="k">Degrau de ${e.aliquota}% (${e.degrau})</div><div class="v">${dec(e.razao_antes_depois)}×</div><div class="o">${fmt(e.media_3m_antes)} por mês antes, ${fmt(e.media_3m_depois)} depois</div></div>`).join(""); }
 
@@ -528,7 +520,7 @@ function d7(){ const muted=css("--muted"), fg=css("--fg"), accent=css("--accent"
   const ds=preco?[{label:"Preço mediano",data:P.mediana,borderColor:muted,backgroundColor:muted},{label:"Mais barato do mercado",data:P.mais_barato,borderColor:CORES.BYD,backgroundColor:CORES.BYD}]
                :[{label:"Todas as versões",data:P.modelos,borderColor:fg,backgroundColor:fg},{label:"Abaixo de R$ 150 mil",data:P.abaixo150,borderColor:CORES.BYD,backgroundColor:CORES.BYD}];
   chart("c7",{type:"line",data:{labels:P.meses.map(mesBR),datasets:ds.map(d=>({...d,borderWidth:2.5,pointRadius:0,tension:.15}))},
-    options:base({plugins:{legend:{labels:{color:muted,boxWidth:12,boxHeight:2,font:{family:"IBM Plex Sans",size:13}}},tooltip:{callbacks:{label:c=>c.dataset.label+": "+(preco?reais(c.parsed.y):c.parsed.y)}}},
+    options:base({plugins:{legend:{labels:{color:muted,boxWidth:12,boxHeight:2,font:{family:"Inter",size:13}}},tooltip:{callbacks:{label:c=>c.dataset.label+": "+(preco?reais(c.parsed.y):c.parsed.y)}}},
       scales:{x:{ticks:{color:muted,maxRotation:0,autoSkipPadding:18},grid:{display:false}},y:{beginAtZero:true,ticks:{color:muted,callback:v=>preco?"R$ "+v/1000+" mil":v},grid:{color:css("--line")},border:{display:false}}}})}); }
 seg("s7",k=>{k7=k;d7()});
 const NOMES_G=["Entrada","Intermediário","Topo de linha"];
@@ -543,15 +535,13 @@ function d8(){ const muted=css("--muted"), b=A.bass.find(x=>x.cenario_m===k8), n
       {label:"Emplacados (observado)",data:[...B.vendas,...vazio(B.meses_proj.length)],borderColor:CORES.BYD,backgroundColor:CORES.BYD,borderWidth:2.5,pointRadius:0,order:0},
       ...CEN.map((c,i)=>({label:"Potencial de "+c,data:[...vazio(nObs-1),B.vendas.at(-1),...B.cenarios[c]],borderColor:c===k8?COR8[i]:COR8[i]+"55",backgroundColor:COR8[i],
         borderWidth:c===k8?3:1.5,borderDash:[6,4],pointRadius:0,order:c===k8?1:2}))]},
-    options:base({plugins:{legend:{labels:{color:muted,boxWidth:12,boxHeight:2,font:{family:"IBM Plex Sans",size:13}}},tooltip:{callbacks:{label:c=>c.parsed.y==null?null:c.dataset.label+": "+fmt(c.parsed.y)}}},
+    options:base({plugins:{legend:{labels:{color:muted,boxWidth:12,boxHeight:2,font:{family:"Inter",size:13}}},tooltip:{callbacks:{label:c=>c.parsed.y==null?null:c.dataset.label+": "+fmt(c.parsed.y)}}},
       scales:{x:{ticks:{color:muted,maxRotation:0,autoSkipPadding:24},grid:{display:false}},y:{ticks:{color:muted,callback:v=>fmt(v)},grid:{color:css("--line")},border:{display:false}}}})}); }
 seg("s8",k=>{k8=k;d8()});
 
 // ---------- desenhar tudo; redesenhar se o tema mudar
 function tudo(){ d1();d2();d3();d4();d5();d6();d7();d8(); }
 tudo();
-matchMedia("(prefers-color-scheme: dark)").addEventListener("change",tudo);
-new MutationObserver(tudo).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
 const barra=$("barra"); addEventListener("scroll",()=>{ const h=document.documentElement; barra.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%"; },{passive:true});
 })();
 </script>

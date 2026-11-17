@@ -2,62 +2,62 @@
 <html lang="pt-BR">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>body{margin:0}</style>
 <title>Rivalidade Elétrica BR</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: barra de controles fixa no topo, grade de painéis que o usuário liga e desliga, rodapé de fontes. */
+/* Layout: cabeçalho com faixa verde de "carga", barra de controles fixa, grade de painéis brancos que o usuário liga e desliga, rodapé de fontes.
+   Tema único e claro por escolha do grupo: fundo branco, texto preto, verde de energia como destaque. */
 :root{
-  --bg:#eef1f4; --surface:#ffffff; --surface-2:#f6f8fa; --line:#d6dce3;
-  --fg:#16202b; --muted:#5a6878; --accent:#1747c8; --accent-soft:#e3eaff;
-  --ok:#1d7f4e; --warn:#b26a00; --bad:#b4152b;
-  --ok-bg:#e1f3e9; --warn-bg:#fdf0da; --bad-bg:#fbe3e6;
-  --f-display:"Archivo",system-ui,sans-serif; --f-body:"IBM Plex Sans",system-ui,sans-serif; --f-mono:"IBM Plex Mono",ui-monospace,monospace;
-  --r:10px;
+  --bg:#ffffff; --surface:#ffffff; --surface-2:#f4f8f5; --line:#dfe7e1;
+  --fg:#0c1410; --muted:#56655c; --accent:#0e8a43; --accent-strong:#096b33; --accent-soft:#e5f4ea;
+  --ok:#11743c; --warn:#a35f00; --bad:#b4152b;
+  --ok-bg:#e2f3e8; --warn-bg:#fdf1dc; --bad-bg:#fbe6e8;
+  --f-display:"Space Grotesk","Segoe UI",system-ui,sans-serif; --f-body:"Inter","Segoe UI",system-ui,sans-serif; --f-mono:"JetBrains Mono",Consolas,ui-monospace,monospace;
+  --r:12px; color-scheme:light;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0f141a; --surface:#171e26; --surface-2:#1d2630; --line:#2c3743;
-  --fg:#e6ebf0; --muted:#97a4b2; --accent:#7c9bff; --accent-soft:#1f2a4a;
-  --ok:#5cc98e; --warn:#f0a83a; --bad:#ff6b7d; --ok-bg:#16301f; --warn-bg:#33270f; --bad-bg:#3a1820; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#0f141a; --surface:#171e26; --surface-2:#1d2630; --line:#2c3743;
-  --fg:#e6ebf0; --muted:#97a4b2; --accent:#7c9bff; --accent-soft:#1f2a4a;
-  --ok:#5cc98e; --warn:#f0a83a; --bad:#ff6b7d; --ok-bg:#16301f; --warn-bg:#33270f; --bad-bg:#3a1820; color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:14px;line-height:1.5}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:14px;line-height:1.55;margin:0}
 .wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px;display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
-header.top{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:end;justify-content:space-between}
-h1{font-family:var(--f-display);font-weight:800;font-size:clamp(22px,3.2vw,32px);margin:0;letter-spacing:-.01em;text-wrap:balance}
+header.top{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:end;justify-content:space-between;padding-bottom:18px;border-bottom:4px solid var(--accent);position:relative}
+header.top::after{content:"";position:absolute;left:0;bottom:-4px;height:4px;width:64%;background:linear-gradient(90deg,var(--accent-strong),var(--accent) 70%,#36c46f)}
+h1{font-family:var(--f-display);font-weight:700;font-size:clamp(24px,3.4vw,36px);margin:4px 0 0;letter-spacing:-.02em;line-height:1.1;text-wrap:balance}
 .sub{color:var(--muted);margin:4px 0 0;max-width:68ch}
 .eyebrow{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
-.controls{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}
+header.top .eyebrow{color:var(--accent-strong);font-weight:500}
+.controls{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;box-shadow:0 6px 16px -12px rgba(12,40,24,.35);display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
 .ctl{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .ctl label{font-size:12px;color:var(--muted)}
-.seg{display:inline-flex;flex-wrap:wrap;max-width:100%;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg{display:inline-flex;flex-wrap:wrap;max-width:100%;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)}
 .seg button{border:0;background:transparent;color:var(--fg);font:500 13px var(--f-mono);padding:6px 10px;cursor:pointer}
 .seg button+button{border-left:1px solid var(--line)}
 .seg button[aria-pressed="true"]{background:var(--accent);color:#fff}
-button.btn{border:1px solid var(--line);background:var(--surface-2);color:var(--fg);font:500 13px var(--f-body);padding:6px 12px;border-radius:8px;cursor:pointer}
+.seg button:hover:not([aria-pressed="true"]){background:var(--accent-soft)}
+.seg button.geral{font-family:var(--f-body);font-weight:600}
+button.btn{border:1px solid var(--accent);background:var(--surface);color:var(--fg);font:500 13px var(--f-body);padding:6px 12px;border-radius:8px;cursor:pointer}
 button.btn:hover{border-color:var(--accent)}
+a.btn.voltar{text-decoration:none;border:1px solid var(--accent);background:var(--accent);color:#fff;font:500 13px var(--f-body);padding:6px 12px;border-radius:8px}
+a.btn.voltar:hover{background:var(--accent-strong)}
 button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 select,input[type=range]{accent-color:var(--accent)}
 select{font:inherit;padding:5px 8px;border-radius:8px;border:1px solid var(--line);background:var(--surface-2);color:var(--fg)}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
-.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;display:grid;gap:2px;min-width:0}
-.kpi .v{font-family:var(--f-display);font-weight:700;font-size:26px;font-variant-numeric:tabular-nums;line-height:1.15}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:grid;gap:4px;min-width:0;align-content:start}
+.kpi:first-child{background:var(--accent-soft);border-color:transparent}
+.kpi .v{font-family:var(--f-display);font-weight:700;font-size:28px;letter-spacing:-.01em;font-variant-numeric:tabular-nums;line-height:1.15}
 .kpi .d{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
 .pill{display:inline-block;font:500 11px var(--f-mono);padding:2px 8px;border-radius:99px;letter-spacing:.03em}
 .pill.baixa,.pill.verificado{background:var(--ok-bg);color:var(--ok)}
 .pill.moderada,.pill.calculado{background:var(--warn-bg);color:var(--warn)}
 .pill.alta,.pill.estimado{background:var(--bad-bg);color:var(--bad)}
-.pill.parcial{background:var(--accent-soft);color:var(--accent)}
+.pill.parcial,.pill.misto{background:var(--accent-soft);color:var(--accent-strong)}
 .grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}
 .panel{grid-column:span 6;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;min-width:0;display:grid;gap:10px;align-content:start}
 .panel.wide{grid-column:span 12}
-.panel h2{font-family:var(--f-display);font-size:17px;font-weight:700;margin:0}
+.panel h2{font-family:var(--f-display);font-size:18px;font-weight:600;margin:0;letter-spacing:-.01em}
 .panel .hint{color:var(--muted);font-size:13px;margin:0}
 .achados{display:grid;gap:8px}
 .achados details{border:1px solid var(--line);border-radius:var(--r);padding:10px 12px}
@@ -87,11 +87,15 @@ footer{color:var(--muted);font-size:12.5px;display:grid;gap:6px;max-width:90ch}
 .toast{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:13px;z-index:20}
 textarea{width:100%;min-height:120px;font:12px var(--f-mono);background:var(--surface-2);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:8px}
 .tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);flex-wrap:wrap}
-.tabs a{padding:8px 14px;color:var(--muted);text-decoration:none;font:600 14px var(--f-body);border-bottom:3px solid transparent;margin-bottom:-1px}
-.tabs a[aria-current="page"]{color:var(--fg);border-bottom-color:var(--accent)}
+.tabs a{padding:10px 16px;color:var(--muted);text-decoration:none;font:600 14px var(--f-body);border-bottom:3px solid transparent;margin-bottom:-1px}
+.tabs a:hover{color:var(--fg)}
+.tabs a[aria-current="page"]{color:var(--accent-strong);border-bottom-color:var(--accent)}
 .view{display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
 .view[hidden],.panel[hidden]{display:none}
-.thesis{background:var(--accent-soft);border-radius:var(--r);padding:16px 18px}
+.thesis{background:var(--accent-soft);border-radius:var(--r);padding:18px 20px}
+.thesis .eyebrow{color:var(--accent-strong)}
+.modo{margin:0;color:var(--muted);font-size:13px;flex-basis:100%}
+.modo b{color:var(--fg)}
 .thesis p{margin:6px 0 0;font-size:15.5px;max-width:95ch}
 .porter{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:18px;align-items:start}
 @media (max-width:860px){.porter{grid-template-columns:1fr}}
@@ -129,12 +133,12 @@ svg .s{font:11px var(--f-body);fill:var(--muted)}
 <div class="wrap">
   <header class="top">
     <div>
-      <div class="eyebrow">AP1 · Rivalidade setorial · Ibmec</div>
+      <div class="eyebrow">AP2 · Rivalidade setorial · Ibmec</div>
       <h1>Rivalidade no mercado de carros elétricos no Brasil</h1>
       <p class="sub">Emplacamentos de carros 100% elétricos (BEV) por marca, de 2020 a 2026. Da Volvo e Porsche dos primeiros anos ao domínio da BYD e à chegada da Geely.</p>
     </div>
     <div class="ctl">
-      <a class="btn" href="index.html" style="text-decoration:none;border:1px solid var(--line);background:var(--surface-2);color:var(--fg);font:500 13px var(--f-body);padding:6px 12px;border-radius:8px">← Voltar à história</a>
+      <a class="btn voltar" href="index.html">← Voltar à história</a>
       <button class="btn" id="btnResumo" type="button">Copiar resumo</button>
       <button class="btn" id="btnCsv" type="button">Copiar dados (CSV)</button>
     </div>
@@ -154,6 +158,7 @@ svg .s{font:11px var(--f-body);fill:var(--muted)}
       <div class="seg" id="metSeg"><button type="button" data-m="share" aria-pressed="true">% do mercado</button><button type="button" data-m="unid" aria-pressed="false">unidades</button></div>
     </div>
     <div class="ctl"><label>Painéis</label><div class="customize" id="customize"></div></div>
+    <p class="modo" id="modo" aria-live="polite"></p>
   </div>
 
   <section class="kpis" id="kpis" aria-label="Indicadores do ano"></section>
@@ -175,6 +180,7 @@ svg .s{font:11px var(--f-body);fill:var(--muted)}
     <section class="panel" data-panel="ranking">
       <h2 id="rankTitle">Ranking de marcas</h2>
       <div class="tbl"><table id="rankTbl"></table></div>
+      <div><button class="btn" id="rankMais" type="button" hidden></button></div>
     </section>
 
     <section class="panel wide" data-panel="simulador">
@@ -442,7 +448,7 @@ svg .s{font:11px var(--f-body);fill:var(--muted)}
   <footer>
     <div><b>Fontes da análise estratégica:</b> BYD Brasil, Canal VE, Canaltech (Camaçari); Autodata, Vrum (Renault Geely do Brasil); GWM Media Center, Bloomberg Línea, Forbes (Iracemápolis); Instituto Locomotiva, Deloitte, EY, Banco BV, Webmotors, ABVE/Tupi (consumidor e recarga). Referências teóricas: Porter (1979, 1980), Mintzberg (1987), Chandler (1962), Davis (1989), Johanson e Vahlne (1977).</div>
     <div><b>Fontes:</b> Fenabrave (informativos mensais, jan/2024 a out/2026), ABVE (totais de 2020 a 2023), Comex Stat/MDIC (importações), Banco Central (juros, câmbio, IPCA), Tabela FIPE (preços), BYD, imprensa especializada (Motor Show, Canal VE, Olhar Digital). Setores: Fenabrave, Banco Central, Anatel, ANAC (valores aproximados).</div>
-    <div><span class="pill verificado">verificado</span> número publicado em fonte · <span class="pill estimado">estimado</span> estimativa do grupo para 2020–2023 (a Fenabrave não publicava o ranking de elétricos) · <span class="pill calculado">calculado</span> total menos as marcas listadas. O HHI ignora o grupo "Outros", que reúne várias marcas pequenas.</div>
+    <div><span class="pill verificado">verificado</span> número publicado em fonte · <span class="pill estimado">estimado</span> estimativa do grupo para 2020–2023 (a Fenabrave não publicava o ranking de elétricos) · <span class="pill calculado">calculado</span> total menos as marcas listadas. · <span class="pill misto">misto</span> no ranking acumulado: soma de anos estimados (2020–2023) e verificados (2024 em diante). O HHI ignora o grupo "Outros", que reúne várias marcas pequenas.</div>
   </footer>
 </div>
 <div class="toast" id="toast" hidden></div>
@@ -459,8 +465,10 @@ const fmt = n => Math.round(n).toLocaleString("pt-BR");
 const pct = (n,d=1) => n.toLocaleString("pt-BR",{minimumFractionDigits:d,maximumFractionDigits:d})+"%";
 const store = {get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 
-let st = {ano: 2025, met:"share", marcas: store.get("marcas",["BYD","Geely","Volvo","GWM","BMW","Mercedes-Benz","Renault","Porsche"]), paineis: store.get("paineis", PAINEIS.map(p=>p[0]))};
+let st = {ano: "geral", met:"share", marcas: store.get("marcas",["BYD","Geely","Volvo","GWM","BMW","Mercedes-Benz","Renault","Porsche"]), paineis: store.get("paineis", PAINEIS.map(p=>p[0]))};
 const h = location.hash.match(/^#ano-(\d{4})$/); if(h && ANOS.includes(+h[1])) st.ano = +h[1];
+const GERAL = st => st.ano==="geral";
+const base = () => GERAL(st) ? ANOS[ANOS.length-1] : st.ano;   // ano usado pelo simulador e pela estatística na visão geral
 
 function doAno(a){ const rows = D.marcas.filter(r=>r.ano===a); const tot = rows.reduce((s,r)=>s+r.unidades,0);
   return rows.map(r=>({...r, share:r.unidades/tot*100})).sort((x,y)=> (x.marca==="Outros")-(y.marca==="Outros") || y.unidades-x.unidades); }
@@ -468,12 +476,18 @@ function ind(rows){ const s = rows.filter(r=>r.marca!=="Outros").map(r=>r.share)
   const hhi = s.reduce((t,x)=>t+x*x,0); const tot = rows.reduce((t,r)=>t+r.unidades,0);
   return {tot, hhi, cr1:s[0], cr4:s.slice(0,4).reduce((a,b)=>a+b,0), lider: rows.find(r=>r.marca!=="Outros").marca,
     n: rows.filter(r=>r.marca!=="Outros" && r.unidades>=50).length, neq: 10000/hhi}; }
+function acumulado(){ const soma={}, est={}; D.marcas.forEach(r=>{soma[r.marca]=(soma[r.marca]||0)+r.unidades; if(r.status==="estimado") est[r.marca]=1;});
+  const tot=Object.values(soma).reduce((a,b)=>a+b,0);
+  return Object.entries(soma).map(([marca,u])=>({marca,unidades:u,share:u/tot*100,status:marca==="Outros"?"calculado":est[marca]?"misto":"verificado"}))
+    .sort((x,y)=>(x.marca==="Outros")-(y.marca==="Outros")||y.unidades-x.unidades); }
 const faixa = hhi => hhi<1500?"baixa":hhi<=2500?"moderada":"alta";
 const IND = Object.fromEntries(ANOS.map(a=>[a, ind(doAno(a))]));
 const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 
 // ---------- controles
 const anoSeg = document.getElementById("anoSeg");
+{const b=document.createElement("button");b.type="button";b.className="geral";b.textContent="Visão geral 2020–2026";b.dataset.a="geral";
+  b.onclick=()=>{st.ano="geral";history.replaceState(null,"","#geral");render()};anoSeg.appendChild(b)}
 ANOS.forEach(a=>{const b=document.createElement("button");b.type="button";b.textContent=a===2026?"2026*":a;b.dataset.a=a;b.onclick=()=>{st.ano=a;history.replaceState(null,"","#ano-"+a);render()};anoSeg.appendChild(b)});
 document.querySelectorAll("#metSeg button").forEach(b=>b.onclick=()=>{st.met=b.dataset.m;render()});
 const cust = document.getElementById("customize");
@@ -482,6 +496,7 @@ PAINEIS.forEach(([id,nome])=>{const l=document.createElement("label");l.innerHTM
 function aplicaPaineis(){document.querySelectorAll("[data-panel]").forEach(p=>p.hidden=!st.paineis.includes(p.dataset.panel))}
 const todasMarcas = [...new Set(D.marcas.map(r=>r.marca))].filter(m=>m!=="Outros").sort((a,b)=>{
   const ua=D.marcas.filter(r=>r.marca===a).reduce((s,r)=>s+r.unidades,0), ub=D.marcas.filter(r=>r.marca===b).reduce((s,r)=>s+r.unidades,0); return ub-ua});
+document.getElementById("rankMais").onclick=()=>{st.rankAll=!st.rankAll;render()};
 const chips = document.getElementById("chips");
 todasMarcas.forEach(m=>{const c=document.createElement("button");c.type="button";c.className="chip";c.innerHTML=`<span class="sw" style="background:${CORES[m]||'#888'}"></span>${m}`;
   c.onclick=()=>{st.marcas=st.marcas.includes(m)?st.marcas.filter(x=>x!==m):[...st.marcas,m];store.set("marcas",st.marcas);render()};c.dataset.m=m;chips.appendChild(c)});
@@ -495,14 +510,30 @@ function baseOpts(){ const fg=css("--muted"), grid=css("--line");
 function chart(id,cfg){ if(charts[id]) charts[id].destroy(); charts[id]=new Chart(document.getElementById(id),cfg); }
 
 function render(){
-  anoSeg.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed", +b.dataset.a===st.ano));
+  anoSeg.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.a)===String(st.ano)));
   document.querySelectorAll("#metSeg button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.m===st.met));
   chips.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed", st.marcas.includes(c.dataset.m)));
-  const rows = doAno(st.ano), I = IND[st.ano], P = IND[st.ano-1];
+  const G = GERAL(st), ult = ANOS[ANOS.length-1];
+  const rows = G ? acumulado() : doAno(st.ano), I = IND[base()], P = G ? undefined : IND[st.ano-1];
+  document.getElementById("modo").innerHTML = G
+    ? `<b>Visão geral:</b> a trajetória de 2020 a out/2026 e o ranking acumulado do período. Clique num ano para ver o retrato só daquele ano.`
+    : `<b>Retrato de ${st.ano}${st.ano===2026?" (jan–out)":""}:</b> indicadores, ranking e simulador só deste ano, comparados com o ano anterior. Os gráficos de evolução continuam mostrando todos os anos.`;
   const dl = (v,p,f,suf="") => p===undefined? "" : `${v>=p?"▲":"▼"} ${f(Math.abs(v-p))}${suf} vs ${st.ano-1}`;
 
   // KPIs
-  document.getElementById("kpis").innerHTML = [
+  if(G){ const tot=ANOS.reduce((t,a)=>t+IND[a].tot,0), pico=ANOS.reduce((m,a)=>IND[a].hhi>IND[m].hhi?a:m,ANOS[0]);
+    const lid=ANOS.find(a=>IND[a].lider===IND[ult].lider && ANOS.filter(b=>b>=a).every(b=>IND[b].lider===IND[ult].lider));
+    const ent=ANOS.slice(1).reduce((n,a)=>n+doAno(a).filter(r=>r.marca!=="Outros"&&r.unidades>=50&&!ANOS.filter(b=>b<a).some(b=>doAno(b).some(x=>x.marca===r.marca&&x.unidades>=50))).length,0);
+    const t20=IND[ANOS[0]].tot, t25=IND[2025].tot, cagr=(Math.pow(t25/t20,1/(2025-ANOS[0]))-1)*100;
+    document.getElementById("kpis").innerHTML = [
+      ["Carros elétricos no período", fmt(tot), `${fmt(t20)} em ${ANOS[0]} → ${fmt(IND[ult].tot)} em ${ult} (jan–out)`, ""],
+      ["HHI antes da BYD → hoje", `${fmt(IND[2022].hhi)} → ${fmt(IND[ult].hhi)}`, `2022 → ${ult}`, `<span class="pill ${faixa(IND[ult].hhi)}">concentração ${faixa(IND[ult].hhi)} hoje</span>`],
+      ["Pico de concentração", fmt(IND[pico].hhi), `HHI em ${pico}`, ""],
+      ["Líder desde "+lid, IND[ult].lider, `${pct(IND[ult].cr1)} do mercado em ${ult}`, ""],
+      ["Marcas que entraram", ent, `chegaram a 50+ carros/ano depois de ${ANOS[0]}`, ""],
+      ["Crescimento médio", pct(cagr,0), `ao ano, ${ANOS[0]}–2025 (CAGR)`, ""],
+    ].map(([l,v,d,x])=>`<div class="kpi"><span class="eyebrow">${l}</span><span class="v">${v}</span><span class="d">${d}</span>${x?`<span>${x}</span>`:""}</div>`).join("");
+  } else document.getElementById("kpis").innerHTML = [
     ["Carros elétricos emplacados", fmt(I.tot), P? dl(I.tot,P.tot,x=>pct(x/P.tot*100,0).replace("%","% ")).replace(/vs/,"crescimento vs"):"", st.ano===2026?"jan–out (10 meses contra o ano cheio de 2025)":""],
     ["Índice HHI", fmt(I.hhi), P?dl(I.hhi,P.hhi,fmt):"", `<span class="pill ${faixa(I.hhi)}">concentração ${faixa(I.hhi)}</span>`],
     ["Líder: "+I.lider, pct(I.cr1), "participação da maior marca (CR1)", ""],
@@ -522,25 +553,27 @@ function render(){
   const zonas={id:"zonas",beforeDraw(c){const{ctx,chartArea:a,scales:{y}}=c;[[0,1500,"--ok-bg"],[1500,2500,"--warn-bg"],[2500,10000,"--bad-bg"]].forEach(([lo,hi,v])=>{
     const t=y.getPixelForValue(Math.min(hi,y.max)),b=y.getPixelForValue(lo);ctx.fillStyle=css(v);ctx.fillRect(a.left,t,a.right-a.left,b-t)})}};
   chart("cHhi",{type:"line",plugins:[zonas],data:{labels:ANOS.map(a=>a===2026?"2026*":a),datasets:[
-    {label:"HHI",data:ANOS.map(a=>Math.round(IND[a].hhi)),borderColor:css("--fg"),backgroundColor:css("--fg"),yAxisID:"y",pointRadius:ANOS.map(a=>a===st.ano?6:3)},
+    {label:"HHI",data:ANOS.map(a=>Math.round(IND[a].hhi)),borderColor:css("--fg"),backgroundColor:css("--fg"),yAxisID:"y",pointRadius:ANOS.map(a=>a===st.ano?7:3)},
     {label:"CR4 (%)",data:ANOS.map(a=>+IND[a].cr4.toFixed(1)),borderColor:css("--accent"),backgroundColor:css("--accent"),borderDash:[5,4],yAxisID:"y1"}]},
     options:(o=>{o.scales.y.max=6500;o.scales.y1={position:"right",min:0,max:100,ticks:{color:css("--muted")},grid:{display:false}};return o})(baseOpts())});
 
   // Ranking
-  document.getElementById("rankTitle").textContent = `Ranking de marcas em ${st.ano}${st.ano===2026?" (jan–out)":""}`;
+  document.getElementById("rankTitle").textContent = G ? `Ranking acumulado, ${ANOS[0]} a out/${ult}` : `Ranking de marcas em ${st.ano}${st.ano===2026?" (jan–out)":""}`;
   const maxS = rows[0].share;
   document.getElementById("rankTbl").innerHTML = `<thead><tr><th>#</th><th>Marca</th><th style="text-align:right">Unidades</th><th style="text-align:right">%</th><th style="width:90px"></th><th>Dado</th></tr></thead><tbody>`+
-    rows.map((r,i)=>`<tr><td class="n">${r.marca==="Outros"?"":i+1}</td><td>${r.marca}</td><td class="n">${fmt(r.unidades)}</td><td class="n">${pct(r.share)}</td>
+    rows.filter((r,i)=>st.rankAll||i<12||r.marca==="Outros").map((r,i)=>`<tr><td class="n">${r.marca==="Outros"?"":i+1}</td><td>${r.marca}</td><td class="n">${fmt(r.unidades)}</td><td class="n">${pct(r.share)}</td>
     <td><div class="bar" style="width:${r.share/maxS*100}%;background:${CORES[r.marca]||'#888'}"></div></td><td><span class="pill ${r.status}">${r.status}</span></td></tr>`).join("")+"</tbody>";
+  const nm=rows.filter(r=>r.marca!=="Outros").length, rb=document.getElementById("rankMais");
+  rb.hidden = nm<=12; rb.textContent = st.rankAll ? "Mostrar só as 12 maiores" : `Mostrar todas as ${nm} marcas`;
 
   // Simulador
-  const ms = rows.filter(r=>r.marca!=="Outros").map(r=>r.marca);
+  const ms = doAno(base()).filter(r=>r.marca!=="Outros").map(r=>r.marca);
   ["simDe","simPara","fusA","fusB"].forEach((id,k)=>{const s=document.getElementById(id), cur=s.value; s.innerHTML=ms.map(m=>`<option>${m}</option>`).join("");
     s.value = ms.includes(cur)?cur:ms[[0,1,0,1][k]] });
   simular();
 
   // Setores
-  const comp=[...D.setores.map(s=>({n:s.setor,v:s.hhi,el:false})),{n:`Carros elétricos ${st.ano}`,v:Math.round(I.hhi),el:true}].sort((a,b)=>b.v-a.v);
+  const comp=[...D.setores.map(s=>({n:s.setor,v:s.hhi,el:false})),...(G?[{n:"Carros elétricos 2022",v:Math.round(IND[2022].hhi),el:true}]:[]),{n:`Carros elétricos ${base()}`,v:Math.round(I.hhi),el:true}].sort((a,b)=>b.v-a.v);
   chart("cSet",{type:"bar",data:{labels:comp.map(c=>c.n),datasets:[{label:"HHI",data:comp.map(c=>c.v),backgroundColor:comp.map(c=>c.el?CORES.BYD:css("--muted"))}]},
     options:(o=>{o.indexAxis="y";o.plugins.legend.display=false;o.scales.x.beginAtZero=true;return o})(baseOpts())});
 
@@ -558,7 +591,7 @@ function render(){
   // Estatística
   const tots=ANOS.filter(a=>a<2026).map(a=>IND[a].tot);
   const cagr=(Math.pow(tots[tots.length-1]/tots[0],1/(tots.length-1))-1)*100;
-  const shares=rows.filter(r=>r.marca!=="Outros").map(r=>r.share);
+  const shares=doAno(base()).filter(r=>r.marca!=="Outros").map(r=>r.share);
   const media=shares.reduce((a,b)=>a+b,0)/shares.length, dp=Math.sqrt(shares.reduce((a,b)=>a+(b-media)**2,0)/(shares.length-1));
   const sorted=[...shares].sort((a,b)=>a-b), med=sorted.length%2?sorted[(sorted.length-1)/2]:(sorted[sorted.length/2-1]+sorted[sorted.length/2])/2;
   let gini=0; sorted.forEach((x,i)=>gini+=(2*(i+1)-sorted.length-1)*x); gini/=sorted.length*sorted.reduce((a,b)=>a+b,0);
@@ -567,7 +600,7 @@ function render(){
   const corr=xs.reduce((s,x,i)=>s+(x-mx)*(ys[i]-my),0)/Math.sqrt(xs.reduce((s,x)=>s+(x-mx)**2,0)*ys.reduce((s,y)=>s+(y-my)**2,0));
   document.getElementById("statTbl").innerHTML = `<tbody>
     <tr><td>Crescimento médio anual 2020–2025 (CAGR)</td><td class="n">${pct(cagr,0)}</td></tr>
-    <tr><td>Participação média por marca em ${st.ano}</td><td class="n">${pct(media)}</td></tr>
+    <tr><td>Participação média por marca em ${base()}</td><td class="n">${pct(media)}</td></tr>
     <tr><td>Mediana da participação</td><td class="n">${pct(med)}</td></tr>
     <tr><td>Desvio-padrão da participação</td><td class="n">${pct(dp)}</td></tr>
     <tr><td>Índice de Gini entre marcas</td><td class="n">${gini.toLocaleString("pt-BR",{maximumFractionDigits:2})}</td></tr>
@@ -589,7 +622,7 @@ function render(){
 }
 
 function simular(){
-  const rows=doAno(st.ano).filter(r=>r.marca!=="Outros");
+  const rows=doAno(base()).filter(r=>r.marca!=="Outros");
   let s=Object.fromEntries(rows.map(r=>[r.marca,r.share]));
   const atual=Object.values(s).reduce((t,x)=>t+x*x,0);
   const de=document.getElementById("simDe").value, para=document.getElementById("simPara").value, pp=+document.getElementById("simPp").value;
@@ -611,11 +644,13 @@ function simular(){
 function toast(t){const e=document.getElementById("toast");e.textContent=t;e.hidden=false;clearTimeout(e._t);e._t=setTimeout(()=>e.hidden=true,2200)}
 function copiar(txt,ok){ const fb=()=>{const ta=document.createElement("textarea");ta.value=txt;document.querySelector(".wrap").appendChild(ta);ta.select();toast("Selecionado. Use Ctrl+C para copiar.");setTimeout(()=>ta.remove(),8000)};
   try{navigator.clipboard.writeText(txt).then(()=>toast(ok),fb)}catch(e){fb()} }
-document.getElementById("btnResumo").onclick=()=>{const I=IND[st.ano];
+document.getElementById("btnResumo").onclick=()=>{ if(GERAL(st)){const u=ANOS[ANOS.length-1];
+    return copiar(`Carros elétricos no Brasil, ${ANOS[0]} a out/${u}: o mercado foi de ${fmt(IND[ANOS[0]].tot)} carros em ${ANOS[0]} para ${fmt(IND[u].tot)} em ${u} (jan-out). O HHI foi de ${fmt(IND[2022].hhi)} em 2022 para ${fmt(Math.max(...ANOS.map(a=>IND[a].hhi)))} no pico e ${fmt(IND[u].hhi)} em ${u}. Líder: ${IND[u].lider} com ${pct(IND[u].cr1)}.`,"Resumo copiado")}
+  const I=IND[st.ano];
   copiar(`Carros elétricos no Brasil, ${st.ano}${st.ano===2026?" (jan-out)":""}: ${fmt(I.tot)} emplacamentos. Líder ${I.lider} com ${pct(I.cr1)}. HHI ${fmt(I.hhi)} (concentração ${faixa(I.hhi)}), CR4 ${pct(I.cr4)}, ${I.n} marcas ativas.`,"Resumo copiado")};
 document.getElementById("btnCsv").onclick=()=>copiar("ano,marca,unidades,status\n"+D.marcas.map(r=>[r.ano,r.marca,r.unidades,r.status].join(",")).join("\n"),"Dados copiados em CSV");
 
-window.addEventListener("hashchange",()=>{const m=location.hash.match(/^#ano-(\d{4})$/);if(m&&ANOS.includes(+m[1])){st.ano=+m[1];render()}});
+window.addEventListener("hashchange",()=>{const m=location.hash.match(/^#ano-(\d{4})$/);if(m&&ANOS.includes(+m[1])){st.ano=+m[1];render()} else if(location.hash==="#geral"){st.ano="geral";render()}});
 const mq=matchMedia("(prefers-color-scheme: dark)"); mq.addEventListener&&mq.addEventListener("change",render);
 new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
 window.renderDados = render;
