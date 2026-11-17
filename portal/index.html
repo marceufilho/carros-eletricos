@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concentrado, mas contestado: a rivalidade nos carros elétricos no Brasil</title>
+<meta name="description" content="Como o mercado brasileiro de carros 100% elétricos passou de um nicho premium a um mercado dominado pela BYD, e por que a liderança já está sendo contestada. Dados de 2020 a 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Mesmos tokens do painel (explorar.html), para as duas páginas parecerem um site só. */
+:root{
+  --bg:#eef1f4; --surface:#ffffff; --surface-2:#f6f8fa; --line:#d6dce3;
+  --fg:#16202b; --muted:#5a6878; --accent:#1747c8; --accent-soft:#e3eaff;
+  --ok:#1d7f4e; --warn:#b26a00; --bad:#b4152b;
+  --ok-bg:#e1f3e9; --warn-bg:#fdf0da; --bad-bg:#fbe3e6;
+  --f-display:"Archivo",system-ui,sans-serif; --f-body:"IBM Plex Sans",system-ui,sans-serif; --f-mono:"IBM Plex Mono",ui-monospace,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f141a; --surface:#171e26; --surface-2:#1d2630; --line:#2c3743;
+  --fg:#e6ebf0; --muted:#97a4b2; --accent:#7c9bff; --accent-soft:#1f2a4a;
+  --ok:#5cc98e; --warn:#f0a83a; --bad:#ff6b7d; --ok-bg:#16301f; --warn-bg:#33270f; --bad-bg:#3a1820; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f141a; --surface:#171e26; --surface-2:#1d2630; --line:#2c3743;
+  --fg:#e6ebf0; --muted:#97a4b2; --accent:#7c9bff; --accent-soft:#1f2a4a;
+  --ok:#5cc98e; --warn:#f0a83a; --bad:#ff6b7d; --ok-bg:#16301f; --warn-bg:#33270f; --bad-bg:#3a1820; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:17px;line-height:1.65}
+a{color:var(--accent)}
+.nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .in{max-width:1080px;margin:0 auto;padding:10px 16px;display:flex;gap:10px 18px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.nav .marca{font:700 14px var(--f-display);color:var(--fg);text-decoration:none}
+.nav .links{display:flex;gap:6px;flex-wrap:wrap}
+.nav .links a{font:500 13px var(--f-body);text-decoration:none;color:var(--fg);border:1px solid var(--line);background:var(--surface);padding:5px 11px;border-radius:8px}
+.nav .links a:hover{border-color:var(--accent)}
+.nav .links a.dest{background:var(--accent);border-color:var(--accent);color:#fff}
+:root[data-theme="dark"] .nav .links a.dest{color:#0f141a}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .nav .links a.dest{color:#0f141a}}
+.barra{height:3px;background:var(--accent);width:0;transition:width .1s linear}
+.col{max-width:720px;margin:0 auto;padding:0 16px}
+.larga{max-width:1080px;margin:0 auto;padding:0 16px}
+.eyebrow{font:500 12px var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.hero{padding:56px 0 28px}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(34px,6.4vw,62px);line-height:1.03;letter-spacing:-.02em;margin:10px 0 16px;text-wrap:balance}
+.lede{font-size:clamp(18px,2.3vw,21px);line-height:1.55;margin:0;max-width:60ch}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:30px 0 0}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px}
+.kpi .v{font:800 38px/1.05 var(--f-display);font-variant-numeric:tabular-nums}
+.kpi .d{font-size:14px;color:var(--muted);margin-top:6px;line-height:1.45}
+.indice{margin:34px 0 0;padding:0;list-style:none;display:grid;gap:2px;counter-reset:b}
+.indice a{display:grid;grid-template-columns:2.2em 1fr;gap:4px;padding:7px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--fg);font-size:15.5px}
+.indice a::before{counter-increment:b;content:counter(b);font:500 13px var(--f-mono);color:var(--muted);padding-top:2px}
+.indice a:hover{color:var(--accent)}
+section.beat{padding:56px 0 8px}
+.num{font:500 13px var(--f-mono);color:var(--accent);letter-spacing:.06em}
+h2{font-family:var(--f-display);font-weight:800;font-size:clamp(25px,3.6vw,36px);line-height:1.12;letter-spacing:-.012em;margin:6px 0 16px;text-wrap:balance}
+h3{font:700 18px var(--f-display);margin:26px 0 6px}
+p{margin:0 0 16px}
+b,strong{font-weight:600}
+.fig{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin:22px 0 10px;display:grid;gap:12px;min-width:0}
+.fig h4{margin:0;font:700 16px var(--f-display)}
+.fig .sub{margin:0;font-size:14px;color:var(--muted);line-height:1.45}
+.chart{position:relative;height:340px;min-width:0}
+.chart.baixo{height:280px}
+@media (max-width:560px){.chart{height:290px}.fig{padding:14px}}
+.fonte{font-size:12.5px;color:var(--muted);margin:0;line-height:1.45}
+.ctl{display:flex;gap:10px 14px;align-items:center;flex-wrap:wrap;font-size:14px}
+.ctl label{color:var(--muted)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;flex-wrap:wrap}
+.seg button{border:0;background:transparent;color:var(--fg);font:500 13px var(--f-body);padding:7px 12px;cursor:pointer}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:#fff}
+:root[data-theme="dark"] .seg button[aria-pressed="true"]{color:#0f141a}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .seg button[aria-pressed="true"]{color:#0f141a}}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+input[type=range]{accent-color:var(--accent);flex:1;min-width:160px;max-width:380px}
+.leitura{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.leitura>div{background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:10px 12px;min-width:0}
+.leitura .k{font:500 11px var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.leitura .v{font:700 22px/1.2 var(--f-display);font-variant-numeric:tabular-nums}
+.leitura .o{font-size:12.5px;color:var(--muted);line-height:1.35}
+.pill{display:inline-block;font:500 11px var(--f-mono);padding:2px 8px;border-radius:99px;letter-spacing:.03em;vertical-align:middle}
+.pill.baixa,.pill.oficial{background:var(--ok-bg);color:var(--ok)}
+.pill.moderada{background:var(--warn-bg);color:var(--warn)}
+.pill.alta,.pill.estimado{background:var(--bad-bg);color:var(--bad)}
+.tbl{overflow-x:auto}
+.tbl table{min-width:540px}
+table{border-collapse:collapse;width:100%;font-size:14.5px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:8px 10px 8px 0;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:500 11px var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+td.n,th.n{text-align:right;font-family:var(--f-mono);white-space:nowrap}
+.nota{border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 var(--r) var(--r) 0;padding:12px 16px;font-size:15.5px;margin:18px 0}
+.nota p:last-child{margin:0}
+.tese{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;margin:20px 0}
+.tese p{font-size:19px;line-height:1.55;margin:0}
+.lista{padding-left:20px;margin:0 0 16px}
+.lista li{margin-bottom:8px}
+.baixar{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:18px 0}
+.baixar a{display:block;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;text-decoration:none;color:var(--fg)}
+.baixar a:hover{border-color:var(--accent)}
+.baixar b{display:block;font:700 17px var(--f-display)}
+.baixar span{font-size:14px;color:var(--muted)}
+footer{border-top:1px solid var(--line);margin-top:56px;padding:26px 0 48px;color:var(--muted);font-size:14px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.barra{transition:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Navegação do site">
+  <div class="in">
+    <a class="marca" href="#topo">Rivalidade elétrica BR</a>
+    <div class="links">
+      <a class="dest" href="explorar.html">Explorar os dados</a>
+      <a href="artigo.pdf">Artigo (PDF)</a>
+      <a href="slides.pdf">Slides (PDF)</a>
+    </div>
+  </div>
+  <div class="barra" id="barra"></div>
+</nav>
+
+<header class="hero larga" id="topo">
+  <div class="eyebrow">AP1 · Rivalidade setorial · Ibmec · dados de 2020 a out/2026</div>
+  <h1>Concentrado, mas contestado</h1>
+  <p class="lede">Em seis anos, o carro 100% elétrico no Brasil saiu de um nicho de importados de luxo para um mercado em que uma única marca vende quase três de cada quatro carros. Mesmo assim, a disputa nunca foi tão intensa. Esta página mostra, dado por dado, como chegamos a essa conclusão.</p>
+  <div class="kpis">
+    <div class="kpi"><div class="v" data-v="vezes">–</div><div class="d">é quanto o mercado cresceu entre 2020 e 2025: de <span data-v="t2020">–</span> para <span data-v="t2025">–</span> carros por ano</div></div>
+    <div class="kpi"><div class="v" data-v="byd2025">–</div><div class="d">dos elétricos emplacados em 2025 eram BYD. Em 2022, a líder (Volvo) tinha <span data-v="lider2022">–</span></div></div>
+    <div class="kpi"><div class="v" data-v="geelyEfeito">–</div><div class="d">na participação da BYD depois da chegada do Geely EX2, o único abalo estatisticamente claro na liderança</div></div>
+  </div>
+  <ol class="indice" aria-label="Sumário">
+    <li><a href="#b1">O mercado explodiu</a></li>
+    <li><a href="#b2">De um nicho premium disputado a uma marca dominante</a></li>
+    <li><a href="#b3">A virada não é efeito das nossas estimativas</a></li>
+    <li><a href="#b4">O tamanho da concentração depende do que se chama de mercado</a></li>
+    <li><a href="#b5">Quem abalou a BYD foi um rival, não o imposto</a></li>
+    <li><a href="#b6">O imposto mudou a data das importações, não as participações</a></li>
+    <li><a href="#b7">A rivalidade aparece no preço e na variedade</a></li>
+    <li><a href="#b8">Para onde vai, e o que não dá para saber</a></li>
+  </ol>
+</header>
+
+<main>
+
+<!-- 1 -->
+<section class="beat" id="b1">
+  <div class="col">
+    <div class="num">01</div>
+    <h2>O mercado explodiu</h2>
+    <p>Em 2020 foram emplacados <b data-v="t2020">–</b> carros 100% elétricos no Brasil inteiro. Em 2025 foram <b data-v="t2025">–</b>, um crescimento médio de <b data-v="cagr">–</b> ao ano. E 2026 já passou disso com folga: só de janeiro a outubro são <b data-v="t2026">–</b>.</p>
+    <p>Isso importa para a rivalidade porque, pela lógica de Porter, um mercado que cresce rápido deixa espaço para todos: cada marca pode vender mais sem tirar cliente das outras. A briga fica feia quando o crescimento acaba. Guarde essa ideia, ela volta no fim.</p>
+  </div>
+  <div class="larga">
+    <div class="fig">
+      <h4>Emplacamentos de carros 100% elétricos por ano</h4>
+      <div class="ctl"><span class="seg" id="s1" role="group" aria-label="Como mostrar 2026">
+        <button type="button" data-m="real" aria-pressed="true">2026 até outubro</button>
+        <button type="button" data-m="anual" aria-pressed="false">2026 anualizado</button></span></div>
+      <div class="chart"><canvas id="c1" role="img" aria-label="Barras com os emplacamentos de carros elétricos por ano, de 2020 a 2026"></canvas></div>
+      <p class="fonte">Fontes: ABVE (totais de 2020 a 2023) e Fenabrave (2024 em diante). Outubro de 2026 é estimado a partir de dados parciais. O valor anualizado multiplica os dez meses de 2026 por 12/10; é uma conta simples, não uma previsão.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="beat" id="b2">
+  <div class="col">
+    <div class="num">02</div>
+    <h2>De um nicho premium disputado a uma marca dominante</h2>
+    <p>Até 2022 o elétrico era carro de luxo importado. Volvo, BMW, Mercedes e Porsche somavam <b data-v="premium2022">–</b> das vendas, e nenhuma marca mandava sozinha. Em 2023 a BYD chegou com o Dolphin abaixo de R$ 150 mil e mudou o jogo: em 2024 já tinha <b data-v="byd2024">–</b> do mercado. As mesmas quatro marcas premium têm hoje <b data-v="premium2026">–</b>.</p>
+    <p>Para medir isso usamos o <b>HHI</b>, o índice mais comum de concentração: soma-se o quadrado da participação de cada marca. Vai de perto de zero (muitas marcas pequenas) a 10.000 (monopólio). Abaixo de 1.500 a concentração é considerada baixa; acima de 2.500, alta. Arraste o controle e veja o índice triplicar.</p>
+  </div>
+  <div class="larga">
+    <div class="fig">
+      <h4>Participação das marcas em <span id="anoTit">–</span> <span class="pill" id="anoStatus"></span></h4>
+      <div class="ctl"><label for="ano">Ano</label><input type="range" id="ano" min="2020" max="2026" step="1" value="2022"><output id="anoOut" for="ano" style="font:700 18px var(--f-display)">2022</output></div>
+      <div class="leitura">
+        <div><div class="k">Líder</div><div class="v" id="r2lider">–</div><div class="o" id="r2cr1"></div></div>
+        <div><div class="k">HHI</div><div class="v" id="r2hhi">–</div><div class="o"><span class="pill" id="r2faixa"></span></div></div>
+        <div><div class="k">4 maiores</div><div class="v" id="r2cr4">–</div><div class="o">do mercado</div></div>
+        <div><div class="k">Marcas ativas</div><div class="v" id="r2n">–</div><div class="o">com 50 carros ou mais</div></div>
+      </div>
+      <div class="chart"><canvas id="c2" role="img" aria-label="Barras horizontais com a participação de mercado das oito maiores marcas no ano escolhido"></canvas></div>
+      <p class="fonte">2020 a 2023: divisão por marca estimada pelo grupo (a Fenabrave não publicava o ranking de elétricos). 2024 em diante: Fenabrave. 2026 vai até outubro.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="beat" id="b3">
+  <div class="col">
+    <div class="num">03</div>
+    <h2>A virada não é efeito das nossas estimativas</h2>
+    <p>Há um problema honesto nos dados: antes de 2024 não existe ranking oficial de elétricos por marca. Os totais anuais são da ABVE, mas a divisão entre marcas de 2020 a 2023 é estimativa nossa. Será que a história da seção anterior depende desses chutes?</p>
+    <p>Para testar, refizemos a conta 5.000 vezes, cada vez errando cada estimativa em até 30% para cima ou para baixo (simulação de Monte Carlo). A faixa azul mostra onde o HHI cai em 90% das simulações. Em 2022 a incerteza é grande o bastante para não sabermos se a concentração era baixa ou moderada. Mas em 2023 o índice fica entre <b data-v="mc23a">–</b> e <b data-v="mc23b">–</b> em qualquer cenário: sempre alta. A virada é real.</p>
+  </div>
+  <div class="larga">
+    <div class="fig">
+      <h4>HHI anual, com a faixa de incerteza dos anos estimados</h4>
+      <div class="chart"><canvas id="c3" role="img" aria-label="Linha do HHI anual de 2020 a 2026 com faixa de incerteza de 2020 a 2023"></canvas></div>
+      <p class="fonte">Faixa: percentis 5 e 95 de 5.000 simulações com erro de até 30% em cada estimativa. De 2024 em diante os dados são oficiais e não há faixa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="beat" id="b4">
+  <div class="col">
+    <div class="num">04</div>
+    <h2>O tamanho da concentração depende do que se chama de mercado</h2>
+    <p>"A BYD tem quase um monopólio" só é verdade se o concorrente de um elétrico for apenas outro elétrico. Quem compra um Dolphin também olhou híbridos e carros a combustão na mesma faixa de preço. Então calculamos o mesmo índice em três recortes.</p>
+    <p>Na média de 2026, o HHI é <b data-v="defBev">–</b> entre os elétricos, <b data-v="defElet">–</b> quando se somam os híbridos e <b data-v="defAut">–</b> entre todos os automóveis, onde a BYD tem <b data-v="bydAut">–</b>. O que este trabalho mede é a rivalidade dentro do segmento elétrico; no mercado de automóveis como um todo, a BYD ainda é uma desafiante.</p>
+  </div>
+  <div class="larga">
+    <div class="fig">
+      <h4>HHI mês a mês em três definições de mercado</h4>
+      <div class="ctl"><span class="seg" id="s4" role="group" aria-label="Definição de mercado">
+        <button type="button" data-k="eletricos" aria-pressed="true">Só 100% elétricos</button>
+        <button type="button" data-k="eletrificados" aria-pressed="false">Elétricos + híbridos</button>
+        <button type="button" data-k="automoveis" aria-pressed="false">Todos os automóveis</button></span></div>
+      <div class="leitura">
+        <div><div class="k">HHI médio em 2026</div><div class="v" id="r4hhi">–</div><div class="o"><span class="pill" id="r4faixa"></span></div></div>
+        <div><div class="k">Participação da BYD</div><div class="v" id="r4byd">–</div><div class="o">média de 2026</div></div>
+        <div><div class="k">Leitura</div><div class="o" id="r4txt" style="font-size:14px;color:var(--fg)"></div></div>
+      </div>
+      <div class="chart"><canvas id="c4" role="img" aria-label="Três linhas com o HHI mensal em cada definição de mercado, de janeiro de 2024 a setembro de 2026"></canvas></div>
+      <p class="fonte">Fonte: Fenabrave, informativos mensais de jan/2024 a set/2026. Em cada mês entram as 15 maiores marcas publicadas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="beat" id="b5">
+  <div class="col">
+    <div class="num">05</div>
+    <h2>Quem abalou a BYD foi um rival, não o imposto</h2>
+    <p>Desde 2024 o governo vem subindo o imposto de importação dos elétricos em degraus: 10%, 18%, 25% e, em julho de 2026, 35%. A expectativa comum é que isso mexeria nas participações. Para verificar, olhamos a participação mensal da BYD e perguntamos: depois de cada evento, o nível mudou além do que a tendência já explicava? (O método se chama série temporal interrompida.)</p>
+    <p>A resposta é clara para um evento só. Quando o Geely EX2 chegou em volume, em novembro de 2025, a BYD perdeu <b data-v="geelyEfeito">–</b> de participação, e a chance de isso ser acaso é de cerca de 1 em 1.000. Nenhum dos degraus do imposto tem efeito que se distinga de zero. Um teste que procura sozinho o mês de maior quebra, sem saber de evento nenhum, aponta <b data-v="quebra">–</b>, o mês de lançamento do EX2.</p>
+  </div>
+  <div class="larga">
+    <div class="fig">
+      <h4>Participação mensal de BYD e Geely entre os elétricos</h4>
+      <p class="sub">As linhas pontilhadas marcam os aumentos do imposto de importação; a linha azul, a chegada do Geely EX2.</p>
+      <div class="ctl"><span class="seg" id="s5" role="group" aria-label="Eventos marcados no gráfico">
+        <button type="button" data-k="todos" aria-pressed="true">Todos os eventos</button>
+        <button type="button" data-k="imposto" aria-pressed="false">Só imposto</button>
+        <button type="button" data-k="geely" aria-pressed="false">Só Geely EX2</button>
+        <button type="button" data-k="nenhum" aria-pressed="false">Nenhum</button></span></div>
+      <div class="chart"><canvas id="c5" role="img" aria-label="Linhas com a participação mensal de BYD e Geely de janeiro de 2024 a outubro de 2026, com os eventos marcados"></canvas></div>
+      <div class="tbl"><table>
+        <thead><tr><th>Evento</th><th class="n">Efeito na BYD</th><th class="n">p-valor</th><th>Leitura</th></tr></thead>
+        <tbody id="t5"></tbody>
+      </table></div>
+      <p class="fonte">Regressão da participação da BYD sobre tendência e um degrau por evento, <span data-v="nIts">–</span> meses, erros robustos a autocorrelação. p-valor abaixo de 0,05 é o critério usual para dizer que o efeito não é acaso. Outubro de 2026 é parcial (só as 5 maiores marcas). Com tão poucos meses e eventos próximos, o sinal de cada efeito é mais confiável que o tamanho.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="beat" id="b6">
+  <div class="col">
+    <div class="num">06</div>
+    <h2>O imposto mudou a data das importações, não as participações</h2>
+    <p>O imposto teve efeito, sim, só que em outro lugar. Como cada aumento foi anunciado com antecedência, as marcas anteciparam os embarques. Nos três meses antes do degrau de julho de 2024 entraram no país <b data-v="imp18">–</b> vezes mais carros do que nos três meses seguintes; em 2025, <b data-v="imp25">–</b> vezes; em 2026, <b data-v="imp35">–</b> vezes. O estoque formado antes de cada alta foi vendido aos poucos, com o imposto antigo.</p>
+    <p>Também comparamos, mês a mês, as marcas que só importam com as que passaram a montar no Brasil. O sinal vai na direção esperada (quem só importa vende menos quando o imposto sobe), mas com <span data-v="painelMarcas">–</span> marcas a estimativa é imprecisa demais para afirmar qualquer coisa (p = <span data-v="painelP">–</span>). Por enquanto, lançamento de produto pesa mais que tarifa.</p>
+  </div>
+  <div class="larga">
+    <div class="fig">
+      <h4>Carros elétricos importados e emplacados por mês</h4>
+      <div class="chart"><canvas id="c6" role="img" aria-label="Barras de importação mensal e linha de emplacamentos, com as datas dos aumentos de imposto"></canvas></div>
+      <div class="leitura" id="r6"></div>
+      <p class="fonte">Fontes: Comex Stat (NCM 8703.80.00) e Fenabrave. O código de importação inclui veículos elétricos pequenos que não são emplacados como automóvel, então os dois totais não fecham entre si; o que interessa é o pico antes e a queda depois de cada degrau.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="beat" id="b7">
+  <div class="col">
+    <div class="num">07</div>
+    <h2>A rivalidade aparece no preço e na variedade</h2>
+    <p>Se a participação da líder quase não cede, onde está a disputa? No que o consumidor paga e no que ele pode escolher. Entre janeiro de 2024 e outubro de 2026, o elétrico zero km mais barato da tabela FIPE caiu de <b data-v="barato0">–</b> para <b data-v="barato1">–</b>, já descontada a inflação. O número de versões à venda foi de <b data-v="mod0">–</b> para <b data-v="mod1">–</b>, e as que custam menos de R$ 150 mil, de <span data-v="ab0">–</span> para <b data-v="ab1">–</b>.</p>
+    <p>Comparando <span data-v="hedN">–</span> modelos pela potência e pelo tamanho da bateria, um carro de marca chinesa custa <b data-v="hedChi">–</b> em relação a um equivalente de outras marcas, e um de marca premium, <b data-v="hedPre">–</b>. É a liderança em custo de Porter, medida.</p>
+  </div>
+  <div class="larga">
+    <div class="fig">
+      <h4 id="t7">Preço real dos elétricos zero km</h4>
+      <div class="ctl"><span class="seg" id="s7" role="group" aria-label="O que mostrar">
+        <button type="button" data-k="preco" aria-pressed="true">Preço</button>
+        <button type="button" data-k="variedade" aria-pressed="false">Variedade</button></span></div>
+      <div class="chart"><canvas id="c7" role="img" aria-label="Evolução mensal do preço real do elétrico mais barato e do preço mediano, ou do número de versões à venda"></canvas></div>
+      <p class="fonte">Fonte: Tabela FIPE, 11 marcas acompanhadas todo mês, preços corrigidos pelo IPCA para valores de out/2026.</p>
+    </div>
+    <div class="fig">
+      <h4>Três grupos estratégicos</h4>
+      <p class="sub">Um algoritmo de agrupamento (k-means) separou os modelos por preço, potência e bateria, sem saber a marca. O resultado bate com as estratégias genéricas de Porter: as chinesas dominam os dois grupos de baixo e enfrentam as tradicionais no de cima.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>Grupo</th><th class="n">Modelos</th><th class="n">Preço mediano</th><th class="n">Marcas chinesas</th><th>Exemplos</th></tr></thead>
+        <tbody id="t7g"></tbody>
+      </table></div>
+      <p class="fonte">Potência e bateria foram compiladas de fichas técnicas pelo grupo e ainda precisam de conferência.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 8 -->
+<section class="beat" id="b8">
+  <div class="col">
+    <div class="num">08</div>
+    <h2>Para onde vai, e o que não dá para saber</h2>
+    <p>As vendas mensais crescem em média <b data-v="cresc">–</b> ao mês, ou seja, dobram a cada <b data-v="dobra">–</b> meses. Ajustamos a esses dados a curva de Bass, o modelo clássico de adoção de produtos novos. Ele diz uma coisa útil e confessa uma limitação.</p>
+    <p>A coisa útil: a adoção se espalha por imitação (quem vê o carro na rua compra), não por propaganda. A limitação: enquanto a curva só acelera, é impossível estimar o teto. Um mercado final de 2, 5 ou 10 milhões de carros se ajusta igualmente bem ao que já aconteceu, e cada um leva a um futuro muito diferente. Escolha um cenário e veja.</p>
+    <p>Por isso não fazemos previsão de vendas. Um modelo de aprendizado de máquina treinado para prever 2026 por marca praticamente empata com a regra "repita o mês passado". O que dá para afirmar é o mecanismo: a guerra de preços é sustentável enquanto o mercado dobra todo ano, e fica destrutiva quando o pico chegar.</p>
+  </div>
+  <div class="larga">
+    <div class="fig">
+      <h4>Emplacamentos mensais e três futuros possíveis</h4>
+      <div class="ctl"><label>Mercado potencial</label><span class="seg" id="s8" role="group" aria-label="Cenário de mercado potencial"></span></div>
+      <div class="leitura">
+        <div><div class="k">Pico de vendas</div><div class="v" id="r8mes">–</div></div>
+        <div><div class="k">Vendas no pico</div><div class="v" id="r8pico">–</div><div class="o">carros por mês</div></div>
+        <div><div class="k">Ajuste aos dados</div><div class="v" id="r8r2">–</div><div class="o">R², quase igual nos três</div></div>
+      </div>
+      <div class="chart"><canvas id="c8" role="img" aria-label="Pontos com os emplacamentos mensais observados e três curvas de projeção até 2032"></canvas></div>
+      <p class="fonte">Curva de Bass com o potencial fixado em cada cenário; só os coeficientes de inovação e imitação são ajustados. São cenários, não previsões.</p>
+    </div>
+  </div>
+</section>
+
+<!-- fechamento -->
+<section class="beat" id="conclusao">
+  <div class="col">
+    <div class="num">Conclusão</div>
+    <h2>O que isso diz sobre a rivalidade</h2>
+    <div class="tese"><p>O mercado de elétricos é altamente concentrado e, ao mesmo tempo, intensamente disputado. A concentração é fruto de uma vitória por custo, e quem ameaça a líder é outra marca chinesa com a mesma estratégia, não a política tarifária nem as marcas tradicionais.</p></div>
+    <ul class="lista">
+      <li><b>Estratégia genérica.</b> As chinesas venceram por liderança em custo; as premium europeias ficaram com a diferenciação em um nicho que encolheu de mais da metade do mercado para cerca de 2%.</li>
+      <li><b>Barreiras à entrada.</b> O imposto de 35% passa a proteger quem monta no Brasil. O efeito ainda não aparece nas participações, mas deve pesar para quem chegar agora só importando.</li>
+      <li><b>O que observar.</b> Se a Geely sustenta o segundo lugar depois de começar a produzir no Paraná, e o que acontece com os preços quando o crescimento desacelerar.</li>
+    </ul>
+    <p>A análise completa pelas cinco forças de Porter, os modos de entrada das marcas chinesas e a SWOT de cada grupo estão na aba "Análise estratégica" do <a href="explorar.html#estrategia">painel de dados</a> e no artigo.</p>
+
+    <h3>O que este trabalho não mostra</h3>
+    <ul class="lista">
+      <li>A divisão por marca de 2020 a 2023 é estimativa do grupo. A seção 3 mostra que a conclusão principal não depende dela, mas os números ano a ano desse período são aproximados.</li>
+      <li>A Fenabrave publica só as 15 maiores marcas de cada mês. Marca pequena que some da base pode apenas ter saído do ranking.</li>
+      <li>Outubro de 2026 é parcial: só as cinco maiores marcas, com o total do mês estimado.</li>
+      <li>São 33 meses de dados mensais. Isso basta para ver direção de efeito, não para medir tamanho com precisão.</li>
+      <li>Falta o lado do consumidor. O grupo preparou um questionário de aceitação de tecnologia (modelo TAM) para aplicar na turma; os resultados entram quando houver respostas reais.</li>
+    </ul>
+
+    <h3>Como fizemos</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Dado</th><th>Fonte</th><th>Situação</th></tr></thead>
+      <tbody>
+        <tr><td>Emplacamentos mensais por marca, 2024 a 2026</td><td>Fenabrave, informativos mensais</td><td><span class="pill oficial">oficial</span></td></tr>
+        <tr><td>Totais anuais, 2022 e 2023</td><td>ABVE, balanços anuais</td><td><span class="pill oficial">oficial</span></td></tr>
+        <tr><td>Totais anuais, 2020 e 2021</td><td>ABVE, série histórica</td><td><span class="pill estimado">a conferir</span></td></tr>
+        <tr><td>Divisão por marca, 2020 a 2023</td><td>Estimativa do grupo</td><td><span class="pill estimado">estimado</span></td></tr>
+        <tr><td>Importações por país e mês</td><td>Comex Stat (MDIC)</td><td><span class="pill oficial">oficial</span></td></tr>
+        <tr><td>Preços zero km por modelo e mês</td><td>Tabela FIPE</td><td><span class="pill oficial">oficial</span></td></tr>
+        <tr><td>Inflação, juros e câmbio</td><td>Banco Central (SGS)</td><td><span class="pill oficial">oficial</span></td></tr>
+        <tr><td>Potência e bateria dos modelos</td><td>Fichas técnicas, compiladas pelo grupo</td><td><span class="pill estimado">a conferir</span></td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin-top:16px">Todo o código e os dados estão no <a href="https://github.com/marceufilho/carros-eletricos">repositório</a>. Os números desta página são lidos dos arquivos gerados pelas análises, não digitados à mão.</p>
+
+    <div class="baixar">
+      <a href="explorar.html"><b>Explorar os dados</b><span>Painel interativo com simulador de HHI, ranking por ano e análise estratégica</span></a>
+      <a href="artigo.pdf"><b>Artigo (PDF)</b><span>Método, tabelas de regressão e discussão, em formato ABNT</span></a>
+      <a href="slides.pdf"><b>Slides (PDF)</b><span>A apresentação em sala</span></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="col">AP1 · Rivalidade setorial · Ibmec. Dados públicos de Fenabrave, ABVE, Comex Stat, FIPE e Banco Central, até outubro de 2026.</div></footer>
+
+<script src="dados.js"></script>
+<script src="dados_avancado.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+<script>
+(function(){
+const D = window.DADOS, A = window.AVANCADO;
+const CORES = {"BYD":"#d01c36","Geely":"#2a63d4","Volvo":"#6b7f93","GWM":"#e08a00","BMW":"#3aa0e0","Mercedes-Benz":"#7a7a86","Renault":"#e6b800","Chevrolet":"#a0703a","Porsche":"#8a4bb0","JAC":"#2e9b62","Nissan":"#9a9a9a","GAC":"#d45087","Zeekr":"#00a6a6","Audi":"#b0b8c0","Outros":"#b8c0c8"};
+const fmt = n => Math.round(n).toLocaleString("pt-BR");
+const dec = (n,d=1) => n.toLocaleString("pt-BR",{minimumFractionDigits:d,maximumFractionDigits:d});
+const pct = (n,d=0) => dec(n,d)+"%";
+const sinal = (n,d=1) => (n>0?"+":n<0?"−":"")+dec(Math.abs(n),d);
+const reais = n => "R$ "+fmt(n);
+const mesBR = m => { const [a,mm]=m.split("-"); return ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"][+mm-1]+"/"+a.slice(2); };
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const $ = id => document.getElementById(id);
+const faixa = h => h<1500?"baixa":h<=2500?"moderada":"alta";
+
+// ---------- indicadores anuais (mesma conta do analise_rivalidade.py)
+const ANOS = [...new Set(D.marcas.map(r=>r.ano))].sort();
+function doAno(a){ const rows=D.marcas.filter(r=>r.ano===a), tot=rows.reduce((s,r)=>s+r.unidades,0);
+  return rows.map(r=>({...r,share:r.unidades/tot*100})).sort((x,y)=>(x.marca==="Outros")-(y.marca==="Outros")||y.unidades-x.unidades); }
+function ind(rows){ const s=rows.filter(r=>r.marca!=="Outros").map(r=>r.share).sort((a,b)=>b-a), hhi=s.reduce((t,x)=>t+x*x,0);
+  return {tot:rows.reduce((t,r)=>t+r.unidades,0),hhi,cr1:s[0],cr4:s.slice(0,4).reduce((a,b)=>a+b,0),lider:rows.find(r=>r.marca!=="Outros").marca,
+          n:rows.filter(r=>r.marca!=="Outros"&&r.unidades>=50).length,estimado:rows.some(r=>r.status==="estimado")}; }
+const ROWS = Object.fromEntries(ANOS.map(a=>[a,doAno(a)]));
+const IND = Object.fromEntries(ANOS.map(a=>[a,ind(ROWS[a])]));
+const shareDe = (a,ms) => ROWS[a].filter(r=>ms.includes(r.marca)).reduce((s,r)=>s+r.share,0);
+const PREMIUM = ["Volvo","BMW","Mercedes-Benz","Porsche"];
+const anual26 = IND[2026].tot*12/10;
+
+// ---------- números do texto, todos lidos dos dados
+const ev = A.importacoes.eventos, P = A.precos, mc23 = A.montecarlo.find(r=>r.ano===2023), B = A.bass_curvas;
+const V = {
+  vezes: Math.round(IND[2025].tot/IND[2020].tot)+"×", t2020: fmt(IND[2020].tot), t2025: fmt(IND[2025].tot), t2026: fmt(IND[2026].tot),
+  cagr: pct((Math.pow(IND[2025].tot/IND[2020].tot,1/5)-1)*100),
+  byd2025: pct(IND[2025].cr1), byd2024: pct(IND[2024].cr1), lider2022: pct(IND[2022].cr1),
+  premium2022: pct(shareDe(2022,PREMIUM)), premium2026: pct(shareDe(2026,PREMIUM)),
+  geelyEfeito: sinal(A.its.coef.geely_ex2_nov25[0])+" p.p.", quebra: A.its.quebra, nIts: A.mensal.meses.length,
+  mc23a: fmt(mc23.p05), mc23b: fmt(mc23.p95),
+  defBev: fmt(A.definicoes.hhi_eletricos), defElet: fmt(A.definicoes.hhi_eletrificados), defAut: fmt(A.definicoes.hhi_automoveis), bydAut: pct(A.definicoes.byd_automoveis,1),
+  imp18: dec(ev[1].razao_antes_depois), imp25: dec(ev[2].razao_antes_depois), imp35: dec(ev[3].razao_antes_depois),
+  painelMarcas: A.painel.n_marcas, painelP: dec(A.painel.p,2),
+  barato0: reais(P.mais_barato[0]), barato1: reais(P.mais_barato.at(-1)), mod0: P.modelos[0], mod1: P.modelos.at(-1), ab0: P.abaixo150[0], ab1: P.abaixo150.at(-1),
+  hedN: A.hedonica.n, hedChi: sinal(A.hedonica.chinesa_pct,0)+"%", hedPre: sinal(A.hedonica.premium_pct,0)+"%",
+  cresc: pct(B.crescimento_mes_pct,1), dobra: B.meses_para_dobrar,
+};
+document.querySelectorAll("[data-v]").forEach(e=>{ if(V[e.dataset.v]!==undefined) e.textContent=V[e.dataset.v]; });
+
+// ---------- Chart.js: opções comuns e um plugin pequeno para linhas de referência
+let charts = {};
+function chart(id,cfg){ if(charts[id]) charts[id].destroy(); charts[id]=new Chart($(id),cfg); }
+function base(extra={}){ const fg=css("--muted"), grid=css("--line");
+  return Object.assign({responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:"index",intersect:false},
+    plugins:{legend:{labels:{color:fg,boxWidth:12,boxHeight:2,font:{family:"IBM Plex Sans",size:13}}},tooltip:{}},
+    scales:{x:{ticks:{color:fg,maxRotation:0,autoSkipPadding:14},grid:{display:false}},y:{ticks:{color:fg},grid:{color:grid},beginAtZero:true,border:{display:false}}}},extra); }
+// opções: ref.v = [{x: rótulo do eixo, texto, cor}], ref.h = [{y, texto, cor}]
+Chart.register({id:"ref",afterDatasetsDraw(c,_,o){ const {ctx,chartArea:a,scales:{x,y}}=c; ctx.save(); ctx.font="500 11px 'IBM Plex Mono', monospace";
+  (o.h||[]).forEach(l=>{ const py=y.getPixelForValue(l.y); if(py<a.top||py>a.bottom) return; ctx.strokeStyle=l.cor; ctx.setLineDash([5,4]); ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(a.left,py); ctx.lineTo(a.right,py); ctx.stroke(); ctx.fillStyle=l.cor; ctx.textAlign="right"; ctx.fillText(l.texto,a.right-4,py-5); });
+  (o.v||[]).forEach((l,i)=>{ const k=c.data.labels.indexOf(l.x); if(k<0) return; const px=x.getPixelForValue(k);
+    ctx.strokeStyle=l.cor; ctx.setLineDash(l.solida?[]:[3,3]); ctx.lineWidth=l.solida?2:1; ctx.beginPath(); ctx.moveTo(px,a.top); ctx.lineTo(px,a.bottom); ctx.stroke();
+    ctx.fillStyle=l.cor; const dir=px>a.right-90; ctx.textAlign=dir?"right":"left"; ctx.fillText(l.texto,px+(dir?-5:5),a.top+11+(l.nivel||0)*14); });
+  ctx.restore(); }});
+function seg(id,fn){ const bs=[...$(id).querySelectorAll("button")]; bs.forEach(b=>b.onclick=()=>{ bs.forEach(x=>x.setAttribute("aria-pressed",x===b)); fn(b.dataset.k||b.dataset.m); }); }
+
+// ---------- 1. tamanho do mercado
+let m1="real";
+function d1(){ const accent=css("--accent"), muted=css("--muted");
+  const vals=ANOS.map(a=>a===2026&&m1==="anual"?anual26:IND[a].tot);
+  chart("c1",{type:"bar",data:{labels:ANOS.map(a=>a===2026?(m1==="anual"?"2026 (anualizado)":"2026 (jan–out)"):a),
+    datasets:[{data:vals,backgroundColor:ANOS.map(a=>a===2026?muted:accent),borderRadius:4}]},
+    options:base({plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>fmt(c.parsed.y)+" carros"}}},
+      scales:{x:{ticks:{color:muted},grid:{display:false}},y:{ticks:{color:muted,callback:v=>fmt(v)},grid:{color:css("--line")},border:{display:false}}}}),
+    plugins:[{id:"rot",afterDatasetsDraw(c){ const {ctx}=c; ctx.save(); ctx.font="600 12px 'IBM Plex Sans'"; ctx.fillStyle=css("--fg"); ctx.textAlign="center";
+      c.getDatasetMeta(0).data.forEach((b,i)=>ctx.fillText(fmt(vals[i]),b.x,b.y-6)); ctx.restore(); }}]}); }
+seg("s1",m=>{m1=m;d1()});
+
+// ---------- 2. participação por ano
+let ano=2022;
+function d2(){ const i=IND[ano], rows=ROWS[ano].filter(r=>r.marca!=="Outros").slice(0,8);
+  $("anoTit").textContent=ano===2026?"2026 (jan–out)":ano; $("anoOut").textContent=ano;
+  const st=$("anoStatus"); st.textContent=i.estimado?"estimativa do grupo":"dado oficial"; st.className="pill "+(i.estimado?"estimado":"oficial");
+  $("r2lider").textContent=i.lider; $("r2cr1").textContent=pct(i.cr1,1)+" do mercado"; $("r2hhi").textContent=fmt(i.hhi);
+  const f=$("r2faixa"); f.textContent="concentração "+faixa(i.hhi); f.className="pill "+faixa(i.hhi);
+  $("r2cr4").textContent=pct(i.cr4); $("r2n").textContent=i.n;
+  const muted=css("--muted");
+  chart("c2",{type:"bar",data:{labels:rows.map(r=>r.marca),datasets:[{data:rows.map(r=>r.share),backgroundColor:rows.map(r=>CORES[r.marca]||"#8894a0"),borderRadius:4}]},
+    options:base({indexAxis:"y",interaction:{mode:"nearest",intersect:true},plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>pct(c.parsed.x,1)+" ("+fmt(rows[c.dataIndex].unidades)+" carros)"}}},
+      scales:{x:{min:0,max:80,ticks:{color:muted,callback:v=>v+"%"},grid:{color:css("--line")},border:{display:false}},y:{ticks:{color:css("--fg"),font:{size:13}},grid:{display:false}}}})}); }
+$("ano").oninput=e=>{ano=+e.target.value;d2()};
+
+// ---------- 3. HHI com faixa de Monte Carlo
+function d3(){ const M=A.montecarlo, fg=css("--fg"), accent=css("--accent"), est=M.map(r=>r.pct_estimado>0);
+  chart("c3",{type:"line",data:{labels:M.map(r=>r.ano),datasets:[
+      {label:"p05",data:M.map((r,i)=>est[i]?r.p05:null),borderWidth:0,pointRadius:0,fill:false},
+      {label:"Faixa de 90% das simulações",data:M.map((r,i)=>est[i]?r.p95:null),borderWidth:0,pointRadius:0,fill:"-1",backgroundColor:accent+"40"},
+      {label:"HHI",data:M.map(r=>r.hhi),borderColor:fg,backgroundColor:fg,borderWidth:2.5,pointRadius:4,tension:0}]},
+    options:base({plugins:{legend:{labels:{color:css("--muted"),filter:i=>i.text!=="p05",font:{family:"IBM Plex Sans",size:13}}},
+        tooltip:{filter:i=>i.datasetIndex===2,callbacks:{label:c=>{const r=M[c.dataIndex];return "HHI "+fmt(r.hhi)+(est[c.dataIndex]?"  (faixa "+fmt(r.p05)+" a "+fmt(r.p95)+")":"  (oficial)")}}},
+        ref:{h:[{y:1500,texto:"abaixo de 1.500: baixa",cor:css("--ok")},{y:2500,texto:"acima de 2.500: alta",cor:css("--bad")}]}},
+      scales:{x:{ticks:{color:css("--muted")},grid:{display:false}},y:{min:0,max:6500,ticks:{color:css("--muted"),callback:v=>fmt(v)},grid:{color:css("--line")},border:{display:false}}}})}); }
+
+// ---------- 4. definições de mercado
+const DEFS = {eletricos:["Só 100% elétricos","#d01c36","Dentro do segmento, a BYD domina."],
+              eletrificados:["Elétricos + híbridos","#e08a00","Contando híbridos, a concentração cai para moderada: GWM, Toyota e outras entram na conta."],
+              automoveis:["Todos os automóveis","#2a63d4","No mercado inteiro a concentração é baixa e a BYD é uma entre várias marcas médias."]};
+let k4="eletricos";
+function d4(){ const M=A.definicoes_mensal, h=A.definicoes["hhi_"+k4];
+  $("r4hhi").textContent=fmt(h); const f=$("r4faixa"); f.textContent="concentração "+faixa(h); f.className="pill "+faixa(h);
+  $("r4byd").textContent=pct(A.definicoes["byd_"+k4],1); $("r4txt").textContent=DEFS[k4][2];
+  chart("c4",{type:"line",data:{labels:M.meses.map(mesBR),datasets:Object.entries(DEFS).map(([k,[nome,cor]])=>(
+      {label:nome,data:M["hhi_"+k],borderColor:k===k4?cor:cor+"55",backgroundColor:cor,borderWidth:k===k4?3:1.5,pointRadius:0,tension:.25,order:k===k4?0:1}))},
+    options:base({plugins:{legend:{labels:{color:css("--muted"),boxWidth:12,boxHeight:2,font:{family:"IBM Plex Sans",size:13}}},tooltip:{callbacks:{label:c=>c.dataset.label+": "+fmt(c.parsed.y)}},
+        ref:{h:[{y:1500,texto:"1.500",cor:css("--muted")},{y:2500,texto:"2.500",cor:css("--muted")}]}},
+      scales:{x:{ticks:{color:css("--muted"),maxRotation:0,autoSkipPadding:18},grid:{display:false}},y:{min:0,max:7000,ticks:{color:css("--muted"),callback:v=>fmt(v)},grid:{color:css("--line")},border:{display:false}}}})}); }
+seg("s4",k=>{k4=k;d4()});
+
+// ---------- 5. série interrompida
+const EVS = [["imposto_18_jul24","2024-07","Imposto sobe para 18% (jul/2024)","18%","imposto"],
+             ["imposto_25_camacari_jul25","2025-07","Imposto de 25% e início da fábrica de Camaçari (jul/2025)","25%","imposto"],
+             ["geely_ex2_nov25","2025-11","Geely EX2 chega em volume (nov/2025)","Geely EX2","geely"],
+             ["imposto_35_jul26","2026-07","Imposto sobe para 35% (jul/2026)","35%","imposto"]];
+let k5="todos";
+function d5(){ const M=A.mensal, muted=css("--muted"), fg=css("--fg");
+  const v=EVS.filter(e=>k5==="todos"||e[4]===k5).map(e=>({x:mesBR(e[1]),texto:e[3],cor:e[4]==="geely"?CORES.Geely:muted,solida:e[4]==="geely",nivel:e[4]==="geely"?1:0}));
+  chart("c5",{type:"line",data:{labels:M.meses.map(mesBR),datasets:[
+      {label:"BYD",data:M.shares.BYD,borderColor:CORES.BYD,backgroundColor:CORES.BYD,borderWidth:2.5,pointRadius:2,tension:.2},
+      {label:"Geely",data:M.shares.Geely,borderColor:CORES.Geely,backgroundColor:CORES.Geely,borderWidth:2.5,pointRadius:2,tension:.2}]},
+    options:base({plugins:{legend:{labels:{color:muted,boxWidth:12,boxHeight:2,font:{family:"IBM Plex Sans",size:13}}},tooltip:{callbacks:{label:c=>c.dataset.label+": "+pct(c.parsed.y,1)}},ref:{v}},
+      scales:{x:{ticks:{color:muted,maxRotation:0,autoSkipPadding:18},grid:{display:false}},y:{min:0,max:100,ticks:{color:muted,callback:v=>v+"%"},grid:{color:css("--line")},border:{display:false}}}})});
+  $("t5").innerHTML=EVS.map(e=>{ const [c,p]=A.its.coef[e[0]], sig=p<0.05;
+    return `<tr><td>${e[2]}</td><td class="n">${sinal(c)} p.p.</td><td class="n">${dec(p,3)}</td><td>${sig?"<b>Efeito claro</b>":"Não se distingue de zero"}</td></tr>`; }).join(""); }
+seg("s5",k=>{k5=k;d5()});
+
+// ---------- 6. importações
+function d6(){ const I=A.importacoes, muted=css("--muted");
+  const v=ev.map(e=>{ const [mm,aa]=e.degrau.split("/"); return {x:mesBR(aa+"-"+mm),texto:e.aliquota+"%",cor:css("--fg")}; });
+  chart("c6",{data:{labels:I.meses.map(mesBR),datasets:[
+      {type:"line",label:"Emplacados",data:I.emplacados,borderColor:CORES.BYD,backgroundColor:CORES.BYD,borderWidth:2.5,pointRadius:0,tension:.2,spanGaps:false},
+      {type:"bar",label:"Importados",data:I.importados,backgroundColor:css("--accent")+"88",borderRadius:2}]},
+    options:base({plugins:{legend:{labels:{color:muted,boxWidth:12,font:{family:"IBM Plex Sans",size:13}}},tooltip:{callbacks:{label:c=>c.dataset.label+": "+(c.parsed.y==null?"sem dado mensal":fmt(c.parsed.y))}},ref:{v}},
+      scales:{x:{ticks:{color:muted,maxRotation:0,autoSkipPadding:18},grid:{display:false}},y:{ticks:{color:muted,callback:v=>fmt(v)},grid:{color:css("--line")},border:{display:false}}}})});
+  $("r6").innerHTML=ev.map(e=>`<div><div class="k">Degrau de ${e.aliquota}% (${e.degrau})</div><div class="v">${dec(e.razao_antes_depois)}×</div><div class="o">${fmt(e.media_3m_antes)} por mês antes, ${fmt(e.media_3m_depois)} depois</div></div>`).join(""); }
+
+// ---------- 7. preços e grupos
+let k7="preco";
+function d7(){ const muted=css("--muted"), fg=css("--fg"), accent=css("--accent"), preco=k7==="preco";
+  $("t7").textContent=preco?"Preço real dos elétricos zero km":"Versões de elétricos zero km à venda";
+  const ds=preco?[{label:"Preço mediano",data:P.mediana,borderColor:muted,backgroundColor:muted},{label:"Mais barato do mercado",data:P.mais_barato,borderColor:CORES.BYD,backgroundColor:CORES.BYD}]
+               :[{label:"Todas as versões",data:P.modelos,borderColor:fg,backgroundColor:fg},{label:"Abaixo de R$ 150 mil",data:P.abaixo150,borderColor:CORES.BYD,backgroundColor:CORES.BYD}];
+  chart("c7",{type:"line",data:{labels:P.meses.map(mesBR),datasets:ds.map(d=>({...d,borderWidth:2.5,pointRadius:0,tension:.15}))},
+    options:base({plugins:{legend:{labels:{color:muted,boxWidth:12,boxHeight:2,font:{family:"IBM Plex Sans",size:13}}},tooltip:{callbacks:{label:c=>c.dataset.label+": "+(preco?reais(c.parsed.y):c.parsed.y)}}},
+      scales:{x:{ticks:{color:muted,maxRotation:0,autoSkipPadding:18},grid:{display:false}},y:{beginAtZero:true,ticks:{color:muted,callback:v=>preco?"R$ "+v/1000+" mil":v},grid:{color:css("--line")},border:{display:false}}}})}); }
+seg("s7",k=>{k7=k;d7()});
+const NOMES_G=["Entrada","Intermediário","Topo de linha"];
+$("t7g").innerHTML=A.grupos.map((g,i)=>`<tr><td><b>${NOMES_G[i]||"Grupo "+g.grupo}</b></td><td class="n">${g.modelos}</td><td class="n">${reais(g.preco_mediano)}</td><td class="n">${pct(g.pct_chinesas)}</td><td>${g.exemplos}</td></tr>`).join("");
+
+// ---------- 8. Bass
+const CEN=A.bass.map(b=>b.cenario_m), COR8=["#2e9b62","#2a63d4","#8a4bb0"]; let k8=CEN[1];
+$("s8").innerHTML=CEN.map(c=>`<button type="button" data-k="${c}" aria-pressed="${c===k8}">${c}</button>`).join("");
+function d8(){ const muted=css("--muted"), b=A.bass.find(x=>x.cenario_m===k8), nObs=B.meses_obs.length, vazio=n=>Array(n).fill(null);
+  $("r8mes").textContent=b.pico_mes; $("r8pico").textContent=fmt(b.pico_unidades_mes); $("r8r2").textContent=dec(b.r2,2);
+  chart("c8",{type:"line",data:{labels:[...B.meses_obs,...B.meses_proj].map(mesBR),datasets:[
+      {label:"Emplacados (observado)",data:[...B.vendas,...vazio(B.meses_proj.length)],borderColor:CORES.BYD,backgroundColor:CORES.BYD,borderWidth:2.5,pointRadius:0,order:0},
+      ...CEN.map((c,i)=>({label:"Potencial de "+c,data:[...vazio(nObs-1),B.vendas.at(-1),...B.cenarios[c]],borderColor:c===k8?COR8[i]:COR8[i]+"55",backgroundColor:COR8[i],
+        borderWidth:c===k8?3:1.5,borderDash:[6,4],pointRadius:0,order:c===k8?1:2}))]},
+    options:base({plugins:{legend:{labels:{color:muted,boxWidth:12,boxHeight:2,font:{family:"IBM Plex Sans",size:13}}},tooltip:{callbacks:{label:c=>c.parsed.y==null?null:c.dataset.label+": "+fmt(c.parsed.y)}}},
+      scales:{x:{ticks:{color:muted,maxRotation:0,autoSkipPadding:24},grid:{display:false}},y:{ticks:{color:muted,callback:v=>fmt(v)},grid:{color:css("--line")},border:{display:false}}}})}); }
+seg("s8",k=>{k8=k;d8()});
+
+// ---------- desenhar tudo; redesenhar se o tema mudar
+function tudo(){ d1();d2();d3();d4();d5();d6();d7();d8(); }
+tudo();
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change",tudo);
+new MutationObserver(tudo).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+const barra=$("barra"); addEventListener("scroll",()=>{ const h=document.documentElement; barra.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%"; },{passive:true});
+})();
+</script>
+</body>
+</html>

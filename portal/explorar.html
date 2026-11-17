@@ -1,3 +1,8 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>body{margin:0}</style>
 <title>Rivalidade Elétrica BR</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +27,7 @@
   --ok:#5cc98e; --warn:#f0a83a; --bad:#ff6b7d; --ok-bg:#16301f; --warn-bg:#33270f; --bad-bg:#3a1820; color-scheme:dark}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:14px;line-height:1.5}
-.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px;display:grid;gap:18px}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px;display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
 header.top{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:end;justify-content:space-between}
 h1{font-family:var(--f-display);font-weight:800;font-size:clamp(22px,3.2vw,32px);margin:0;letter-spacing:-.01em;text-wrap:balance}
 .sub{color:var(--muted);margin:4px 0 0;max-width:68ch}
@@ -31,7 +36,7 @@ h1{font-family:var(--f-display);font-weight:800;font-size:clamp(22px,3.2vw,32px)
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
 .ctl{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .ctl label{font-size:12px;color:var(--muted)}
-.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg{display:inline-flex;flex-wrap:wrap;max-width:100%;border:1px solid var(--line);border-radius:8px;overflow:hidden}
 .seg button{border:0;background:transparent;color:var(--fg);font:500 13px var(--f-mono);padding:6px 10px;cursor:pointer}
 .seg button+button{border-left:1px solid var(--line)}
 .seg button[aria-pressed="true"]{background:var(--accent);color:#fff}
@@ -49,7 +54,7 @@ select{font:inherit;padding:5px 8px;border-radius:8px;border:1px solid var(--lin
 .pill.moderada,.pill.calculado{background:var(--warn-bg);color:var(--warn)}
 .pill.alta,.pill.estimado{background:var(--bad-bg);color:var(--bad)}
 .pill.parcial{background:var(--accent-soft);color:var(--accent)}
-.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}
 .panel{grid-column:span 6;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;min-width:0;display:grid;gap:10px;align-content:start}
 .panel.wide{grid-column:span 12}
 .panel h2{font-family:var(--f-display);font-size:17px;font-weight:700;margin:0}
@@ -84,7 +89,7 @@ textarea{width:100%;min-height:120px;font:12px var(--f-mono);background:var(--su
 .tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);flex-wrap:wrap}
 .tabs a{padding:8px 14px;color:var(--muted);text-decoration:none;font:600 14px var(--f-body);border-bottom:3px solid transparent;margin-bottom:-1px}
 .tabs a[aria-current="page"]{color:var(--fg);border-bottom-color:var(--accent)}
-.view{display:grid;gap:18px}
+.view{display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
 .view[hidden],.panel[hidden]{display:none}
 .thesis{background:var(--accent-soft);border-radius:var(--r);padding:16px 18px}
 .thesis p{margin:6px 0 0;font-size:15.5px;max-width:95ch}
@@ -129,6 +134,7 @@ svg .s{font:11px var(--f-body);fill:var(--muted)}
       <p class="sub">Emplacamentos de carros 100% elétricos (BEV) por marca, de 2020 a 2026. Da Volvo e Porsche dos primeiros anos ao domínio da BYD e à chegada da Geely.</p>
     </div>
     <div class="ctl">
+      <a class="btn" href="index.html" style="text-decoration:none;border:1px solid var(--line);background:var(--surface-2);color:var(--fg);font:500 13px var(--f-body);padding:6px 12px;border-radius:8px">← Voltar à história</a>
       <button class="btn" id="btnResumo" type="button">Copiar resumo</button>
       <button class="btn" id="btnCsv" type="button">Copiar dados (CSV)</button>
     </div>
@@ -574,7 +580,7 @@ function render(){
   // Conclusões
   const g26=doAno(2026).find(r=>r.marca==="Geely");
   document.getElementById("concl").innerHTML = `<ul>
-    <li><b>De mercado fragmentado a quase monopólio.</b> Até 2022 o HHI ficava entre ${fmt(IND[2021].hhi)} e ${fmt(IND[2022].hhi)}, com Volvo, Porsche, BMW, JAC e Mercedes dividindo um mercado pequeno. Com a BYD, passou de ${fmt(IND[2024].hhi)} em 2024 e ficou em ${fmt(IND[2025].hhi)} em 2025.</li>
+    <li><b>De mercado fragmentado a quase monopólio.</b> De 2020 a 2022 o HHI ficou entre ${fmt(Math.min(IND[2020].hhi,IND[2021].hhi,IND[2022].hhi))} e ${fmt(Math.max(IND[2020].hhi,IND[2021].hhi,IND[2022].hhi))}, com Volvo, Porsche, BMW, JAC e Mercedes dividindo um mercado pequeno. Com a BYD, passou de ${fmt(IND[2024].hhi)} em 2024 e ficou em ${fmt(IND[2025].hhi)} em 2025.</li>
     <li><b>A rivalidade é por preço.</b> O Dolphin Mini (R$ 115,8 mil em 2024, R$ 109,9 mil em 2026) puxou a faixa de entrada. Quem não compete nessa faixa (Volvo, BMW, Mercedes, Porsche) virou nicho premium.</li>
     <li><b>2026 trouxe um rival de verdade.</b> A Geely chegou a ${pct(g26.share)} com o EX2, e o HHI caiu para ${fmt(IND[2026].hhi)}. Ainda é concentração alta, mas foi a primeira queda relevante desde a chegada da BYD.</li>
     <li><b>Barreiras de entrada crescendo.</b> O imposto de importação foi de 0% para 35% e favorece quem monta no Brasil (BYD em Camaçari). Novas marcas que só importam terão mais dificuldade.</li>
@@ -677,7 +683,7 @@ const SWOT={
         O:["Produção do EX2 no Paraná a partir do fim de 2026","Clientes da Renault migrando para elétricos"],
         T:["Reação de preço da BYD","Conflito de interesses dentro da sociedade com a Renault"]},
  "Premium (Volvo, Mercedes, BMW)":{S:["Marca forte, segurança e valor de revenda","Clientes fiéis e de alta renda","Pioneiras: venderam elétricos no Brasil antes de todos"],
-        W:["Preços de R$ 230 mil a R$ 700 mil","Tudo importado: paga 35% de imposto","Participação caiu de cerca de 45% (2022) para menos de 6%"],
+        W:["Preços de R$ 230 mil a R$ 700 mil","Tudo importado: paga 35% de imposto","Participação caiu de cerca de 45% (2022) para menos de 2% (2026)"],
         O:["Assinatura e venda corporativa","Híbridos plug-in premium","Clientes que querem marca, não só preço"],
         T:["Chinesas premium (Zeekr, Denza) com mais tecnologia por menos","Câmbio e imposto encarecendo ainda mais"]},
  "Setor":{S:["Crescimento de mais de 150% ao ano desde 2020","Matriz elétrica limpa do Brasil"],
