@@ -1,7 +1,7 @@
 # Principais achados
 
 - O mercado de carros 100% elétricos foi de 801 unidades em 2020 para 79.415 em 2025 (CAGR de 151% ao ano). Só de janeiro a outubro de 2026 já são 186.514.
-- Até 2022 o mercado era pequeno e disputado por marcas premium importadas (Volvo, Porsche, BMW, Audi, Mercedes). HHI entre 1.250 e 1.516, na fronteira entre concentração baixa e moderada (dados desses anos são estimativas do grupo).
+- Até 2022 o mercado era pequeno e disputado por marcas premium importadas (Volvo, Porsche, BMW, Audi, Mercedes). De 2020 a 2022 o HHI ficou entre 1.250 e 1.842, entre concentração baixa e moderada (dados desses anos são estimativas do grupo).
 - A entrada da BYD em 2023 com preço abaixo de R$ 150 mil mudou o setor. O HHI saltou para 5.478 em 2024 e recuou pouco em 2025 (5.274), com a BYD sozinha em cerca de 72%.
 - Em 2026 a Geely (18.0%) virou a segunda força, e o HHI caiu para 4.353. Ainda é alta concentração, mas a rivalidade aumentou. Por grupo econômico (Geely + Volvo + Zeekr), o HHI de 2026 é 4.422.
 - 2026 tem só 10 meses: anualizado, o mercado chegaria a cerca de 223.817 unidades (182% sobre 2025).

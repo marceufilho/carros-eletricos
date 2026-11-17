@@ -37,6 +37,15 @@ CORES = {"BYD": "#c8102e", "Geely": "#1f5fbf", "Volvo": "#5b7083", "GWM": "#e08a
          "Porsche": "#7a3e9d", "JAC": "#2e8b57", "Nissan": "#888888", "GAC": "#d45087",
          "Zeekr": "#00a0a0", "Outros": "#cfcfcf"}
 
+
+
+def salva(fig, nome):
+    fig.tight_layout()
+    fig.savefig(GRAF / nome)
+    fig.savefig((GRAF / nome).with_suffix(".pdf"))   # vetorial, para o artigo e os slides
+    plt.close(fig)
+
+
 # %% Carregar dados
 marcas = pd.read_csv(DADOS / "emplacamentos_bev_marca.csv")
 totais = pd.read_csv(DADOS / "totais_bev.csv")
@@ -137,7 +146,7 @@ for x, v in zip(ind.index.astype(str), ind["total_bev"]):
     ax.text(x, v, f"{v:,.0f}".replace(",", "."), ha="center", va="bottom", fontsize=9)
 ax.set_title("Emplacamentos de carros 100% elétricos no Brasil (2026 = jan-out)")
 ax.set_ylabel("unidades")
-fig.tight_layout(); fig.savefig(GRAF / "01_tamanho_mercado.png"); plt.close(fig)
+salva(fig, "01_tamanho_mercado.png")
 
 # %% Gráfico 2 - participação por marca (empilhado)
 principais = ["BYD", "Geely", "Volvo", "GWM", "BMW", "Mercedes-Benz", "Renault", "Chevrolet", "Porsche", "JAC", "Nissan"]
@@ -149,7 +158,7 @@ ax.set_title("Participação de mercado por marca (%)")
 ax.set_ylabel("%"); ax.set_xlabel("")
 ax.legend(bbox_to_anchor=(1.01, 1), loc="upper left", frameon=False)
 plt.xticks(rotation=0)
-fig.tight_layout(); fig.savefig(GRAF / "02_participacao_marcas.png"); plt.close(fig)
+salva(fig, "02_participacao_marcas.png")
 
 # %% Gráfico 3 - HHI e CR4
 fig, ax = plt.subplots(figsize=(8, 4.5))
@@ -166,7 +175,7 @@ ax2 = ax.twinx(); ax2.plot(ind.index, ind["cr4"], ls="--", marker="s", color="#1
 ax2.set_ylim(0, 105); ax2.set_ylabel("CR4 (%)"); ax2.grid(False)
 ax.set_title("Concentração: HHI e participação das 4 maiores (CR4)")
 fig.legend(loc="lower right", bbox_to_anchor=(0.88, 0.15), frameon=False)
-fig.tight_layout(); fig.savefig(GRAF / "03_hhi_cr4.png"); plt.close(fig)
+salva(fig, "03_hhi_cr4.png")
 
 # %% Gráfico 4 - comparação com outros setores
 comp = pd.concat([setores[["setor", "hhi"]],
@@ -176,7 +185,7 @@ fig, ax = plt.subplots(figsize=(8, 4))
 ax.barh(comp["setor"], comp["hhi"], color=["#c8102e" if "elétricos" in s else "#9aa5b1" for s in comp["setor"]])
 ax.axvline(1500, color="#e08a00", ls=":"); ax.axvline(2500, color="#c8102e", ls=":")
 ax.set_title("HHI do setor x outros setores da economia (referências aproximadas)")
-fig.tight_layout(); fig.savefig(GRAF / "04_comparacao_setores.png"); plt.close(fig)
+salva(fig, "04_comparacao_setores.png")
 
 # %% Gráfico 5 - imposto de importação x participação da BYD x Geely
 fig, ax = plt.subplots(figsize=(8, 4))
@@ -191,7 +200,7 @@ ax.step(imp_x, imp_y, where="post", color="#555", ls="--", label="Imposto de imp
 ax.set_xlim(2019.6, 2026.6)
 ax.set_ylabel("%"); ax.legend(frameon=False, fontsize=8)
 ax.set_title("Liderança da BYD, entrada da Geely e imposto de importação")
-fig.tight_layout(); fig.savefig(GRAF / "05_imposto_lideres.png"); plt.close(fig)
+salva(fig, "05_imposto_lideres.png")
 
 # %% Gráfico 6 - preços de entrada
 precos["data"] = pd.to_datetime(precos["data"])
@@ -203,7 +212,7 @@ for marca, g in precos.groupby("marca"):
                     fontsize=7, xytext=(3, 3), textcoords="offset points")
 ax.set_ylabel("R$ mil"); ax.legend(frameon=False, fontsize=8)
 ax.set_title("Preço de tabela de modelos-chave (R$ mil)")
-fig.tight_layout(); fig.savefig(GRAF / "06_precos.png"); plt.close(fig)
+salva(fig, "06_precos.png")
 
 # %% Resumo em texto
 def br(n):
@@ -213,7 +222,7 @@ l26 = ind.loc[2026]
 resumo = f"""# Principais achados
 
 - O mercado de carros 100% elétricos foi de {br(ind.loc[2020,'total_bev'])} unidades em 2020 para {br(ind.loc[2025,'total_bev'])} em 2025 (CAGR de {cagr:.0f}% ao ano). Só de janeiro a outubro de 2026 já são {br(l26['total_bev'])}.
-- Até 2022 o mercado era pequeno e disputado por marcas premium importadas (Volvo, Porsche, BMW, Audi, Mercedes). HHI entre {br(ind.loc[2021,'hhi'])} e {br(ind.loc[2022,'hhi'])}, na fronteira entre concentração baixa e moderada (dados desses anos são estimativas do grupo).
+- Até 2022 o mercado era pequeno e disputado por marcas premium importadas (Volvo, Porsche, BMW, Audi, Mercedes). De 2020 a 2022 o HHI ficou entre {br(ind.loc[2020:2022,'hhi'].min())} e {br(ind.loc[2020:2022,'hhi'].max())}, entre concentração baixa e moderada (dados desses anos são estimativas do grupo).
 - A entrada da BYD em 2023 com preço abaixo de R$ 150 mil mudou o setor. O HHI saltou para {br(ind.loc[2024,'hhi'])} em 2024 e recuou pouco em 2025 ({br(ind.loc[2025,'hhi'])}), com a BYD sozinha em cerca de {ind.loc[2025,'cr1']:.0f}%.
 - Em 2026 a Geely ({part.loc[2026,'Geely']:.1f}%) virou a segunda força, e o HHI caiu para {br(l26['hhi'])}. Ainda é alta concentração, mas a rivalidade aumentou. Por grupo econômico (Geely + Volvo + Zeekr), o HHI de 2026 é {br(l26['hhi_grupo'])}.
 - 2026 tem só 10 meses: anualizado, o mercado chegaria a cerca de {br(l26['total_anualizado'])} unidades ({l26['crescimento_pct']:.0f}% sobre 2025).

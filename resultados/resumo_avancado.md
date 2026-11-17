@@ -4,7 +4,7 @@ Dados mensais oficiais da Fenabrave (jan/2024 a set/2026; out/2026 parcial), Com
 
 ## 1. Série mensal oficial
 
-Em 33 meses de dados oficiais, o HHI mensal variou de 3.947 (07/2026) a 6.667 (04/2024). A BYD teve o pico de 80,9% em 04/2024 e o piso de 57,4% em 07/2026. A Geely chegou a 24,2% em 07/2026 e recuou para 14,1% em 09/2026 e 8,9% em 10/2026: o desafio à BYD perdeu força nos meses seguintes à alta do imposto para 35% (jul/2026).
+Em 33 meses completos de dados oficiais (01/2024 a 09/2026), o HHI mensal variou de 3.947 (07/2026) a 6.667 (04/2024). A BYD teve o pico de 80,9% em 04/2024 e o piso de 57,4% em 07/2026. A Geely chegou a 24,2% em 07/2026 e recuou para 14,1% em 09/2026 e 8,9% em 10/2026: o desafio à BYD perdeu força nos meses seguintes à alta do imposto para 35% (jul/2026).
 
 ## 2. Definição de mercado
 
@@ -16,7 +16,7 @@ Com erro de até 30% em cada estimativa, o HHI de 2022 fica entre 1.255 e 1.844:
 
 ## 4. Série temporal interrompida
 
-Controlando a tendência, a chegada em volume do Geely EX2 (nov/2025) está associada a -10,1 p.p. na participação da BYD (p = 0.001, significativo). O degrau de 25% com o início de Camaçari (jul/2025) dá -3,6 p.p. (p = 0.255, não significativo); o imposto de 35% (jul/2026), -4,6 p.p. (p = 0.112, não significativo); o de 18% (jul/2024), 0,3 p.p. (p = 0.933, não significativo). Sem informar data nenhuma, o teste de quebra estrutural aponta 10/2025 (F = 10.8). São 34 meses e eventos próximos entre si: os sinais são confiáveis, os tamanhos nem tanto.
+Controlando a tendência, a chegada em volume do Geely EX2 (nov/2025) está associada a -10,1 p.p. na participação da BYD (p = 0.001, significativo). O degrau de 25% com o início de Camaçari (jul/2025) dá -3,6 p.p. (p = 0.255, não significativo); o imposto de 35% (jul/2026), -4,6 p.p. (p = 0.112, não significativo); o de 18% (jul/2024), 0,3 p.p. (p = 0.933, não significativo). Sem informar data nenhuma, o teste de quebra estrutural aponta 10/2025 (F = 10.8). São 34 meses (os 33 completos mais 10/2026, parcial) e eventos próximos entre si: os sinais são confiáveis, os tamanhos nem tanto.
 
 ## 5. Importações e estoque (Comex Stat)
 

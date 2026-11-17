@@ -62,6 +62,7 @@ def achado(titulo, texto):
 def salva(fig, nome):
     fig.tight_layout()
     fig.savefig(GRAF / nome)
+    fig.savefig((GRAF / nome).with_suffix(".pdf"))   # vetorial, para o artigo e os slides
     plt.close(fig)
 
 
@@ -129,7 +130,7 @@ salva(fig, "09_mensal_participacao_hhi.png")
 pico = h[completos].idxmax(); vale = h[completos].idxmin()
 g = share["Geely"]
 achado("Série mensal oficial",
-       f"Em 33 meses de dados oficiais, o HHI mensal variou de {br(h[vale])} ({vale:%m/%Y}) a {br(h[pico])} ({pico:%m/%Y}). "
+       f"Em {len(completos)} meses completos de dados oficiais ({completos[0]:%m/%Y} a {completos[-1]:%m/%Y}), o HHI mensal variou de {br(h[vale])} ({vale:%m/%Y}) a {br(h[pico])} ({pico:%m/%Y}). "
        f"A BYD teve o pico de {br(share['BYD'].max(), 1)}% em {share['BYD'].idxmax():%m/%Y} e o piso de "
        f"{br(share.loc[completos, 'BYD'].min(), 1)}% em {share.loc[completos, 'BYD'].idxmin():%m/%Y}. "
        f"A Geely chegou a {br(g.max(), 1)}% em {g.idxmax():%m/%Y} e recuou para {br(g.iloc[-2], 1)}% em {g.index[-2]:%m/%Y} "
@@ -175,6 +176,8 @@ achado("Definição de mercado",
        f"Os elétricos passaram de {br(defs['bev_pct_dos_automoveis'].iloc[0], 1)}% para {br(defs['bev_pct_dos_automoveis'].iloc[-1], 1)}% "
        "dos automóveis emplacados. A conclusão de 'quase monopólio' só vale na definição mais estreita.")
 PORTAL_OUT["definicoes"] = {k: round(float(v), 1) for k, v in u.items()}
+PORTAL_OUT["definicoes_mensal"] = {"meses": [f"{d:%Y-%m}" for d in defs.index],
+                                   **{c: [float(x) for x in defs[c]] for c in defs.columns}}
 
 # %% 3. Monte Carlo sobre as estimativas (2020-2023)
 N = 5000
@@ -199,6 +202,8 @@ for ano, gdf in anual.groupby("ano"):
                "prob_alta": (sims > 2500).mean() * 100})
 mc = pd.DataFrame(mc).set_index("ano").round(1)
 mc.to_csv(RES / "av_montecarlo_hhi.csv")
+PORTAL_OUT["montecarlo"] = [{"ano": int(a), "hhi": float(r.hhi), "p05": float(r.p05), "p95": float(r.p95),
+                             "pct_estimado": float(r.pct_estimado)} for a, r in mc.iterrows()]
 
 fig, ax = plt.subplots(figsize=(8, 4))
 ax.fill_between(mc.index, mc["p05"], mc["p95"], color="#1f5fbf", alpha=0.2, label="faixa de 90% (estimativas com erro de até 30%)")
@@ -255,7 +260,8 @@ achado("Série temporal interrompida",
        f"o imposto de 35% (jul/2026), {br(c['imposto_35_jul26'], 1)} p.p. (p = {p['imposto_35_jul26']:.3f}, {sig('imposto_35_jul26')}); "
        f"o de 18% (jul/2024), {br(c['imposto_18_jul24'], 1)} p.p. (p = {p['imposto_18_jul24']:.3f}, {sig('imposto_18_jul24')}). "
        f"Sem informar data nenhuma, o teste de quebra estrutural aponta {quebra:%m/%Y} (F = {sup['F'].max():.1f}). "
-       "São 34 meses e eventos próximos entre si: os sinais são confiáveis, os tamanhos nem tanto.")
+       f"São {len(datas)} meses (os {len(completos)} completos mais {datas[-1]:%m/%Y}, parcial) e eventos próximos entre si: "
+       "os sinais são confiáveis, os tamanhos nem tanto.")
 PORTAL_OUT["its"] = {"r2": round(its.rsquared, 2), "quebra": f"{quebra:%m/%Y}",
                      "coef": {k: [round(float(c[k]), 1), round(float(p[k]), 3)] for k in X.columns if k != "tendencia"}}
 
@@ -325,6 +331,8 @@ b_did, p_did = did.params["exposicao"], did.pvalues["exposicao"]
 pd.DataFrame({"coef": [b_did], "erro_padrao": [did.bse["exposicao"]], "p_valor": [p_did], "n_obs": [len(painel)],
               "n_marcas": [painel["marca"].nunique()], "efeito_10pp_pct": [(np.exp(10 * b_did) - 1) * 100]}).round(4).to_csv(
     RES / "av_painel_imposto.csv", index=False)
+PORTAL_OUT["painel"] = {"coef": round(float(b_did), 4), "p": round(float(p_did), 3), "n_obs": int(len(painel)),
+                        "n_marcas": int(painel["marca"].nunique()), "efeito_10pp_pct": round(float((np.exp(10 * b_did) - 1) * 100), 1)}
 achado("Painel marca x mês (efeitos fixos de marca e de mês)",
        f"Com {painel['marca'].nunique()} marcas e {len(painel)} observações, cada 10 pontos de imposto estão associados a "
        f"{br((np.exp(10 * b_did) - 1) * 100, 0)}% nas vendas mensais das marcas que só importam, em relação às que montam no Brasil "
@@ -358,6 +366,7 @@ def projeta(m, p0, q, meses_=120):
 
 
 bass_tab = []
+BASS_CURVAS = {}      # projeção mês a mês de cada cenário, para o portal
 fig, ax = plt.subplots(figsize=(9, 4))
 ax.plot(completos, vend, "o", ms=3, color=CORES["BYD"], label="emplacados por mês (Fenabrave)")
 for (nome, m_), cor in zip(CENARIOS.items(), ("#2e8b57", "#1f5fbf", "#7a3e9d")):
@@ -369,6 +378,7 @@ for (nome, m_), cor in zip(CENARIOS.items(), ("#2e8b57", "#1f5fbf", "#7a3e9d")):
     bass_tab.append({"cenario_m": nome, "p_inovacao": p_, "q_imitacao": q_, "r2": r2, "pico_mes": f"{fut[k]:%m/%Y}",
                      "pico_unidades_mes": proj[k], "vendas_2027": proj[3:15].sum()})
     ax.plot(completos, aj, color=cor, lw=1)
+    BASS_CURVAS[nome] = [round(float(x)) for x in proj[:75]]
     ax.plot(fut[:75], proj[:75], color=cor, ls="--", label=f"potencial de {nome}: pico em {fut[k]:%m/%Y}")
 ax.set_ylabel("unidades por mês"); ax.legend(frameon=False, fontsize=8)
 ax.set_title("Difusão de Bass: três cenários de mercado potencial para os carros elétricos")
@@ -389,6 +399,10 @@ achado("Curva de difusão de Bass",
        "então o cenário de 10 milhões significaria os elétricos tomarem quase todo o mercado até 2030. "
        "Para a rivalidade, a leitura de Porter é que a guerra de preços é sustentável enquanto o mercado dobra a cada ano e fica destrutiva quando o pico chegar.")
 PORTAL_OUT["bass"] = bass_tab.round(5).to_dict("records")
+PORTAL_OUT["bass_curvas"] = {"meses_obs": [f"{d:%Y-%m}" for d in completos], "vendas": [int(x) for x in vend],
+                             "meses_proj": [f"{d:%Y-%m}" for d in fut[:75]], "cenarios": BASS_CURVAS,
+                             "crescimento_mes_pct": round(float((np.exp(cresc) - 1) * 100), 1),
+                             "meses_para_dobrar": round(float(np.log(2) / cresc)), "acumulado": int(ac0 + vend.sum())}
 
 # %% 8. Preços FIPE: preço real de entrada e regressão hedônica
 RES_HED = None
@@ -457,6 +471,12 @@ if arq_fipe.exists():
         ax.set_title("Preço acima (+) ou abaixo (-) do que as características do carro explicam, por marca (%)", fontsize=9)
         salva(fig, "16_hedonica_marcas.png")
         hc = hmod.params
+        PORTAL_OUT["hedonica"] = {"n": int(len(hed)), "r2": round(float(hmod.rsquared), 2),
+                                  "chinesa_pct": round(float((np.exp(hc["marca_chinesa"]) - 1) * 100)),
+                                  "premium_pct": round(float((np.exp(hc["marca_premium"]) - 1) * 100)),
+                                  "potencia_10_pct": round(float((1.1 ** hc["ln_potencia"] - 1) * 100), 1),
+                                  "bateria_10_pct": round(float((1.1 ** hc["ln_bateria"] - 1) * 100), 1),
+                                  "marcas": [{"marca": m, "residuo_pct": round(float(v), 1)} for m, v in marca_res.items()]}
         barato = hed.nsmallest(3, "residuo_pct"); caro = hed.nlargest(3, "residuo_pct")
         achado("Regressão hedônica (preço x características)",
                f"Com {len(hed)} modelos (R² = {hmod.rsquared:.2f}): 10% a mais de potência vale {br((1.1 ** hc['ln_potencia'] - 1) * 100, 1)}% no preço e "
