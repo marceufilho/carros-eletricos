@@ -10,7 +10,28 @@ python analise_avancada.py             # série mensal e modelos estatísticos, 
 python analise_tam.py respostas.csv    # questionário TAM (sem arquivo, usa dados simulados de exemplo)
 ```
 
-Depois, abrir `portal/index.html` no navegador.
+Depois, abrir `portal/index.html` no navegador (ou `make servir`).
+
+## Como o trabalho é apresentado
+
+| O quê | Onde | Como gerar |
+|---|---|---|
+| Site, página de história | `portal/index.html` | lê `portal/dados.js` e `portal/dados_avancado.js`, gerados pelas análises |
+| Site, painel para explorar os dados | `portal/explorar.html` | idem |
+| Artigo (ABNT, abntex2) | `artigo/artigo.tex` | `make artigo` |
+| Slides (Beamer) | `slides/slides.tex` | `make slides` |
+
+Os três contam a mesma história, nos mesmos oito passos. Os gráficos do artigo e dos slides são os PDFs de `graficos/`, gravados pelas análises junto com os PNGs (`make figuras`).
+
+Para compilar o artigo e os slides é preciso ter LaTeX:
+
+```bash
+sudo apt install latexmk texlive-latex-extra texlive-lang-portuguese texlive-publishers texlive-bibtex-extra texlive-fonts-recommended
+```
+
+**Publicação.** A cada push na `main`, o GitHub Actions (`.github/workflows/pages.yml`) compila os dois PDFs e publica a pasta `portal/` em <https://marceufilho.github.io/carros-eletricos/>. É preciso ativar uma vez em Settings > Pages > Source: "GitHub Actions".
+
+**Antes de entregar:** preencher os nomes dos integrantes em `artigo/artigo.tex` e `slides/slides.tex` (procure por `PREENCHER`) e conferir a referência do guia do CADE em `artigo/referencias.bib` (marcada com `CONFERIR`).
 
 ## De onde vêm os dados
 
@@ -31,4 +52,4 @@ Depois, abrir `portal/index.html` no navegador.
 
 - De 2020 a 2023 a Fenabrave não publicava o ranking de elétricos por marca; a incerteza dessas estimativas está em `resultados/av_montecarlo_hhi.csv`.
 - A Fenabrave publica só as 15 maiores marcas de elétricos em cada mês; o resto entra em "Outros".
-- Os gráficos 07 e 08 (TAM) usam respostas simuladas até o questionário ser aplicado.
+- Os gráficos 07 e 08 (TAM) usam respostas simuladas até o questionário ser aplicado. Por isso não aparecem no site, no artigo nem nos slides, que tratam o questionário apenas como próximo passo.

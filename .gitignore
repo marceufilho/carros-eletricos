@@ -1,2 +1,21 @@
 dados/brutos/
 __pycache__/
+
+# LaTeX (arquivos intermediários)
+*.aux
+*.bbl
+*.blg
+*.brf
+*.fdb_latexmk
+*.fls
+*.idx
+*.log
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+# cópias dos PDFs dentro do site (geradas por "make site" e pelo GitHub Actions)
+portal/artigo.pdf
+portal/slides.pdf
