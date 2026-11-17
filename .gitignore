@@ -16,6 +16,3 @@ __pycache__/
 *.synctex.gz
 *.toc
 *.vrb
-# cópias dos PDFs dentro do site (geradas por "make site" e pelo GitHub Actions)
-portal/artigo.pdf
-portal/slides.pdf

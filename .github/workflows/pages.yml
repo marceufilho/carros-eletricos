@@ -1,6 +1,6 @@
-# Compila o artigo e os slides e publica a pasta portal/ no GitHub Pages.
+# Publica a pasta portal/ (site e relatório em PDF) no GitHub Pages.
 # Requer, uma única vez: Settings > Pages > Source = "GitHub Actions".
-name: Site e PDFs
+name: Publicar site
 
 on:
   push:
@@ -21,30 +21,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      # Se o LaTeX falhar, o site é publicado mesmo assim (sem o PDF que falhou);
-      # o erro fica visível no log deste passo.
-      - name: Compilar o artigo
-        id: artigo
-        continue-on-error: true
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: artigo.tex
-          working_directory: artigo
-
-      - name: Compilar os slides
-        id: slides
-        continue-on-error: true
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: slides.tex
-          working_directory: slides
-
-      - name: Copiar os PDFs para o site
-        run: |
-          for f in artigo/artigo.pdf slides/slides.pdf; do
-            if [ -f "$f" ]; then cp "$f" portal/; else echo "::warning::$f não foi gerado"; fi
-          done
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

@@ -34,8 +34,8 @@ Opcional: `python analise_tam.py respostas.csv` processa o questionário TAM (se
 | `analise_avancada.py` | série mensal, definição de mercado, Monte Carlo, série interrompida, importações, painel, Bass, FIPE, hedônica, k-means, gradient boosting |
 | `portal/index.html` | o site: página de história, com um gráfico por passo |
 | `portal/explorar.html` | o painel (abas: Dados e concentração, Análise estratégica, Série mensal e estatística) |
-| `graficos/` | gráficos em PNG e em PDF (vetorial) para slides, artigo e relatório |
-| `artigo/`, `slides/` | artigo em ABNT e slides em Beamer |
+| `graficos/` | gráficos em PNG e em PDF (vetorial) para slides e relatório |
+| `portal/relatorio.pdf` | relatório do projeto em PDF, publicado junto com o site |
 | `resultados/` | tabelas de saída e os resumos `resumo.md` e `resumo_avancado.md` |
 | `relatorio/relatorio.tex` | relatório de 2 páginas (Overleaf) |
 
@@ -45,20 +45,9 @@ Opcional: `python analise_tam.py respostas.csv` processa o questionário TAM (se
 |---|---|---|
 | Site, página de história | `portal/index.html` | lê `portal/dados.js` e `portal/dados_avancado.js`, gerados pelas análises |
 | Site, painel para explorar os dados | `portal/explorar.html` | idem |
-| Artigo (ABNT, abntex2) | `artigo/artigo.tex` | `make artigo` |
-| Slides (Beamer) | `slides/slides.tex` | `make slides` |
+| Relatório (PDF) | `portal/relatorio.pdf` | compilado no Overleaf a partir de `relatorio/relatorio.tex`; para atualizar, substitua o arquivo |
 
-Os três contam a mesma história, nos mesmos oito passos. Os gráficos do artigo e dos slides são os PDFs de `graficos/`, gravados pelas análises junto com os PNGs (`make figuras`).
-
-Para compilar o artigo e os slides é preciso ter LaTeX:
-
-```bash
-sudo apt install latexmk texlive-latex-extra texlive-lang-portuguese texlive-publishers texlive-bibtex-extra texlive-fonts-recommended
-```
-
-**Publicação.** A cada push na `main`, o GitHub Actions (`.github/workflows/pages.yml`) compila os dois PDFs e publica a pasta `portal/` em <https://marceufilho.github.io/carros-eletricos/>. É preciso ativar uma vez em Settings > Pages > Source: "GitHub Actions".
-
-**Antes de entregar:** preencher os nomes dos integrantes em `artigo/artigo.tex` e `slides/slides.tex` (procure por `PREENCHER`) e conferir a referência do guia do CADE em `artigo/referencias.bib` (marcada com `CONFERIR`).
+**Publicação.** A cada push na `main`, o GitHub Actions (`.github/workflows/pages.yml`) publica a pasta `portal/` em <https://marceufilho.github.io/carros-eletricos/>. É preciso ativar uma vez em Settings > Pages > Source: "GitHub Actions".
 
 ## De onde vêm os dados
 
@@ -107,4 +96,4 @@ Indicadores calculados (`resultados/indicadores.csv`):
 - De 2020 a 2023 a Fenabrave não publicava o ranking de elétricos por marca; a incerteza dessas estimativas está em `resultados/av_montecarlo_hhi.csv`.
 - A Fenabrave publica só as 15 maiores marcas de elétricos em cada mês; o resto entra em "Outros".
 - 2026 vai só até outubro, e outubro tem só as 5 maiores marcas.
-- Os gráficos 07 e 08 (TAM) usam respostas simuladas até o questionário ser aplicado. Por isso não aparecem no site, no artigo nem nos slides, que tratam o questionário apenas como próximo passo.
+- Os gráficos 07 e 08 (TAM) usam respostas simuladas até o questionário ser aplicado. Por isso não aparecem no site.
