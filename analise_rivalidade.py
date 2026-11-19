@@ -82,7 +82,7 @@ def indicadores(df):
         "n_equivalente": round(10000 / (s ** 2).sum(), 1),  # nº de empresas "iguais" que dariam o mesmo HHI
     })
 
-ind = marcas.groupby("ano").apply(indicadores)
+ind = marcas.groupby("ano")[["marca", "unidades", "share"]].apply(indicadores)
 # 2026 só vai até outubro: para comparar com anos cheios, anualiza (x 12/10).
 meses = totais.set_index("ano")["periodo"].map(lambda p: 10 if p == "jan-out" else 12)
 ind["total_anualizado"] = (ind["total_bev"] * 12 / meses).round().astype(int)

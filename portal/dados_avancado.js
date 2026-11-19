@@ -604,7 +604,7 @@ window.AVANCADO = {
    "r2": 0.81265,
    "pico_mes": "07/2030",
    "pico_unidades_mes": 190259.87634,
-   "vendas_2027": 534478.20921
+   "vendas_2027": 534478.20922
   }
  ],
  "precos": {
@@ -861,7 +861,7 @@ window.AVANCADO = {
   },
   {
    "titulo": "Gradient boosting (painel marca x mês, treino até 2025 e teste em 2026)",
-   "texto": "Prevendo as vendas mensais de 2026 de cada marca, o modelo completo tem R² = 0.82 fora da amostra, e simplesmente repetir o mês anterior dá 0.80: os dois praticamente empatam, sinal de que as vendas têm muita inércia. Sem a venda do mês anterior, o R² é 0.17 e as variáveis que mais pesam são número de modelos elétricos da marca (0.34), preço de entrada da marca (0.31), preço em relação ao mais barato do mercado (0.12). São só 207 observações de treino e 81 de teste: o exercício serve para ordenar fatores, não para prever."
+   "texto": "Prevendo as vendas mensais de 2026 de cada marca, o modelo completo tem R² = 0.82 fora da amostra, e simplesmente repetir o mês anterior dá 0.80: os dois praticamente empatam, sinal de que as vendas têm muita inércia. Sem a venda do mês anterior, o R² é 0.14 e as variáveis que mais pesam são número de modelos elétricos da marca (0.33), preço de entrada da marca (0.27), preço em relação ao mais barato do mercado (0.11). São só 207 observações de treino e 81 de teste: o exercício serve para ordenar fatores, não para prever."
   }
  ]
 };

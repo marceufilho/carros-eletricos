@@ -310,7 +310,7 @@ PORTAL_OUT["importacoes"] = {"meses": [f"{d:%Y-%m}" for d in jan.index], "import
 # %% 6. Painel marca x mês: importadoras x quem monta no Brasil
 local = pd.read_csv(DADOS / "producao_local.csv")
 local["inicio"] = pd.to_datetime(local["inicio"] + "-01")
-painel = unid.loc[completos].drop(columns="Outros").stack().rename("unidades").reset_index()
+painel = unid.loc[completos].rename_axis(index="data").drop(columns="Outros").stack().rename("unidades").reset_index()
 ativos = painel.groupby("marca")["unidades"].apply(lambda s: (s >= 20).sum())
 painel = painel[painel["marca"].isin(ativos[ativos >= 12].index)].copy()
 ini = local.set_index("marca")["inicio"]
